@@ -2,7 +2,7 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import styled from '@emotion/native';
 import { SCREEN_HEIGHT } from '../util';
 import { LinearGradient } from 'expo-linear-gradient';
-import DropShadow from 'react-native-drop-shadow';
+import ReviewCard from '../components/MusicalDetail/ReviewCard';
 
 export default function MusicalDetail() {
   return (
@@ -51,65 +51,7 @@ export default function MusicalDetail() {
 
       {/* FlatList로 변경해줘야 함 */}
       <Review>
-        <DropShadow
-          style={{
-            shadowColor: '#219BB6',
-            shadowOffset: {
-              width: 1,
-              height: 5,
-            },
-            shadowOpacity: 1,
-            shadowRadius: 10,
-          }}
-        >
-          <ReviewContent>
-            {/* 글자수 자르기 해야함~!
-            {movie.title.slice(0, 11)}
-          {movie.title.length > 11 && "..."} */}
-            <Text>
-              누가 죄인인가~! 이거 보고 국사 시험 잘 봤습니다. 감사합니다. 이번
-              공연 놓치지 말고 보세요. 캐스팅 쩐다. 내용이 많아지면 닉네임에
-              겹쳐질것 같아서 실험중입니다. 우려한 대로 약간 그렇습니다. 패딩을
-              주겠습니다. 그래도 해결되지 않았습니다. 울고있습니다.
-              padding-bottom을 따로 주기 위해서 하나하나 패딩을 달리 주었습니다.
-              이래도 엉망인지 보겠습니다. 오 이젠 해결 된 것 같습니다.
-              다행입니다. 울음을 멈췄습니다. 정말 잘 되는지 다시 확인
-            </Text>
-            <Id>닉네임1</Id>
-          </ReviewContent>
-        </DropShadow>
-        <DropShadow
-          style={{
-            shadowColor: '#219BB6',
-            shadowOffset: {
-              width: 1,
-              height: 5,
-            },
-            shadowOpacity: 1,
-            shadowRadius: 10,
-          }}
-        >
-          <ReviewContent>
-            <Text>김소현 진짜 좋다 노래 왜이렇게 잘해</Text>
-            <Id>닉네임2</Id>
-          </ReviewContent>
-        </DropShadow>
-        <DropShadow
-          style={{
-            shadowColor: '#219BB6',
-            shadowOffset: {
-              width: 1,
-              height: 5,
-            },
-            shadowOpacity: 1,
-            shadowRadius: 10,
-          }}
-        >
-          <ReviewContent>
-            <Text>최재림 나오나요?</Text>
-            <Id>닉네임3</Id>
-          </ReviewContent>
-        </DropShadow>
+        <ReviewCard />
       </Review>
     </Container>
   );
@@ -197,21 +139,6 @@ const AddReviewText = styled.Text`
 // 리뷰
 const Review = styled.View`
   margin: 30px 20px;
-`;
-// 리뷰 내용 + 아이디
-const ReviewContent = styled.View`
-  width: 100%;
-  background: #f4fdff;
-  border-radius: 5px;
-  padding: 15px 15px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: flex-end;
-`;
-const Id = styled.Text`
-  margin-left: auto;
-  margin-top: 10px;
-  font-size: 17px;
 `;
 
 // 전체 글자
