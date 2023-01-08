@@ -22,6 +22,7 @@ export default function ReviewDetail() {
   );
 }
 
+// 파이러댜ㅐㅗㅈㄷ러ㅏㅜ널
 const View = styled.View`
   /* 불러올 사진이 사이즈가 다 다르면 똑같이 적용안될 것 같다 */
   height: ${SCREEN_HEIGHT / 1.5 + 'px'};

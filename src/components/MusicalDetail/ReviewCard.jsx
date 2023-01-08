@@ -53,3 +53,5 @@ const Id = styled.Text`
 const Text = styled.Text`
   font-size: 20px;
 `;
+
+//ㅓ갸ㅐ러ㅚ라둥ㅎ펴ㅓㄷㄱ루
