@@ -50,7 +50,6 @@ export default function MusicalDetail() {
       </ReviewPart>
 
       {/* FlatList로 변경해줘야 함 */}
-      {/* ㄷ라ㅣ뎌ㅓ리ㅏ눒ㅇ나ㅓ롱ㄴ */}
       <Review>
         <ReviewCard />
       </Review>
