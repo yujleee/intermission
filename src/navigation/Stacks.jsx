@@ -11,18 +11,20 @@ import SignUp from '../screens/SignUp';
 const Stack = createNativeStackNavigator();
 
 export default function Stacks() {
-  <Stack.Navigator>
-    <Stack.Screen
-      name="Home"
-      component={Home}
-      options={{ headerShown: false }}
-    />
-    <Stack.Screen name="Musicals" component={Musicals} />
-    <Stack.Screen name="MusicalDetail" component={MusicalDetail} />
-    <Stack.Screen name="Reviews" component={Reviews} />
-    <Stack.Screen name="ReviewDetail" component={ReviewDetail} />
-    <Stack.Screen name="Mypage" component={MyPage} />
-    <Stack.Screen name="Login" component={Login} />
-    <Stack.Screen name="SignUp" component={SignUp} />
-  </Stack.Navigator>;
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen name="Musicals" component={Musicals} />
+      <Stack.Screen name="MusicalDetail" component={MusicalDetail} />
+      <Stack.Screen name="Reviews" component={Reviews} />
+      <Stack.Screen name="ReviewDetail" component={ReviewDetail} />
+      <Stack.Screen name="Mypage" component={MyPage} />
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="SignUp" component={SignUp} />
+    </Stack.Navigator>
+  );
 }
