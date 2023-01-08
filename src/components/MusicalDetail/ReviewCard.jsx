@@ -34,6 +34,7 @@ export default function ReviewCard() {
   );
 }
 
+//
 const ReviewContent = styled.TouchableOpacity`
   width: 100%;
   background: #f4fdff;
