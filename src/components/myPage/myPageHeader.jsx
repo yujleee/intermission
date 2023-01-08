@@ -1,10 +1,11 @@
-import { Text, View } from 'react-native';
+import { Text, TextInput, View, TouchableOpacity } from 'react-native';
 
 export default function MyPageHeader() {
   return (
     <ScrollView>
-      <></>
-      <Text>프로필</Text>
+      <Image></Image>
+      <IdTitle>닉네임</IdTitle>
+      <TouchableOpacity>로그아웃</TouchableOpacity>
     </ScrollView>
   );
 }
