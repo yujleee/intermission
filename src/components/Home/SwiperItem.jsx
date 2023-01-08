@@ -12,5 +12,5 @@ export default function SwiperItem() {
 const ItemWrapper = styled.View`
   width: 180px;
   height: 240px;
-  margin-top: 70px;
+  margin-top: 100px;
 `;

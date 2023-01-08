@@ -28,5 +28,5 @@ const SectionListWrapper = styled.ScrollView`
   width: 100%;
   height: 220px;
   padding: 0 20px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 `;

@@ -29,7 +29,7 @@ export default function BoxOfficeList() {
 
 const BoxOfficeListWrapper = styled.ScrollView`
   height: 480px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 `;
 
 const BoxOfficeTitle = styled(SectionTitle)``;
