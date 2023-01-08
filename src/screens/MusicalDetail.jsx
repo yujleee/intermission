@@ -49,6 +49,7 @@ export default function MusicalDetail() {
         </AddReview>
       </ReviewPart>
 
+      {/* FlatList로 변경해줘야 함 */}
       <Review>
         <DropShadow
           style={{
@@ -62,6 +63,9 @@ export default function MusicalDetail() {
           }}
         >
           <ReviewContent>
+            {/* 글자수 자르기 해야함~!
+            {movie.title.slice(0, 11)}
+          {movie.title.length > 11 && "..."} */}
             <Text>
               누가 죄인인가~! 이거 보고 국사 시험 잘 봤습니다. 감사합니다. 이번
               공연 놓치지 말고 보세요. 캐스팅 쩐다. 내용이 많아지면 닉네임에
@@ -69,7 +73,7 @@ export default function MusicalDetail() {
               주겠습니다. 그래도 해결되지 않았습니다. 울고있습니다.
               padding-bottom을 따로 주기 위해서 하나하나 패딩을 달리 주었습니다.
               이래도 엉망인지 보겠습니다. 오 이젠 해결 된 것 같습니다.
-              다행입니다. 울음을 멈췄습니다.
+              다행입니다. 울음을 멈췄습니다. 정말 잘 되는지 다시 확인
             </Text>
             <Id>닉네임1</Id>
           </ReviewContent>
@@ -135,7 +139,7 @@ const Title = styled.Text`
 `;
 const Rating = styled.Text`
   font-size: 20px;
-  margin: 10px;
+  margin: 10px 30px;
 `;
 
 // 공연 정보
@@ -150,7 +154,7 @@ const Data = styled.View`
 const MoreButton = styled.TouchableOpacity`
   margin-left: 20px;
   margin-right: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   padding: 10px;
   border-radius: 5px;
   align-items: center;
@@ -173,7 +177,7 @@ const ReviewPart = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 //작성하기 버튼
@@ -192,7 +196,7 @@ const AddReviewText = styled.Text`
 `;
 // 리뷰
 const Review = styled.View`
-  margin: 20px;
+  margin: 30px 20px;
 `;
 // 리뷰 내용 + 아이디
 const ReviewContent = styled.View`
@@ -205,10 +209,9 @@ const ReviewContent = styled.View`
   justify-content: flex-end;
 `;
 const Id = styled.Text`
-  right: 0px;
-  bottom: 0px;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  margin-left: auto;
+  margin-top: 10px;
+  font-size: 17px;
 `;
 
 // 전체 글자
