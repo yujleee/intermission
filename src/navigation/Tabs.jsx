@@ -12,25 +12,22 @@ const Tab = createBottomTabNavigator();
 
 export default function Tabs() {
   return (
-    <Tab.Navigator
-      initialRouteName="Home"
-      screenOptions={{ tabBarShowLabel: false }}
-    >
-      <Tab.Screen
-        name="Reviews"
-        component={Reviews}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="chatbubbles-outline" size={size} color={color} />
-          ),
-        }}
-      />
+    <Tab.Navigator screenOptions={{ tabBarShowLabel: false }}>
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Feather name="home" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Reviews"
+        component={Reviews}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="chatbubbles-outline" size={size} color={color} />
           ),
         }}
       />
