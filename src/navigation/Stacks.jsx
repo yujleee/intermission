@@ -14,7 +14,7 @@ export default function Stacks({navigation: { goBack }}) {
       {text: "아니오", onPress: () => {}}
     ])
   return (
-    <Stack.Navigator
+    <Stack.Navigator initialRouteName="Home"
       screenOptions={{
         headerLeft: () => (
           <TouchableOpacity onPress={() => goAlert()}>
@@ -23,6 +23,11 @@ export default function Stacks({navigation: { goBack }}) {
         )
       }}
     >
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="Musicals" component={Musicals} />
       <Stack.Screen name="ReviewDetail" component={ReviewDetail} />
       <Stack.Screen name="SignUp" component={SignUp} />

@@ -1,11 +1,14 @@
-import React from "react";
-import { View, Text } from "react-native";
+import styled from '@emotion/native';
+import myPageHeader from '../components/myPage/myPageHeader';
+import myPageWriteBox from '../components/myPage/myPageWriteBox';
 
 export default function MyPage() {
   return (
-    <View>
-      <Text>My</Text>
-    </View>
+    <MyPageWrapper>
+      <myPageHeader />
+      <myPageWriteBox />
+    </MyPageWrapper>
   );
 }
 
+const MyPageWrapper = styled.ScrollView``;
