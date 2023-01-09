@@ -24,7 +24,7 @@ export default function BoxOfficeList({ data }) {
         }
         data={data}
         ItemSeparatorComponent={<RankWrapper />}
-        numColumns={Math.ceil(data.length / 3)}
+        // numColumns={Math.ceil(data.length / 3)}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         initialNumToRender={3}
