@@ -1,30 +1,38 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from '../screens/Home';
-import Login from '../screens/Login';
-import MusicalDetail from '../screens/MusicalDetail';
+import { TouchableOpacity, Alert } from 'react-native';
 import Musicals from '../screens/Musicals';
-import MyPage from '../screens/MyPage';
-import ReviewDetail from '../screens/ReviewDetail';
-import Reviews from '../screens/Reviews';
 import SignUp from '../screens/SignUp';
+import Home from '../screens/Home';
+import { Ionicons } from '@expo/vector-icons';
+import ReviewDetail from '../screens/ReviewDetail';
 
 const Stack = createNativeStackNavigator();
 
-export default function Stacks() {
+export default function Stacks({ navigation: { goBack } }) {
+  const goAlert = () =>
+    Alert.alert('뒤로', '나가시겠습니까?', [
+      { text: '네', onPress: () => goBack() },
+      { text: '아니오', onPress: () => {} },
+    ]);
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => goAlert()}>
+            <Ionicons name="arrow-back" size={24} color="black" />
+          </TouchableOpacity>
+        ),
+      }}
+    >
       <Stack.Screen
         name="Home"
         component={Home}
         options={{ headerShown: false }}
       />
       <Stack.Screen name="Musicals" component={Musicals} />
-      <Stack.Screen name="MusicalDetail" component={MusicalDetail} />
-      <Stack.Screen name="Reviews" component={Reviews} />
-      <Stack.Screen name="ReviewDetail" component={ReviewDetail} />
-      <Stack.Screen name="Mypage" component={MyPage} />
-      <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name="ReviewDetail" component={ReviewDetail} />
     </Stack.Navigator>
   );
 }

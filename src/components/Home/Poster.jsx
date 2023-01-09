@@ -26,7 +26,7 @@ const PosterWrapper = styled.TouchableOpacity`
 `;
 
 const PosterImg = styled.Image`
-  display: block;
+  // display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;

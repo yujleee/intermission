@@ -1,6 +1,8 @@
 import styled from '@emotion/native';
 import ReviewCard from '../components/MusicalDetail/ReviewCard';
 import { SCREEN_HEIGHT } from '../util';
+import { StyleSheet } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function ReviewDetail() {
   return (
@@ -21,7 +23,7 @@ export default function ReviewDetail() {
     </Container>
   );
 }
-
+const Container = styled.ScrollView``;
 const View = styled.View`
   /* 불러올 사진이 사이즈가 다 다르면 똑같이 적용안될 것 같다 */
   height: ${SCREEN_HEIGHT / 1.5 + 'px'};
@@ -30,7 +32,7 @@ const View = styled.View`
 const BackdropImg = styled.Image`
   width: 100%;
   flex: 1;
-  display: block;
+  // display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;

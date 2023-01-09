@@ -29,3 +29,4 @@ export const getBoxOffice = () =>
       return boxOfficeData;
     })
     .catch((error) => console.log(error));
+
