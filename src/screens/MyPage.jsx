@@ -1,4 +1,6 @@
 import styled from '@emotion/native';
+import { db } from './index.js';
+import 'firebase/firestore';
 import MyPageHeader from '../components/MyPage/MyPageHeader';
 import MyPageWriteBox from '../components/MyPage/MyPageWriteBox';
 
