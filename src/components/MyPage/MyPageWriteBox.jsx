@@ -8,6 +8,7 @@ export default function myPageWrite() {
       <View>
         <ReviewText>작성한 리뷰</ReviewText>
       </View>
+      <View>{/* <ReviewCard /> */}</View>
     </ScrollView>
   );
 }

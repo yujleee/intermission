@@ -20,7 +20,6 @@ export default function MyPageHeader() {
         <PageId>
           <MyId>닉네임</MyId>
         </PageId>
-
         <LogoutButton>
           <LoginButtonText>로그아웃</LoginButtonText>
         </LogoutButton>
@@ -29,7 +28,7 @@ export default function MyPageHeader() {
   );
 }
 
-const PageHeader = styled.ScrollView`
+const PageHeader = styled.View`
   display: flex;
   flex-wrap: wrap;
   height: 200px;
@@ -50,8 +49,10 @@ const MyId = styled.Text`
 
 const LogoutButton = styled.TouchableOpacity`
   display: flex;
+  justify-content: center;
   width: 110px;
   height: 40px;
+  margin-top: 10px;
   background-color: #22affc;
 `;
 
