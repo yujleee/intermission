@@ -14,7 +14,6 @@ export default function myPageWrite() {
 }
 
 const ReviewText = styled.Text`
-  display: flex;
   margin-top: 60px;
   margin-left: 16px;
   font-size: 20px;

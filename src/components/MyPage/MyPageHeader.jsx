@@ -29,12 +29,10 @@ export default function MyPageHeader() {
 }
 
 const PageHeader = styled.View`
-  display: flex;
   flex-wrap: wrap;
   height: 200px;
 `;
 const MyDb = styled.View`
-  display: flex;
   margin-top: 60px;
 `;
 const MyImage = styled.View`
@@ -48,7 +46,6 @@ const MyId = styled.Text`
 `;
 
 const LogoutButton = styled.TouchableOpacity`
-  display: flex;
   justify-content: center;
   width: 110px;
   height: 40px;
