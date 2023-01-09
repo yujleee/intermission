@@ -30,7 +30,7 @@ export default function Stacks({navigation: { goBack }}) {
         options={{ headerShown: false }}
       />
       <Stack.Screen name='Musicals' component={Musicals} />
-      <Stack.Screen name='ReviewDetail' component={ReviewsDetail} />
+      <Stack.Screen name='ReviewsDetail' component={ReviewsDetail} />
       <Stack.Screen name='SignUp' component={SignUp} />
     </Stack.Navigator>
   )
