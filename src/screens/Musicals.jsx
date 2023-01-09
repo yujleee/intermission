@@ -1,12 +1,13 @@
-import { Text, TouchableOpacity, View } from 'react-native';
+import styled from '@emotion/native';
+import MusicalCard from '../components/Musicals/MusicalCard';
 
-export default function Musicals({ navigation: { navigate } }) {
+// 모든 공연 페이지
+export default function Musicals() {
   return (
-    <View>
-      <Text>Musicals</Text>
-      <TouchableOpacity onPress={() => navigate('MusicalDetail')}>
-        <Text>포스터</Text>
-      </TouchableOpacity>
-    </View>
+    <Container>
+      <MusicalCard />
+    </Container>
   );
 }
+
+const Container = styled.ScrollView``;
