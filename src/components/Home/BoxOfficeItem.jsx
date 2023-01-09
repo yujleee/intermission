@@ -1,22 +1,27 @@
 import styled from '@emotion/native';
+import { useNavigation } from '@react-navigation/native';
 import Poster from './Poster';
 
-export default function BoxOfficeItem() {
+export default function BoxOfficeItem({ musical, index }) {
+  const { navigate } = useNavigation();
+
   return (
-    <ItemWrapper>
+    <ItemWrapper
+      onPress={() => navigate('Stacks', { screen: 'MusicalDetail' })}
+    >
       <PosterWrapper>
-        <Poster />
+        <Poster url={musical.poster} />
       </PosterWrapper>
       <InfoWrapper>
-        <Rank>1</Rank>
-        <Title numberOfLines={1}>스위니토드</Title>
-        <PrfPeriod>2022.12.01 ~ 2023.03.05</PrfPeriod>
+        <Rank>{index + 1}</Rank>
+        <Title numberOfLines={1}>{musical.prfnm}</Title>
+        <PrfPeriod>{musical.prfpd}</PrfPeriod>
       </InfoWrapper>
     </ItemWrapper>
   );
 }
 
-const ItemWrapper = styled.View`
+const ItemWrapper = styled.TouchableOpacity`
   flex-direction: row;
   padding: 0 20px;
   margin: 10px 0;
@@ -40,6 +45,7 @@ const Rank = styled.Text`
 `;
 
 const Title = styled(Rank)`
+  width: 200px;
   font-weight: 700;
   color: #333;
 `;
