@@ -1,6 +1,6 @@
 import styled from '@emotion/native';
-import MyPageHeader from '../components/myPage/MyPageHeader';
-import MyPageWriteBox from '../components/myPage/MyPageWriteBox';
+import MyPageHeader from '../components/MyPage/MyPageHeader';
+import MyPageWriteBox from '../components/MyPage/MyPageWriteBox';
 
 export default function MyPage() {
   return (
