@@ -30,7 +30,7 @@ const View = styled.View`
 const BackdropImg = styled.Image`
   width: 100%;
   flex: 1;
-  // display: block;
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
