@@ -2,7 +2,7 @@ import { Text, View, ScrollView } from 'react-native';
 import styled from '@emotion/native';
 import ReviewCard from '../MusicalDetail/ReviewCard';
 
-export default function myPageWrite() {
+export default function MyPageWrite() {
   return (
     <ScrollView>
       <View>
