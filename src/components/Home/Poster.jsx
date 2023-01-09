@@ -1,14 +1,17 @@
 import styled from '@emotion/native';
 import { useNavigation } from '@react-navigation/native';
+import { BASE_URL_FOR_IMG } from '../../api';
 
-export default function Poster() {
+export default function Poster({ url }) {
   const { navigate } = useNavigation();
 
   return (
-    <PosterWrapper onPress={() => navigate('MusicalDetail')}>
+    <PosterWrapper
+      onPress={() => navigate('Stacks', { screen: 'MusicalDetail' })}
+    >
       <PosterImg
         source={{
-          uri: 'https://ticketimage.interpark.com/Play/image/large/22/22013271_p.gif',
+          uri: `${BASE_URL_FOR_IMG}/${url}`,
         }}
       />
     </PosterWrapper>
