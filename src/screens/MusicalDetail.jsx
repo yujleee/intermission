@@ -1,10 +1,17 @@
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet } from 'react-native';
 import styled from '@emotion/native';
 import { SCREEN_HEIGHT } from '../util';
 import { LinearGradient } from 'expo-linear-gradient';
 import ReviewCard from '../components/MusicalDetail/ReviewCard';
+import { useState } from 'react';
+import ReviewModal from '../components/Reviews/ReviewModal';
 
-export default function MusicalDetail() {
+export default function MusicalDetail({navigation: {navigate}}) {
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  const addreview = () => {
+    setIsOpenModal(true)
+  }
+
   return (
     <Container>
       <View>
@@ -44,15 +51,15 @@ export default function MusicalDetail() {
       </MoreButton>
       <ReviewPart>
         <SectionTitle>리뷰</SectionTitle>
-        <AddReview>
+        <AddReview onPress={addreview}>
           <AddReviewText>리뷰 작성하기</AddReviewText>
         </AddReview>
       </ReviewPart>
-
       {/* FlatList로 변경해줘야 함 */}
       <Review>
         <ReviewCard />
       </Review>
+      <ReviewModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
     </Container>
   );
 }

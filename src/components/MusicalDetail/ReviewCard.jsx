@@ -1,8 +1,10 @@
 import styled from '@emotion/native';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import DropShadow from 'react-native-drop-shadow';
 
 export default function ReviewCard() {
+  const { navigate } = useNavigation()
   return (
     <DropShadow
       style={{
@@ -15,7 +17,7 @@ export default function ReviewCard() {
         shadowRadius: 10,
       }}
     >
-      <ReviewContent>
+      <ReviewContent onPress={() => navigate('Stacks', { screen: 'ReviewDetail' })}>
         {/* 글자수 자르기 해야함~!
             {movie.title.slice(0, 11)}
           {movie.title.length > 11 && "..."} */}
