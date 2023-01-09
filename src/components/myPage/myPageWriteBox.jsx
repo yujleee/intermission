@@ -1,12 +1,11 @@
-import { Text, View } from 'react-native';
+import { Text, ScrollView, View } from 'react-native';
 
-export default function myPageWrite() {
+export default function MyPageWrite() {
   return (
     <ScrollView>
-      <Text>작성한 리뷰</Text>
-      <MyWrite>
-        <View></View>
-      </MyWrite>
+     <View>
+     <Text>작성한 리뷰!</Text>
+     </View>
     </ScrollView>
   );
 }
