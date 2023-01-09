@@ -12,7 +12,7 @@ export default function ReviewsCard() {
   return (
     <WrapView>
       {test.map((a, index)=>(
-        <RWrapper key={index} onPress={() => navigate('Stacks', {screen:'ReviewsDetail'})} >
+        <RWrapper key={index} onPress={() => navigate('MusicalDetail')} >
         <Poster source={{uri: url}} />
         <RColumn>
         <Rating>⭐️8.5/10</Rating>

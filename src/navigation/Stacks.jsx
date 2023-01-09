@@ -5,6 +5,7 @@ import ReviewsDetail from '../screens/ReviewsDetail';
 import SignUp from '../screens/SignUp';
 import Home from '../screens/Home';
 import { Ionicons } from '@expo/vector-icons';
+import ReviewDetail from '../screens/ReviewDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +33,7 @@ export default function Stacks({navigation: { goBack }}) {
       <Stack.Screen name='Musicals' component={Musicals} />
       <Stack.Screen name='ReviewsDetail' component={ReviewsDetail} />
       <Stack.Screen name='SignUp' component={SignUp} />
+      <Stack.Screen name='ReviewDetail' component={ReviewDetail} />
     </Stack.Navigator>
   )
 }
