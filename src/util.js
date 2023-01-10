@@ -1,4 +1,5 @@
 import { Dimensions } from 'react-native';
+const parseString = require('react-native-xml2js').parseString;
 
 export const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } =
   Dimensions.get('window');
@@ -17,3 +18,17 @@ export const getDateString = (type) => {
 export const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 export const pwRegex =
   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+
+// xml to JSON
+export const xmlToJson = (xmlData) => {
+  const cleanedString = xmlData.replace('\ufeff', '');
+  let jsonData;
+  parseString(cleanedString, (err, result) => {
+    if (err !== null) {
+      console.log('error: ', err);
+      return;
+    }
+    jsonData = JSON.parse(JSON.stringify(result));
+  });
+  return jsonData;
+};
