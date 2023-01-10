@@ -10,11 +10,12 @@ export default function BoxOfficeItem({ musical, index }) {
       onPress={() =>
         navigate('Stacks', {
           screen: 'MusicalDetail',
-          params: { musicalId: musical.mt20id[0] },
+          params: {
+            musicalId: musical.mt20id[0],
+          },
         })
       }
     >
-      {/* params로 뮤지컬아이디 넘겨줘야함 */}
       <PosterWrapper>
         <Poster url={musical.poster} />
       </PosterWrapper>

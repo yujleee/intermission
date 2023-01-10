@@ -1,12 +1,12 @@
-import { ActivityIndicator, StyleSheet } from 'react-native';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import styled from '@emotion/native';
-import { SCREEN_HEIGHT } from '../util';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../util';
 import { LinearGradient } from 'expo-linear-gradient';
 import ReviewCard from '../components/MusicalDetail/ReviewCard';
 import { useState } from 'react';
 import ReviewModal from '../components/Reviews/ReviewModal';
 import { useQuery } from 'react-query';
-import { getMusicalData } from '../api';
+import { BASE_URL, getMusicalData } from '../api';
 
 export default function MusicalDetail({
   navigation: { navigate },
@@ -15,16 +15,17 @@ export default function MusicalDetail({
   },
 }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isMoreButton, setMoreButton] = useState(false);
   const addreview = () => {
     setIsOpenModal(true);
   };
 
   const { data: musicalData, isLoading: isLoadingMD } = useQuery(
-    'MusicalData',
+    ['MusicalData', musicalId],
     getMusicalData
   );
 
-  if (isLoading) {
+  if (isLoadingMD) {
     return (
       <Loader>
         <ActivityIndicator />
@@ -32,20 +33,30 @@ export default function MusicalDetail({
     );
   }
   return (
-    <Container>
-      {musicalData.map((musical) => (
-        <View key={musical.mt20id}>
-          <View>
+    <Container style={{ flex: 1 }}>
+      {musicalData?.dbs?.db?.map((musical) => (
+        <InfoPart key={musicalId}>
+          {/* 포스터 이미지 */}
+          <View
+            style={{
+              width: SCREEN_WIDTH,
+              height: SCREEN_HEIGHT / 2,
+              justifyContent: 'flex-end',
+            }}
+          >
             <BackdropImg
               style={StyleSheet.absoluteFill}
-              source={require('../../assets/hero.png')}
+              source={{
+                uri: `${musical.poster}`,
+              }}
             />
-            <LinearGradient
+            {/* <LinearGradient
               style={StyleSheet.absoluteFill}
               colors={['transparent', 'black']}
-            />
+            /> */}
             <Title>{musical.prfnm}</Title>
           </View>
+          {/* 정보 */}
           <Information>
             <DataName>
               <Text>출연</Text>
@@ -63,16 +74,29 @@ export default function MusicalDetail({
               <Text>{musical.fcltynm}</Text>
               <Text>{musical.prfruntime}</Text>
               <Text>{musical.prfage}</Text>
-              <Text>{musical.pcsequidance}</Text>\{' '}
+              <Text>{musical.pcsequidance}</Text>
             </Data>
           </Information>
-          <MoreButton>
+          {console.log('styurl나와라', musical?.styurls[0].styurl[0])}
+          <MoreButton onPress={() => setMoreButton(!isMoreButton)}>
             <TempText>작품 상세 더보기</TempText>
-            {/* 이럴수가 접기 버튼도 만들어야 된다 */}
+            {console.log('isMoreButton', isMoreButton)}
           </MoreButton>
-        </View>
+          {/* 긴 이미지 */}
+          {isMoreButton && (
+            <MoreDetail>
+              <DetailImg
+                style={{ resizeMode: 'stretch' }}
+                source={{
+                  uri: `${musical?.styurls[0].styurl[0]}`,
+                }}
+              />
+            </MoreDetail>
+          )}
+        </InfoPart>
       ))}
 
+      {/* 리뷰 */}
       <ReviewPart>
         <SectionTitle>리뷰</SectionTitle>
         <AddReview onPress={addreview}>
@@ -87,18 +111,18 @@ export default function MusicalDetail({
   );
 }
 
-const Container = styled.ScrollView``;
+const Container = styled.ScrollView`
+  /* flex: 1; */
+`;
 
-const View = styled.View`
+const InfoPart = styled.View`
   /* 불러올 사진이 사이즈가 다 다르면 똑같이 적용안될 것 같다 */
   height: ${SCREEN_HEIGHT / 1.5 + 'px'};
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
 `;
 const BackdropImg = styled.Image`
   width: 100%;
   flex: 1;
-  // display: ;
-  width: 100%;
   height: 100%;
   object-fit: cover;
 `;
@@ -112,7 +136,7 @@ const Title = styled.Text`
 
 // 공연 정보
 const Information = styled.View`
-  margin: 0 30px 30px 30px;
+  margin: 30px;
   flex-direction: row;
 `;
 const DataName = styled.View``;
@@ -128,6 +152,15 @@ const MoreButton = styled.TouchableOpacity`
   align-items: center;
   background-color: #22affc;
   color: white;
+`;
+// 상세보기 버튼 누르면 나타나는
+const MoreDetail = styled.View`
+  width: 100%;
+  height: 100%;
+`;
+const DetailImg = styled.Image`
+  flex: 1;
+  object-fit: cover;
 `;
 // 리뷰
 const SectionTitle = styled.Text`
