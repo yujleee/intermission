@@ -1,9 +1,10 @@
 import styled from '@emotion/native';
 import Poster from './Poster';
+import { shadowStyle } from '../../shadow';
 
 export default function BoxOfficeMonthItem({ perf }) {
   return (
-    <ItemWrapper>
+    <ItemWrapper style={shadowStyle.grey}>
       <Poster url={perf.poster} />
     </ItemWrapper>
   );
