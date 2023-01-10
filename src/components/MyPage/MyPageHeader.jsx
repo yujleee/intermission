@@ -1,8 +1,9 @@
 import { Text, TextInput, View, TouchableOpacity, Image } from 'react-native';
 import styled from '@emotion/native';
 import ProfileImg from '../../../assets/profile_default.jpg';
+import { authService } from '../../firebase';
 
-// // 닉네임 수정
+// 닉네임 수정
 // const onSubmit = async (e) => {
 //   e.preventDefault();
 //   if (userName !== newDisplayName) {
@@ -66,6 +67,17 @@ import ProfileImg from '../../../assets/profile_default.jpg';
 // };
 
 export default function MyPageHeader() {
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (userName !== newDisplayName) {
+      await updateProfile(authService.currentUser, {
+        displayName: newNickname ? newNickname : null,
+        // photoURL: downloadUrl ? downlodaUrl : null,
+      });
+    }
+  };
+  console.log(authService);
+
   return (
     <PageHeader>
       <MyImage>
@@ -82,10 +94,14 @@ export default function MyPageHeader() {
         <PageId>
           <MyId>닉네임</MyId>
         </PageId>
-        <LogoutButton>
+        {/* <MyButton> */}
+        <IdButton>
           <LoginButtonId>닉네임 수정</LoginButtonId>
+        </IdButton>
+        <LogoutButton>
           <LoginButtonText>로그아웃</LoginButtonText>
         </LogoutButton>
+        {/* </MyButton> */}
       </MyDb>
     </PageHeader>
   );
@@ -99,27 +115,38 @@ const MyDb = styled.View`
   margin-top: 60px;
 `;
 const MyImage = styled.View`
-  margin: 25px;
+  margin: 40px;
 `;
 
 const PageId = styled.Text``;
 const MyId = styled.Text`
   font-size: 20px;
-  margin-top: 40px;
+  margin-top: 20px;
 `;
-
+const IdButton = styled.TouchableOpacity`
+  justify-content: center;
+  width: 110px;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #22affc;
+  border-radius: 10px;
+`;
 const LogoutButton = styled.TouchableOpacity`
   justify-content: center;
   width: 110px;
   height: 40px;
   margin-top: 10px;
   background-color: #22affc;
+  border-radius: 10px;
 `;
 const LoginButtonId = styled.Text`
   color: white;
+  font-size: 14px;
   text-align: center;
 `;
 const LoginButtonText = styled.Text`
   color: white;
+  font-size: 14px;
   text-align: center;
 `;
