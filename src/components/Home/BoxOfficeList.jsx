@@ -24,7 +24,7 @@ export default function BoxOfficeList({ data }) {
         }
         data={data}
         ItemSeparatorComponent={<RankWrapper />}
-        // numColumns={Math.ceil(data.length / 3)}
+        numColumns={Math.ceil(data.length / 3)}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         initialNumToRender={3}
@@ -35,7 +35,7 @@ export default function BoxOfficeList({ data }) {
 }
 
 const BoxOfficeListWrapper = styled.ScrollView`
-  height: 510px;
+  height: 530px;
   margin-bottom: 50px;
 `;
 
