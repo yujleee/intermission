@@ -4,7 +4,7 @@ import React from 'react';
 import DropShadow from 'react-native-drop-shadow';
 
 export default function ReviewCard() {
-  const { navigate } = useNavigation()
+  const { navigate } = useNavigation();
   return (
     <DropShadow
       style={{
@@ -17,7 +17,9 @@ export default function ReviewCard() {
         shadowRadius: 10,
       }}
     >
-      <ReviewContent onPress={() => navigate('Stacks', { screen: 'ReviewDetail' })}>
+      <ReviewContent
+        onPress={() => navigate('Stacks', { screen: 'ReviewDetail' })}
+      >
         {/* 글자수 자르기 해야함~!
             {movie.title.slice(0, 11)}
           {movie.title.length > 11 && "..."} */}
@@ -37,7 +39,7 @@ export default function ReviewCard() {
 }
 
 //
-const ReviewContent = styled.TouchableOpacity`
+export const ReviewContent = styled.TouchableOpacity`
   width: 100%;
   background: #f4fdff;
   border-radius: 5px;
@@ -46,14 +48,14 @@ const ReviewContent = styled.TouchableOpacity`
   display: flex;
   justify-content: flex-end;
 `;
-const Id = styled.Text`
+export const Id = styled.Text`
   margin-left: auto;
   margin-top: 10px;
   font-size: 17px;
 `;
 
 // 전체 글자
-const Text = styled.Text`
+export const Text = styled.Text`
   font-size: 20px;
 `;
 
