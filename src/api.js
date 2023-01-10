@@ -30,3 +30,28 @@ export const getBoxOffice = () =>
     })
     .catch((error) => console.log(error));
 
+/**
+ * 선택한 작품의 상세정보 API (get)
+ * 상세 데이터를 xml2js 라이브러리를 통해 JSON 데이터로 변환합니다.
+ * 최초 작업: 2023.01.10
+ * @returns JSON 데이터
+ */
+export const getMusicalData = fetch(
+  `${BASE_URL}/pblprfr/${musicalId}?service=${API_KEY}`
+)
+  .then((res) => res.text())
+  .then((data) => {
+    const cleanedString = data.replace('\ufeff', '');
+    let boxOfficeData;
+    parseString(cleanedString, (err, result) => {
+      if (err !== null) {
+        console.log('error: ', err);
+        return;
+      }
+      boxOfficeData = JSON.parse(JSON.stringify(result));
+    });
+    // return boxOfficeData;
+    console.log('db:', db);
+  })
+  .catch((error) => console.log(error));
+// 선택한 작품의 공연ID값을 알아야 함

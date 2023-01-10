@@ -1,10 +1,11 @@
 import styled from '@emotion/native';
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import DropShadow from 'react-native-drop-shadow';
+import { parseString } from 'react-native-xml2js';
+import { BASE_URL, API_KEY } from '../../api';
 
 export default function ReviewCard() {
-  const { navigate } = useNavigation();
   return (
     <DropShadow
       style={{

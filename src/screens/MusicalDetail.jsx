@@ -1,61 +1,84 @@
-import { StyleSheet } from 'react-native';
+import { ActivityIndicator, StyleSheet } from 'react-native';
 import styled from '@emotion/native';
 import { SCREEN_HEIGHT } from '../util';
 import { LinearGradient } from 'expo-linear-gradient';
 import ReviewCard from '../components/MusicalDetail/ReviewCard';
 import { useState } from 'react';
 import ReviewModal from '../components/Reviews/ReviewModal';
+import { useQuery } from 'react-query';
+import { getMusicalData } from '../api';
 
-export default function MusicalDetail({navigation: {navigate}}) {
-  const [isOpenModal, setIsOpenModal] = useState(false)
+export default function MusicalDetail({
+  navigation: { navigate },
+  route: {
+    params: { musicalId },
+  },
+}) {
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const addreview = () => {
-    setIsOpenModal(true)
-  }
+    setIsOpenModal(true);
+  };
 
+  const { data: musicalData, isLoading: isLoadingMD } = useQuery(
+    'MusicalData',
+    getMusicalData
+  );
+
+  if (isLoading) {
+    return (
+      <Loader>
+        <ActivityIndicator />
+      </Loader>
+    );
+  }
   return (
     <Container>
-      <View>
-        <BackdropImg
-          style={StyleSheet.absoluteFill}
-          source={require('../../assets/hero.png')}
-        />
-        <LinearGradient
-          style={StyleSheet.absoluteFill}
-          colors={['transparent', 'black']}
-        />
-        <Title>영웅</Title>
-      </View>
-      <Rating>⭐️4.5/5</Rating>
-      {/* 2열로 만들어서 api로 불러온 값은 2번째 열에 넣고 싶다 */}
-      <Information>
-        <DataName>
-          <Text>공연 기간</Text>
-          <Text>공연 시간</Text>
-          <Text>장소 서울</Text>
-          <Text>관람 연령</Text>
-          <Text>제작사</Text>
-          <Text>가격</Text>
-        </DataName>
-        <Data>
-          <Text>2022.12.21~2023.2.28</Text>
-          <Text>160분</Text>
-          <Text>서울 예술의 전당</Text>
-          <Text>전체연령가</Text>
-          <Text>잘모릅니다</Text>
-          <Text>120,000원</Text>
-        </Data>
-      </Information>
-      <MoreButton>
-        <TempText>작품 상세 더보기</TempText>
-        {/* 이럴수가 접기 버튼도 만들어야 된다 */}
-      </MoreButton>
+      {musicalData.map((musical) => (
+        <View key={musical.mt20id}>
+          <View>
+            <BackdropImg
+              style={StyleSheet.absoluteFill}
+              source={require('../../assets/hero.png')}
+            />
+            <LinearGradient
+              style={StyleSheet.absoluteFill}
+              colors={['transparent', 'black']}
+            />
+            <Title>{musical.prfnm}</Title>
+          </View>
+          <Information>
+            <DataName>
+              <Text>출연</Text>
+              <Text>공연 기간</Text>
+              <Text>공연 장소</Text>
+              <Text>러닝타임</Text>
+              <Text>관람 연령가</Text>
+              <Text>가격</Text>
+            </DataName>
+            <Data>
+              <Text>{musical.prfcast}</Text>
+              <Text>
+                {musical.prfpdfrom}~{musical.prfpdto}
+              </Text>
+              <Text>{musical.fcltynm}</Text>
+              <Text>{musical.prfruntime}</Text>
+              <Text>{musical.prfage}</Text>
+              <Text>{musical.pcsequidance}</Text>\{' '}
+            </Data>
+          </Information>
+          <MoreButton>
+            <TempText>작품 상세 더보기</TempText>
+            {/* 이럴수가 접기 버튼도 만들어야 된다 */}
+          </MoreButton>
+        </View>
+      ))}
+
       <ReviewPart>
         <SectionTitle>리뷰</SectionTitle>
         <AddReview onPress={addreview}>
           <AddReviewText>리뷰 작성하기</AddReviewText>
         </AddReview>
       </ReviewPart>
-      {/* FlatList로 변경해줘야 함 */}
       <Review>
         <ReviewCard />
       </Review>
@@ -85,10 +108,6 @@ const Title = styled.Text`
   font-weight: 600;
   margin-left: 20px;
   margin-bottom: 20px;
-`;
-const Rating = styled.Text`
-  font-size: 20px;
-  margin: 10px 30px;
 `;
 
 // 공연 정보
@@ -151,4 +170,10 @@ const Review = styled.View`
 // 전체 글자
 const Text = styled.Text`
   font-size: 20px;
+`;
+
+const Loader = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 `;
