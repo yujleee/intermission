@@ -5,7 +5,7 @@ import DropShadow from 'react-native-drop-shadow';
 export default function BoxOfficeMonthItem({ perf }) {
   return (
     <ItemWrapper>
-      <DropShadow
+      {/* <DropShadow
         style={{
           shadowColor: '#303030',
           shadowOffset: {
@@ -16,7 +16,7 @@ export default function BoxOfficeMonthItem({ perf }) {
         }}
       >
         <Poster url={perf.poster} />
-      </DropShadow>
+      </DropShadow> */}
     </ItemWrapper>
   );
 }
