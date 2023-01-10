@@ -1,18 +1,32 @@
 import { useQuery, useQueryClient } from 'react-query';
 import { ActivityIndicator } from 'react-native';
 import styled from '@emotion/native';
-import SwiperItem from '../components/Home/SwiperItem';
 import BoxOfficeList from '../components/Home/BoxOfficeList';
 import SectionList from '../components/Home/SectionList';
-import { getBoxOffice } from '../api';
+import { getBoxOfficeDay, getBoxOfficeMonth } from '../api';
+import BoxOfficeMonthList from '../components/Home/BoxOfficeMonthList';
 
 export default function Home() {
-  const { data: boxOfficeData, isLoading: isLoadingBO } = useQuery(
-    ['Musicals', 'BoxOffice'],
-    getBoxOffice
+  const { data: boxOfficeMonthData, isLoading: isLoadingBOM } = useQuery(
+    ['Musicals', 'BoxOfficeMonth'],
+    getBoxOfficeMonth
+  );
+  const { data: boxOfficeDayData, isLoading: isLoadingBOD } = useQuery(
+    ['Musicals', 'BoxOfficeDay'],
+    getBoxOfficeDay
   );
 
-  if (isLoadingBO) {
+  const isLoading = isLoadingBOM || isLoadingBOD;
+
+  // 뮤지컬 데이터만 필터링. api quueryString 중 catecode=GGGA가 먹통인듯 합니다.
+  const filteredBoxOfficeDay = boxOfficeDayData?.boxofs?.boxof?.filter(
+    (perf) => perf.cate[0] === '뮤지컬'
+  );
+  const filteredBoxOfficeMonth = boxOfficeMonthData?.boxofs?.boxof?.filter(
+    (perf) => perf.cate[0] === '뮤지컬'
+  );
+
+  if (isLoading) {
     return (
       <Loader>
         <ActivityIndicator />
@@ -24,10 +38,8 @@ export default function Home() {
     <HomeWrapper
       ListHeaderComponent={
         <>
-          <SliderWrapper>
-            <SwiperItem />
-          </SliderWrapper>
-          <BoxOfficeList data={boxOfficeData.boxofs.boxof} />
+          <BoxOfficeMonthList data={filteredBoxOfficeMonth} />
+          <BoxOfficeList data={filteredBoxOfficeDay} />
           <SectionList title={'공연 예정'} />
           <SectionList title={'서울에서 공연중'} />
         </>
@@ -37,15 +49,6 @@ export default function Home() {
 }
 
 const HomeWrapper = styled.FlatList``;
-
-const SliderWrapper = styled.View`
-  width: 100%;
-  height: 280px;
-  background-color: #101010;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 80px;
-`;
 
 export const Loader = styled.View`
   flex: 1;
