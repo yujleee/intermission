@@ -101,7 +101,7 @@ export default function Login({ navigation: { goBack, setOptions } }) {
           onChangeText={(text) => setEmail(text)}
           placeholderTextColor="#d2dae2"
           textContentType="emailAddress"
-          placeholder="Enter your email id"
+          placeholder="E-mail"
         />
         <LoginBox
           ref={pwRef}
@@ -111,7 +111,7 @@ export default function Login({ navigation: { goBack, setOptions } }) {
           textContentType="password"
           returnKeyType="send"
           secureTextEntry={true}
-          placeholder="Enter your password"
+          placeholder="Password"
         />
       </InputBox>
 
@@ -127,7 +127,7 @@ export default function Login({ navigation: { goBack, setOptions } }) {
 }
 
 const BigBrother = styled.View`
-  margin: 150px auto 90px;
+  margin: 75px auto 90px;
   display: flex;
 `;
 
@@ -140,13 +140,14 @@ const TitleText = styled.Text`
 const LoginBox = styled.TextInput`
   display: flex;
   justify-content: center;
-  background-color: skyblue;
+  background-color: whitesmoke;
+  border: 1px solid black;
   color: whitesmoke;
-  width: 250px;
-  height: 60px;
+  width: 270px;
+  height: 45px;
   border-radius: 10px;
-  margin-bottom: 30px;
-  font-size: 25px;
+  margin-bottom: 20px;
+  font-size: 19px;
 `;
 
 const InputBox = styled.View`
@@ -158,7 +159,7 @@ const InputBox = styled.View`
 const LoginButton = styled.TouchableOpacity`
   display: flex;
   align-items: center;
-  width: 120px;
+  width: 230px;
   height: 30px;
   background-color: skyblue;
   border-radius: 10px;
@@ -166,25 +167,24 @@ const LoginButton = styled.TouchableOpacity`
   margin: 0 auto;
 `;
 const LoginButtonText = styled.Text`
-  font-size: 20px;
+  font-size: 19px;
   color: white;
   text-align: center;
 `;
 
 const JoinButton = styled.TouchableOpacity`
   border-radius: 10px;
-  width: 100px;
+  width: 110px;
   height: 30px;
   background-color: skyblue;
   justify-content: center;
   text-align: center;
   display: flex;
-  margin-top: 100px;
-  margin-left: 100px;
+  margin: 30px auto 0;
 `;
 
 const JoinButtonText = styled.Text`
-  font-size: 10px;
+  font-size: 15px;
   color: white;
   text-align: center;
 `;
