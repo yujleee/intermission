@@ -39,7 +39,7 @@ export default function Home() {
       ListHeaderComponent={
         <>
           <BoxOfficeMonthList data={filteredBoxOfficeMonth} />
-          <BoxOfficeList data={filteredBoxOfficeDay} />
+          {/* <BoxOfficeList data={filteredBoxOfficeDay} /> */}
           <SectionList title={'공연 예정'} />
           <SectionList title={'서울에서 공연중'} />
         </>
