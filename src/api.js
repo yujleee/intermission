@@ -32,7 +32,24 @@ export const getBoxOfficeDay = () =>
     })
     .catch((error) => console.log(error));
 
-<<<<<<< HEAD
+export const getBoxOfficeMonth = () =>
+  fetch(
+    `${BASE_URL}/boxoffice?service=${API_KEY}&ststype=month&date=${getDateString()}&catecode=GGGA&area=11`
+  )
+    .then((res) => res.text())
+    .then((data) => {
+      const cleanedString = data.replace('\ufeff', '');
+      let boxOfficeData;
+      parseString(cleanedString, (err, result) => {
+        if (err !== null) {
+          console.log('error: ', err);
+          return;
+        }
+        boxOfficeData = JSON.parse(JSON.stringify(result));
+      });
+      return boxOfficeData;
+    })
+    .catch((error) => console.log(error));
 /**
  * 선택한 작품의 상세정보 API (get)
  * 상세 데이터를 xml2js 라이브러리를 통해 JSON 데이터로 변환합니다.
@@ -58,23 +75,3 @@ export const getMusicalData = fetch(
   })
   .catch((error) => console.log(error));
 // 선택한 작품의 공연ID값을 알아야 함
-=======
-export const getBoxOfficeMonth = () =>
-  fetch(
-    `${BASE_URL}/boxoffice?service=${API_KEY}&ststype=month&date=${getDateString()}&catecode=GGGA&area=11`
-  )
-    .then((res) => res.text())
-    .then((data) => {
-      const cleanedString = data.replace('\ufeff', '');
-      let boxOfficeData;
-      parseString(cleanedString, (err, result) => {
-        if (err !== null) {
-          console.log('error: ', err);
-          return;
-        }
-        boxOfficeData = JSON.parse(JSON.stringify(result));
-      });
-      return boxOfficeData;
-    })
-    .catch((error) => console.log(error));
->>>>>>> 0372572890f68b51cf92f301dd9907a6ccede3f5
