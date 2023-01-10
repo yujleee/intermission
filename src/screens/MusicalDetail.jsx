@@ -3,14 +3,40 @@ import styled from '@emotion/native';
 import { SCREEN_HEIGHT } from '../util';
 import { LinearGradient } from 'expo-linear-gradient';
 import ReviewCard from '../components/MusicalDetail/ReviewCard';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReviewModal from '../components/Reviews/ReviewModal';
+import { collection, getDocs, query, doc} from 'firebase/firestore';
+import { authService, dbService } from '../firebase';
+
 
 export default function MusicalDetail({navigation: {navigate}}) {
   const [isOpenModal, setIsOpenModal] = useState(false)
   const addreview = () => {
     setIsOpenModal(true)
   }
+  const [reviews, setReviews] = useState([]); // reviews 추가, 삭제 state
+  const reviewsCollectionRef = collection(dbService, 'reviews'); //db의 reviews 컬렉션 가져옴
+  
+  useEffect(() => {
+    const getReviews = async () => {
+      const data = await getDocs(query(reviewsCollectionRef))
+      setReviews(data.docs.map(doc => ({...doc.data(), id: doc.id})))
+    }
+    getReviews();
+  },[reviews])
+  
+  // useEffect(() => {
+  //   const getReviews = async () => {
+  //     const data = await getDocs(reviewsCollectionRef); //getDocs로 컬렉션안에 데이터 가져오기
+  //     // reviews에 data안의 자료추가, 객체에 id 덮어씌우기
+  //     setReviews(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
+  //   }
+  //   getReviews();
+  // }, [])
+  //띄어줄 데이터 key값에 고유 ID를 넣어준다.
+  // const showReviews = reviews.map((value) => (
+  //   <View key={value.id}><Text>{value.contents}</Text></View>
+  // ))
 
   return (
     <Container>
@@ -57,7 +83,7 @@ export default function MusicalDetail({navigation: {navigate}}) {
       </ReviewPart>
       {/* FlatList로 변경해줘야 함 */}
       <Review>
-        <ReviewCard />
+        {reviews.map((value) => (<ReviewCard key={value.id} review={value} />))}
       </Review>
       <ReviewModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
     </Container>
