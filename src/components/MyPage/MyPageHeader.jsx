@@ -1,7 +1,6 @@
 import { Text, TextInput, View, TouchableOpacity, Image } from 'react-native';
-import { ScrollView } from 'react-native';
 import styled from '@emotion/native';
-// import { getAuth, updateProfile } from 'firebase/auth';
+import { getFirestore, getDocs, updateProfile } from 'firebase/firestore';
 import ProfileImg from '../../../assets/profile_default.jpg';
 
 // 닉네임 수정
@@ -85,6 +84,7 @@ export default function MyPageHeader() {
           <MyId>닉네임</MyId>
         </PageId>
         <LogoutButton>
+          <LoginButtonId>닉네임 수정</LoginButtonId>
           <LoginButtonText>로그아웃</LoginButtonText>
         </LogoutButton>
       </MyDb>
@@ -116,7 +116,10 @@ const LogoutButton = styled.TouchableOpacity`
   margin-top: 10px;
   background-color: #22affc;
 `;
-
+const LoginButtonId = styled.Text`
+  color: white;
+  text-align: center;
+`;
 const LoginButtonText = styled.Text`
   color: white;
   text-align: center;
