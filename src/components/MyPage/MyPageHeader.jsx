@@ -4,13 +4,13 @@ import styled from '@emotion/native';
 // import { getAuth, updateProfile } from 'firebase/auth';
 import ProfileImg from '../../../assets/profile_default.jpg';
 
-// // 닉네임 수정
-// const onSubmit = async (e) => {
-//   e.preventDefault();
-//   if (userName !== newDisplayName) {
-//     await updateProfile(userObj, { displayName: newDisplayName });
-//   }
-// };
+// 닉네임 수정
+const onSubmit = async (e) => {
+  e.preventDefault();
+  if (userName !== newDisplayName) {
+    await updateProfile(userObj, { displayName: newDisplayName });
+  }
+};
 
 // // 사진 업로드 용 정의
 // const [image, setImage] = useState('');
