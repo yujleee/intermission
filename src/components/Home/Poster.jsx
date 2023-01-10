@@ -11,7 +11,7 @@ export default function Poster({ url }) {
     >
       <PosterImg
         source={{
-          uri: `${BASE_URL_FOR_IMG}/${url}`,
+          uri: `${BASE_URL_FOR_IMG}${url}`,
         }}
       />
     </PosterWrapper>
