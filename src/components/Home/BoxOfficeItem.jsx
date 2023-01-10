@@ -13,7 +13,7 @@ export default function BoxOfficeItem({ musical, index }) {
         <Poster url={musical.poster} />
       </PosterWrapper>
       <InfoWrapper>
-        <Rank>{index + 1}</Rank>
+        <Rank>{musical.rnum}</Rank>
         <Title numberOfLines={1}>{musical.prfnm}</Title>
         <PrfPeriod>{musical.prfpd}</PrfPeriod>
       </InfoWrapper>
