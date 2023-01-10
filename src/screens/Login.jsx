@@ -142,7 +142,7 @@ const LoginBox = styled.TextInput`
   justify-content: center;
   background-color: whitesmoke;
   border: 1px solid black;
-  color: whitesmoke;
+  color: black;
   width: 270px;
   height: 45px;
   border-radius: 10px;
