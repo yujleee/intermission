@@ -26,7 +26,6 @@ export default function MyPageHeader() {
     }
   };
   console.log(authService);
-
   // 이미지 추가
   const [response, setResponse] = useState(null);
   const onSelectImage = () => {
@@ -117,7 +116,7 @@ export default function MyPageHeader() {
       {loading ? (
         <ActivityIndicator
           size={32}
-          color="#6200ee"
+          color="#6200EE"
           style={{
             width: 160,
             height: 160,
@@ -143,15 +142,14 @@ export default function MyPageHeader() {
         <IdButton>
           <LoginButtonId>닉네임 수정</LoginButtonId>
         </IdButton>
-        <LogoutButton>
-          <LoginButtonText onPress={logOutBtn}>로그아웃</LoginButtonText>
+        <LogoutButton onPress={logOutBtn}>
+          <LoginButtonText>로그아웃</LoginButtonText>
         </LogoutButton>
         {/* </MyButton> */}
       </MyDb>
     </PageHeader>
   );
 }
-
 const PageHeader = styled.View`
   flex-wrap: wrap;
   height: 200px;
@@ -165,12 +163,10 @@ const PageId = styled.Text``;
 const MyId = styled.Text`
   font-size: 20px;
   color: ${(props) => props.theme.fontColor};
-
   margin-top: 20px;
 `;
 const IdButton = styled.TouchableOpacity`
   color: ${(props) => props.theme.fontColor};
-
   justify-content: center;
   width: 110px;
   height: 40px;
