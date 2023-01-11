@@ -77,7 +77,7 @@ export default function MyPageHeader() {
   };
   // 경고창
   const logOutBtn = () => {
-    Alert.alert('Intermission', '로그아웃 하시겠습니까??', [
+    Alert.alert('Intermission', '로그아웃 하시겠습니까?', [
       {
         text: '예',
         onPress: () => {
@@ -137,8 +137,8 @@ export default function MyPageHeader() {
         <IdButton>
           <LoginButtonId>닉네임 수정</LoginButtonId>
         </IdButton>
-        <LogoutButton>
-          <LoginButtonText onPress={logOutBtn}>로그아웃</LoginButtonText>
+        <LogoutButton onPress={logOutBtn}>
+          <LoginButtonText>로그아웃</LoginButtonText>
         </LogoutButton>
         {/* </MyButton> */}
       </MyDb>
