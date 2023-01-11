@@ -74,17 +74,6 @@ export default function MusicalDetail({
             {/* 상세보기 버튼 누르면 상세 이미지 나옴 */}
             <MoreButton
               onPress={() => {
-                // () => (
-                //   <Collapsible>
-                //     <SomeCollapsedView
-                //       style={{ resizeMode: 'stretch' }}
-                //       source={{
-                //         uri: `${musicalData?.styurls[0]?.styurl[0]}`,
-                //       }}
-                //       collapsed={isCollapsed}
-                //     />
-                //   </Collapsible>
-                // );
                 setMoreButton(!isMoreButton);
               }}
             >
