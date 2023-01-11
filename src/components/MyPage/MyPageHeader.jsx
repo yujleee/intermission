@@ -91,15 +91,22 @@ export default function MyPageHeader() {
 
   return (
     <PageHeader>
-      <MyImage>
+      {/* <MyImage>
         <Image
           style={{
             width: 160,
             height: 160,
             borderRadius: 100,
+            margin: 40,
           }}
         />
-      </MyImage>
+      </MyImage> */}
+      <Pressable style={styles.circle} onPress={uploadImage}>
+        <Image
+          style={styles.circle}
+          source={{ uri: response?.assets[0]?.uri }}
+        />
+      </Pressable>
       <MyDb>
         <PageId>
           <MyId>닉네임</MyId>
@@ -124,9 +131,7 @@ const PageHeader = styled.View`
 const MyDb = styled.View`
   margin-top: 60px;
 `;
-const MyImage = styled.View`
-  margin: 40px;
-`;
+const MyImage = styled.TouchableOpacity``;
 
 const PageId = styled.Text``;
 const MyId = styled.Text`
