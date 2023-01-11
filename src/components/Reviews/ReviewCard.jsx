@@ -22,7 +22,10 @@ export default function ReviewCard({ review }) {
       </Row>
 
       <Text>{review?.contents}</Text>
-      <Id>닉네임1</Id>
+      <Id>
+        {/* {review?.userId} */}
+          닉네임1
+        </Id>
     </ReviewContent>
   );
 }

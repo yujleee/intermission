@@ -32,8 +32,11 @@ export default function ReviewDetail({
         </EditBtn>
       </Row>
       <ReviewBox>
-        <Text>{review?.contents}</Text>
-        <Id>닉네임1</Id>
+      <Text>{review?.contents}</Text>
+      <Id>
+        {/* {review?.userId} */}
+        닉네임1
+      </Id>
       </ReviewBox>
     </Container>
   );
