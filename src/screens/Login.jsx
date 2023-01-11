@@ -8,7 +8,11 @@ import {
 import { emailRegex, pwRegex, SCREEN_WIDTH } from '../util';
 import { useState, useEffect, useRef } from 'react';
 import { Alert } from 'react-native';
-export default function Login({ navigation: { goBack, setOptions } }) {
+import { useNavigation } from '@react-navigation/native';
+
+export default function Login({
+  navigation: { goBack, setOptions, navigate },
+}) {
   const emailRef = useRef(null);
   const pwRef = useRef(null);
   const [email, setEmail] = useState('');
@@ -54,7 +58,7 @@ export default function Login({ navigation: { goBack, setOptions } }) {
 
         setEmail('');
         setPw('');
-        goBack();
+        navigate('Home');
         // 로그인 화면 이전 화면으로 돌아가기
       })
       .catch((err) => {
@@ -73,6 +77,8 @@ export default function Login({ navigation: { goBack, setOptions } }) {
     if (validateInputs()) {
       return;
     }
+    // 네비
+    const { navigate } = useNavigation();
 
     // 회원가입 요청
     createUserWithEmailAndPassword(authService, email, pw)
