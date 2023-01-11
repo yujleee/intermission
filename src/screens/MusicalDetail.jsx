@@ -58,26 +58,16 @@ export default function MusicalDetail({
           </View>
           {/* 정보 */}
           <Information>
-            <DataName>
-              <Text>출연</Text>
-              <Text>공연 기간</Text>
-              <Text>공연 장소</Text>
-              <Text>러닝타임</Text>
-              <Text>관람 연령가</Text>
-              <Text>가격</Text>
-            </DataName>
-            <Data>
-              <Text>{musical.prfcast}</Text>
-              <Text>
-                {musical.prfpdfrom}~{musical.prfpdto}
-              </Text>
-              <Text>{musical.fcltynm}</Text>
-              <Text>{musical.prfruntime}</Text>
-              <Text>{musical.prfage}</Text>
-              <Text>{musical.pcsequidance}</Text>
-            </Data>
+            <Info>출연 : {musical.prfcast}</Info>
+            <Info>
+              공연 기간 : {musical.prfpdfrom}~{musical.prfpdto}
+            </Info>
+            <Info>공연 장소 : {musical.fcltynm}</Info>
+            <Info>러닝타임 : {musical.prfruntime}</Info>
+            <Info>관람 연령가 : {musical.prfage}</Info>
+            <Info>가격 : {musical.pcsequidance}</Info>
           </Information>
-          {console.log('styurl나와라', musical?.styurls[0].styurl[0])}
+          {/* {console.log('styurl나와라', musical?.styurls[0].styurl[0])} */}
           <MoreButton onPress={() => setMoreButton(!isMoreButton)}>
             <TempText>작품 상세 더보기</TempText>
             {console.log('isMoreButton', isMoreButton)}
@@ -103,9 +93,11 @@ export default function MusicalDetail({
           <AddReviewText>리뷰 작성하기</AddReviewText>
         </AddReview>
       </ReviewPart>
+
       <Review>
         <ReviewCard />
       </Review>
+
       <ReviewModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
     </Container>
   );
@@ -117,8 +109,9 @@ const Container = styled.ScrollView`
 
 const InfoPart = styled.View`
   /* 불러올 사진이 사이즈가 다 다르면 똑같이 적용안될 것 같다 */
-  height: ${SCREEN_HEIGHT / 1.5 + 'px'};
+  /* height: ${SCREEN_HEIGHT / 1.5 + 'px'}; */
   /* justify-content: flex-end; */
+  flex: 1;
 `;
 const BackdropImg = styled.Image`
   width: 100%;
@@ -137,11 +130,15 @@ const Title = styled.Text`
 // 공연 정보
 const Information = styled.View`
   margin: 30px;
-  flex-direction: row;
+  /* flex-direction: row; */
 `;
-const DataName = styled.View``;
-const Data = styled.View`
-  padding-left: 15px;
+// const DataName = styled.View``;
+// const Data = styled.View`
+//   padding-left: 15px;
+// `;
+const Info = styled.Text`
+  font-size: 20px;
+  padding-bottom: 4px;
 `;
 const MoreButton = styled.TouchableOpacity`
   margin-left: 20px;
@@ -175,7 +172,7 @@ const TempText = styled.Text`
   color: white;
 `;
 const ReviewPart = styled.View`
-  flex-direction: row;
+  flex: 1;
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
@@ -198,11 +195,6 @@ const AddReviewText = styled.Text`
 // 리뷰
 const Review = styled.View`
   margin: 30px 20px;
-`;
-
-// 전체 글자
-const Text = styled.Text`
-  font-size: 20px;
 `;
 
 const Loader = styled.View`

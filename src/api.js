@@ -2,9 +2,9 @@ import { getDateString } from './util';
 
 export const BASE_URL_FOR_IMG = 'http://www.kopis.or.kr';
 export const BASE_URL = 'http://www.kopis.or.kr/openApi/restful';
-// const API_KEY = 'c0d0ca2648c24b128f2aff20f3d1d22d';
+const API_KEY = 'c0d0ca2648c24b128f2aff20f3d1d22d';
 // 두번째 키
-const API_KEY = 'bc679c75360b445cbfe05755f40f7b99';
+// const API_KEY = 'bc679c75360b445cbfe05755f40f7b99';
 const parseString = require('react-native-xml2js').parseString;
 
 /**
