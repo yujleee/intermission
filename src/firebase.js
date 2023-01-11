@@ -6,6 +6,7 @@ import {
 } from 'firebase/auth/react-native';
 import { getStorage } from 'firebase/storage';
 import { getFirestore } from 'firebase/firestore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // 아래 데이터는 본인의 Firebase 프로젝트 설정에서 확인할 수 있습니다.
 const firebaseConfig = {
