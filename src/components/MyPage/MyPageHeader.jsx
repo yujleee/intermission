@@ -53,6 +53,42 @@ export default function MyPageHeader() {
     setImageUrl(result.uri);
   };
 
+  useCallback(() => {
+    if (!authService.currentUser) {
+      // 비로그인 상태에서 마이페이지 접근 시 로그인화면으로 이동하고, 뒤로가기 시 무비탭
+      reset({
+        index: 1,
+        routes: [
+          {
+            name: 'Tabs',
+            params: {
+              screen: 'Movies',
+            },
+          },
+          {
+            name: 'Stack',
+            params: {
+              screen: 'Login',
+            },
+          },
+        ],
+      });
+      return;
+    }
+
+    // 로그아웃
+    // setOptions({
+    //   headerRight: () => {
+    //     return (
+    //       <TouchableOpacity style={{ marginRight: 10 }} onPress={logout}>
+    //         <Text style={{ color: isDark ? YELLOW_COLOR : GREEN_COLOR }}>
+    //           로그아웃
+    //         </Text>
+    //       </TouchableOpacity>
+    //     );
+    //   },
+  });
+
   return (
     <PageHeader>
       <MyImage>

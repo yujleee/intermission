@@ -1,6 +1,6 @@
 import { View, FlatList } from 'react-native';
 import styled from '@emotion/native';
-import { ReviewContent } from '../MusicalDetail/ReviewCard';
+import ReviewCard from './../MusicalDetail/ReviewCard';
 
 export default function myPageWriteBox() {
   const data = [
@@ -29,7 +29,7 @@ export default function myPageWriteBox() {
         <>
           <View>
             <ReviewText>작성한 리뷰</ReviewText>
-            {/* <ReviewContent /> */}
+            <ReviewCard />
           </View>
         </>
       }
