@@ -22,7 +22,7 @@ export default function BoxOfficeItem({ musical }) {
       }
     >
       <PosterWrapper>
-        <Poster url={musical?.poster} />
+        <Poster url={musical?.poster} musicalId={musical?.mt20id} />
       </PosterWrapper>
       <InfoWrapper>
         <Rank>{musical?.rnum}</Rank>

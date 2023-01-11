@@ -14,7 +14,7 @@ export default function SectionItem({ musical }) {
         })
       }
     >
-      <Poster url={musical?.poster} />
+      <Poster url={musical?.poster} musicalId={musical?.mt20id} />
       <MusicalTitle numberOfLines={1}>{musical?.prfnm}</MusicalTitle>
       <MusicalTheater numberOfLines={1}>{musical?.prfplcnm}</MusicalTheater>
     </ItemWrapper>
