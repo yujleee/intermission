@@ -2,14 +2,21 @@ import styled from '@emotion/native';
 import { useNavigation } from '@react-navigation/native';
 import Poster from './Poster';
 
-export default function SectionItem() {
+export default function SectionItem({ musical }) {
   const { navigate } = useNavigation();
 
   return (
-    <ItemWrapper onPress={() => navigate('MusicalDetail')}>
-      <Poster />
-      <MusicalTitle numberOfLines={1}>스위니토드</MusicalTitle>
-      <MusicalTheater numberOfLines={1}>샤롯데시어터</MusicalTheater>
+    <ItemWrapper
+      onPress={() =>
+        navigate('Stacks', {
+          screen: 'MusicalDetail',
+          params: { musicalId: musical?.mt20id },
+        })
+      }
+    >
+      <Poster url={musical?.poster} />
+      <MusicalTitle numberOfLines={1}>{musical?.prfnm}</MusicalTitle>
+      <MusicalTheater numberOfLines={1}>{musical?.prfplcnm}</MusicalTheater>
     </ItemWrapper>
   );
 }
