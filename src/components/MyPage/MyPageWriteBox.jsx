@@ -1,6 +1,6 @@
 import { View, FlatList } from 'react-native';
 import styled from '@emotion/native';
-import { ReviewContent } from '../MusicalDetail/ReviewCard';
+import { ReviewContent } from '../Reviews/ReviewCard';
 
 export default function myPageWriteBox() {
   const data = [
