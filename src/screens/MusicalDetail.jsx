@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import ReviewCard from '../components/MusicalDetail/ReviewCard';
 import { useEffect, useState } from 'react';
 import ReviewModal from '../components/Reviews/ReviewModal';
-import { collection, getDocs, query, doc} from 'firebase/firestore';
+import { collection, getDocs, query, doc, orderBy} from 'firebase/firestore';
 import { authService, dbService } from '../firebase';
 
 
@@ -17,26 +17,14 @@ export default function MusicalDetail({navigation: {navigate}}) {
   const [reviews, setReviews] = useState([]); // reviews 추가, 삭제 state
   const reviewsCollectionRef = collection(dbService, 'reviews'); //db의 reviews 컬렉션 가져옴
   
+  const getReviews = async () => {
+    const q = query(reviewsCollectionRef, orderBy('createdAt', 'desc'))
+    const data = await getDocs(q)
+    setReviews(data.docs.map(doc => ({...doc.data(), id: doc.id})))
+  }
   useEffect(() => {
-    const getReviews = async () => {
-      const data = await getDocs(query(reviewsCollectionRef))
-      setReviews(data.docs.map(doc => ({...doc.data(), id: doc.id})))
-    }
     getReviews();
-  },[reviews])
-  
-  // useEffect(() => {
-  //   const getReviews = async () => {
-  //     const data = await getDocs(reviewsCollectionRef); //getDocs로 컬렉션안에 데이터 가져오기
-  //     // reviews에 data안의 자료추가, 객체에 id 덮어씌우기
-  //     setReviews(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
-  //   }
-  //   getReviews();
-  // }, [])
-  //띄어줄 데이터 key값에 고유 ID를 넣어준다.
-  // const showReviews = reviews.map((value) => (
-  //   <View key={value.id}><Text>{value.contents}</Text></View>
-  // ))
+  },[])
 
   return (
     <Container>
@@ -52,7 +40,7 @@ export default function MusicalDetail({navigation: {navigate}}) {
         <Title>영웅</Title>
       </View>
       <Rating>⭐️4.5/5</Rating>
-      {/* 2열로 만들어서 api로 불러온 값은 2번째 열에 넣고 싶다 */}
+      {/* 2열로 만들어서 api로 불러온 값은 2번째 열에 넣고 싶다 + 평균별점 적용 도전..! */}
       <Information>
         <DataName>
           <Text>공연 기간</Text>
@@ -85,7 +73,8 @@ export default function MusicalDetail({navigation: {navigate}}) {
       <Review>
         {reviews.map((value) => (<ReviewCard key={value.id} review={value} />))}
       </Review>
-      <ReviewModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
+      <ReviewModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} 
+      getReviews={getReviews} />
     </Container>
   );
 }

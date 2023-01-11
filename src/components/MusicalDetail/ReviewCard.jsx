@@ -7,8 +7,9 @@ import DropShadow from 'react-native-drop-shadow';
 export default function ReviewCard({review}) {
   const { navigate } = useNavigation();
   const goToReviewDetail = () => {
-    navigate('ReviewDetail')
+    navigate('ReviewDetail',{review, from:'MusicalDetail'})
   }
+  
   return (
     <DropShadow
       style={{
@@ -27,9 +28,12 @@ export default function ReviewCard({review}) {
         {/* 글자수 자르기 해야함~!
             {movie.title.slice(0, 11)}
           {movie.title.length > 11 && "..."} */}
-        <Text>
-          {review?.contents}
-        </Text>
+        <Row>
+        <Rating>⭐️{review?.rating}/5</Rating>
+        <ReviewDate>{new Date(review?.createdAt).toLocaleDateString('kr')}</ReviewDate>
+        </Row>
+        
+        <Text>{review?.contents}</Text>
         <Id>닉네임1</Id>
       </ReviewContent>
     </DropShadow>
@@ -37,7 +41,7 @@ export default function ReviewCard({review}) {
 }
 
 //
-export const ReviewContent = styled.TouchableOpacity`
+const ReviewContent = styled.TouchableOpacity`
   width: 100%;
   background: #f4fdff;
   border-radius: 5px;
@@ -46,15 +50,30 @@ export const ReviewContent = styled.TouchableOpacity`
   display: flex;
   justify-content: flex-end;
 `;
-export const Id = styled.Text`
+const Row = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`
+// 전체 글자
+const ReviewDate = styled.Text`
+  font-size: 10px;
+  margin-bottom: 5px;
+`
+const Rating = styled.Text`
+  font-size: 20px;
+  margin-bottom: 10px;
+`;
+const Text = styled.Text`
+  font-size: 20px;
+`;
+const Id = styled.Text`
   margin-left: auto;
   margin-top: 10px;
   font-size: 17px;
 `;
 
-// 전체 글자
-export const Text = styled.Text`
-  font-size: 20px;
-`;
 
-//ㅓ갸ㅐ러ㅚ라둥ㅎ펴ㅓㄷㄱ루
+
+
+
+

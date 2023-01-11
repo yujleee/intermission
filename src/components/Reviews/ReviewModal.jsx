@@ -5,7 +5,7 @@ import { Rating } from "react-native-ratings"
 import { collection, addDoc } from "firebase/firestore"
 import { authService, dbService } from "../../firebase"
 
-export default function ReviewModal({isOpenModal, setIsOpenModal}) {
+export default function ReviewModal({isOpenModal, setIsOpenModal, getReviews}) {
     const [modalContent, setModalContent] = useState('');
     const [ratings, setRatings] = useState(0);
     const getRatings = (rating) => { setRatings(rating) };
@@ -21,6 +21,7 @@ export default function ReviewModal({isOpenModal, setIsOpenModal}) {
         setIsOpenModal(false);
         setModalContent('');
         setRatings(0);
+        getReviews();
     };
     
     return(
