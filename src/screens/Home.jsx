@@ -42,7 +42,7 @@ export default function Home({ navigation: { navigate } }) {
       ListHeaderComponent={
         <>
           <BoxOfficeMonthList data={filteredBoxOfficeMonth} />
-          <BoxOfficeList data={filteredBoxOfficeDay} />
+          {/* <BoxOfficeList data={filteredBoxOfficeDay} /> */}
           <LocalMusical />
           <TicketLinkList />
         </>

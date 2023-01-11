@@ -9,7 +9,7 @@ import { getMusicalData } from '../api';
 export default function ReviewDetail({
   navigation: { navigate },
   route: {
-    params: { review, from },
+    params: { review, from, musicalId },
   },
 }) {
   const goToReviewEdit = () => {

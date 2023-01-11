@@ -1,12 +1,24 @@
 import styled from '@emotion/native';
-import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+// import { useNavigation } from '@react-navigation/native';
+import { React, useState, useCallback } from 'react';
+import { DARK_FONT, LIGHT_FONT } from '../../colors';
 import { shadowStyle } from '../../util/shadow';
+import { useFocusEffect } from '@react-navigation/native';
+import { authService, dbService } from '../../firebase';
+import { useNavigation } from '@react-navigation/native';
 
 export default function ReviewCard({ review }) {
+  const [reviews, setReviews] = useState([]);
+
   const { navigate } = useNavigation();
-  const goToReviewDetail = () => {
-    navigate('ReviewDetail', { review, from: 'MusicalDetail' });
+
+  const goToReviewDetail = async () => {
+    const isLogin = !!authService.currentUser;
+    if (!isLogin) {
+      navigate('Login');
+      return;
+    }
+    navigate('ReviewDetail');
   };
 
   return (
@@ -24,8 +36,8 @@ export default function ReviewCard({ review }) {
       <Text>{review?.contents}</Text>
       <Id>
         {/* {review?.userId} */}
-          닉네임1
-        </Id>
+        닉네임1
+      </Id>
     </ReviewContent>
   );
 }
