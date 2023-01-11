@@ -32,3 +32,7 @@ export const xmlToJson = (xmlData) => {
   });
   return jsonData;
 };
+
+// 박스오피스 뮤지컬만 필터링
+export const filterOnlyMusicals = (data) =>
+  data?.filter((perf) => perf.cate[0] === '뮤지컬');
