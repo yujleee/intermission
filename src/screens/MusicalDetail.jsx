@@ -33,91 +33,107 @@ export default function MusicalDetail({
     );
   }
   return (
-    <Container style={{ flex: 1 }}>
-      {musicalData?.dbs?.db?.map((musical) => (
-        <InfoPart key={musicalId}>
-          {/* 포스터 이미지 */}
-          <View
-            style={{
-              width: SCREEN_WIDTH,
-              height: SCREEN_HEIGHT / 2,
-              justifyContent: 'flex-end',
-            }}
-          >
-            <BackdropImg
-              style={StyleSheet.absoluteFill}
-              source={{
-                uri: `${musical.poster}`,
-              }}
-            />
-            {/* <LinearGradient
+    <Container>
+      <InfoTotalPart>
+        {musicalData?.dbs?.db?.map((musical) => (
+          <InfoPart key={musicalId}>
+            {/* 포스터 이미지 */}
+            <InfoImgPart
+              style={
+                {
+                  // width: SCREEN_WIDTH,
+                  // height: SCREEN_HEIGHT / 2,
+                  // justifyContent: 'flex-end',
+                }
+              }
+            >
+              <BackdropImg
+                style={StyleSheet.absoluteFill}
+                source={{
+                  uri: `${musical.poster}`,
+                }}
+              />
+              {/* <LinearGradient
               style={StyleSheet.absoluteFill}
               colors={['transparent', 'black']}
             /> */}
-            <Title>{musical.prfnm}</Title>
-          </View>
-          {/* 정보 */}
-          <Information>
-            <Info>출연 : {musical.prfcast}</Info>
-            <Info>
-              공연 기간 : {musical.prfpdfrom}~{musical.prfpdto}
-            </Info>
-            <Info>공연 장소 : {musical.fcltynm}</Info>
-            <Info>러닝타임 : {musical.prfruntime}</Info>
-            <Info>관람 연령가 : {musical.prfage}</Info>
-            <Info>가격 : {musical.pcsequidance}</Info>
-          </Information>
-          {/* {console.log('styurl나와라', musical?.styurls[0].styurl[0])} */}
-          <MoreButton onPress={() => setMoreButton(!isMoreButton)}>
-            <TempText>작품 상세 더보기</TempText>
+              <Title>{musical.prfnm}</Title>
+            </InfoImgPart>
+            {/* 정보 */}
+            <Information>
+              <Info>출연 : {musical.prfcast}</Info>
+              <Info>
+                공연 기간 : {musical.prfpdfrom}~{musical.prfpdto}
+              </Info>
+              <Info>공연 장소 : {musical.fcltynm}</Info>
+              <Info>러닝타임 : {musical.prfruntime}</Info>
+              <Info>관람 연령가 : {musical.prfage}</Info>
+              <Info>가격 : {musical.pcsequidance}</Info>
+            </Information>
+            {/* 상세보기 버튼 누르면 상세 이미지 나옴 */}
+            <MoreButton onPress={() => setMoreButton(!isMoreButton)}>
+              {isMoreButton ? (
+                <TempText>접기</TempText>
+              ) : (
+                <TempText>상세보기</TempText>
+              )}
+            </MoreButton>
+            {isMoreButton && (
+              <MoreDetail>
+                <DetailImg
+                  style={{ resizeMode: 'stretch' }}
+                  source={{
+                    uri: `${musical?.styurls[0].styurl[0]}`,
+                  }}
+                />
+              </MoreDetail>
+            )}
             {console.log('isMoreButton', isMoreButton)}
-          </MoreButton>
-          {/* 긴 이미지 */}
-          {isMoreButton && (
-            <MoreDetail>
-              <DetailImg
-                style={{ resizeMode: 'stretch' }}
-                source={{
-                  uri: `${musical?.styurls[0].styurl[0]}`,
-                }}
-              />
-            </MoreDetail>
-          )}
-        </InfoPart>
-      ))}
-
+          </InfoPart>
+        ))}
+      </InfoTotalPart>
       {/* 리뷰 */}
       <ReviewPart>
-        <SectionTitle>리뷰</SectionTitle>
-        <AddReview onPress={addreview}>
-          <AddReviewText>리뷰 작성하기</AddReviewText>
-        </AddReview>
+        <ReviewTitlePart>
+          <SectionTitle>리뷰</SectionTitle>
+          <AddReview onPress={addreview}>
+            <AddReviewText>리뷰 작성하기</AddReviewText>
+          </AddReview>
+        </ReviewTitlePart>
+
+        <Review>
+          <ReviewCard />
+        </Review>
+
+        <ReviewModal
+          isOpenModal={isOpenModal}
+          setIsOpenModal={setIsOpenModal}
+        />
       </ReviewPart>
-
-      <Review>
-        <ReviewCard />
-      </Review>
-
-      <ReviewModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
     </Container>
   );
 }
 
 const Container = styled.ScrollView`
-  /* flex: 1; */
+  flex: 1;
 `;
-
+const InfoTotalPart = styled.View`
+  flex: 1;
+`;
 const InfoPart = styled.View`
   /* 불러올 사진이 사이즈가 다 다르면 똑같이 적용안될 것 같다 */
   /* height: ${SCREEN_HEIGHT / 1.5 + 'px'}; */
   /* justify-content: flex-end; */
   flex: 1;
 `;
-const BackdropImg = styled.Image`
-  width: 100%;
+const InfoImgPart = styled.View`
   flex: 1;
+`;
+const BackdropImg = styled.Image`
+  flex: 1;
+  width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* object-fit: cover; */
 `;
 const Title = styled.Text`
   color: white;
@@ -150,6 +166,7 @@ const MoreButton = styled.TouchableOpacity`
   background-color: #22affc;
   color: white;
 `;
+
 // 상세보기 버튼 누르면 나타나는
 const MoreDetail = styled.View`
   width: 100%;
@@ -171,7 +188,11 @@ const TempText = styled.Text`
   font-size: 20px;
   color: white;
 `;
+
 const ReviewPart = styled.View`
+  flex: 1;
+`;
+const ReviewTitlePart = styled.View`
   flex: 1;
   justify-content: space-between;
   align-items: center;
