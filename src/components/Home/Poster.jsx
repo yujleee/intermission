@@ -1,15 +1,25 @@
+import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
 import { BASE_URL_FOR_IMG } from '../../api';
 
 /**
  * 포스터 이미지
- * 아이템으로부터 url을 params로 받아옴
- * @param {url} param0
+ * 아이템으로부터 url, 뮤지컬ID를 params로 받아옴
+ * @param {url, musicalId} param0
  * @returns
  */
-export default function Poster({ url }) {
+export default function Poster({ url, musicalId }) {
+  const { navigate } = useNavigation();
+
   return (
-    <PosterWrapper>
+    <PosterWrapper
+      onPress={() =>
+        navigate('Stacks', {
+          screen: 'MusicalDetail',
+          params: { musicalId: musicalId },
+        })
+      }
+    >
       <PosterImg
         source={{
           uri: `${BASE_URL_FOR_IMG}${url}`,
