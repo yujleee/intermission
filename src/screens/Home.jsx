@@ -1,12 +1,12 @@
-import { useQuery, useQueryClient } from 'react-query';
+import { useQuery } from 'react-query';
 import { ActivityIndicator } from 'react-native';
 import styled from '@emotion/native';
 import BoxOfficeList from '../components/Home/BoxOfficeList';
-import SectionList from '../components/Home/SectionList';
 import { getBoxOfficeDay, getBoxOfficeMonth } from '../api';
 import BoxOfficeMonthList from '../components/Home/BoxOfficeMonthList';
 import LocalMusical from '../components/Home/LocalMusical/LocalMusicalList';
 import { filterOnlyMusicals } from '../util';
+import TicketLinkList from '../components/Home/TicketLinkList';
 
 export default function Home() {
   const { data: boxOfficeMonthData, isLoading: isLoadingBOM } = useQuery(
@@ -44,7 +44,7 @@ export default function Home() {
           <BoxOfficeMonthList data={filteredBoxOfficeMonth} />
           <BoxOfficeList data={filteredBoxOfficeDay} />
           <LocalMusical />
-          <SectionList title={'예매 사이트'} />
+          <TicketLinkList />
         </>
       }
     />
