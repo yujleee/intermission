@@ -5,8 +5,8 @@ import SignUp from '../screens/SignUp';
 import ReviewDetail from '../screens/ReviewDetail';
 import MusicalDetail from '../screens/MusicalDetail';
 import ReviewEdit from '../screens/ReviewEdit';
+import Home from '../screens/Home';
 import { useColorScheme } from 'react-native';
-
 import {
   DARK_BACKGROUND,
   DARK_FONT,
@@ -37,6 +37,7 @@ export default function Stacks({ navigation: { goBack } }) {
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="ReviewDetail" component={ReviewDetail} />
       <Stack.Screen name="ReviewEdit" component={ReviewEdit} />
+      <Stack.Screen name="Home" component={Home} />
     </Stack.Navigator>
   );
 }

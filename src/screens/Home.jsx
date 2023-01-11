@@ -8,7 +8,7 @@ import BoxOfficeMonthList from '../components/Home/BoxOfficeMonthList';
 import LocalMusical from '../components/Home/LocalMusical/LocalMusicalList';
 import { filterOnlyMusicals } from '../util';
 
-export default function Home() {
+export default function Home({ navigation: { navigate } }) {
   const { data: boxOfficeMonthData, isLoading: isLoadingBOM } = useQuery(
     ['Musicals', 'BoxOfficeMonth'],
     getBoxOfficeMonth
