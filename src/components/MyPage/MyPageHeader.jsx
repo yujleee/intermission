@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Text,
   TextInput,
@@ -12,69 +13,7 @@ import ProfileImg from '../../../assets/profile_default.jpg';
 import { authService } from '../../firebase';
 import { updateProfile } from 'firebase/firestore';
 
-// 닉네임 수정
-// const onSubmit = async (e) => {
-//   e.preventDefault();
-//   if (userName !== newDisplayName) {
-//     await updateProfile(userObj, { displayName: newDisplayName });
-//   }
-// };
-
-// // 사진 업로드 용 정의
-// const [image, setImage] = useState('');
-// const [imageUrl, setImageUrl] = useState('');
-
-// // 이미지 변경
-// const onImageChange = (event) => {
-//   // file
-//   const theFile = event.target.files[0];
-//   const reader = new FileReader();
-//   // file를 브라우저가 읽도록 data URL로 변경
-//   reader.readAsDataURL(theFile);
-//   reader.onloadend = (finished) => {
-//     setImageUrl(finished.currentTarget.result);
-//   };
-// };
-
-// const handleSubmit = async (e) => {
-//   e.preventDefault();
-//   const imageRef = ref(storage, `image/${uuidv4()}`);
-//   let downloadimage;
-//   if (imageUrl) {
-//     const imageResponse = await uploadString(imageRef, imageUrl, 'data_url');
-//     downloadimage = await getDownloadURL(imageResponse.ref);
-//   } else {
-//     downloadimage = '';
-//   }
-//   console.log(downloadimage);
-
-//   try {
-//     await addDoc(
-//       collection(db, 'posting'),
-//       {
-//         id: uuidv4(),
-//         title: title,
-//         image: downloadimage,
-//         // user: userObj.displayName,
-//         // uuid사용필요?
-//         // creatorid: currentUser.uid,
-//       },
-//       previousPageHanlder()
-//     );
-//   } catch (err) {
-//     alert(err);
-//   }
-// };
-
-// const previousPageHanlder = async () => {
-//   if (window.confirm('해당 게시글을 등록하시겠습니까?')) {
-//     alert('등록되었습니다.');
-//     navigate('/shopGuide');
-//   } else {
-//     return;
-//   }
-// };
-
+//닉네임 수정
 export default function MyPageHeader() {
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -87,6 +26,7 @@ export default function MyPageHeader() {
   };
   console.log(authService);
 
+  // 이미지 추가
   const [imageUrl, setImageUrl] = useState('');
   const [status, requestPermission] = ImagePicker.useMediaLibraryPermissions();
 
