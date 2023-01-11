@@ -19,7 +19,8 @@ export default function SectionList({ title }) {
 export const SectionTitle = styled.Text`
   font-size: 20px;
   font-weight: 600;
-  color: #101010;
+  color: ${(props) => props.theme.fontColor};
+
   margin: 10px 0;
   padding: 0 20px;
 `;
