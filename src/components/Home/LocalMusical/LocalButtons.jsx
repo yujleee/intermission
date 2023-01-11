@@ -50,12 +50,14 @@ const ButtonWrapper = styled.ScrollView`
 `;
 
 const LocalButton = styled.TouchableOpacity`
-  padding: 14px 20px;
-  height: 48px;
+  width: 70px;
+  height: 46px;
   margin: 0 10px;
   border-radius: 10px;
   background-color: ${(props) => (props.isActive ? '#22affc' : 'transparent')};
   border: ${(props) => (props.isActive ? '' : '1px solid #22affc')};
+  justify-content: center;
+  align-items: center;
 `;
 
 const ButtonText = styled.Text`
