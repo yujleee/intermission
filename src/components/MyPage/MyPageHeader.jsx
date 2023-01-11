@@ -13,7 +13,6 @@ import { updateProfile } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
-
 //닉네임 수정
 export default function MyPageHeader() {
   const onSubmit = async (e) => {
@@ -26,7 +25,6 @@ export default function MyPageHeader() {
     }
   };
   console.log(authService);
-
   // 이미지 추가
   const [response, setResponse] = useState(null);
   const onSelectImage = () => {
@@ -44,7 +42,6 @@ export default function MyPageHeader() {
       }
     );
   };
-
   const [loading, setLoading] = useState(false);
   const imageUpload = async () => {
     setLoading(true);
@@ -68,7 +65,6 @@ export default function MyPageHeader() {
     console.log('imageUrl', imageUrl);
     // imageUrl 사용 로직
   };
-
   // 로그아웃
   const logout = () => {
     signOut(authService)
@@ -79,7 +75,6 @@ export default function MyPageHeader() {
       })
       .catch((err) => alert(err));
   };
-
   // 경고창
   const logOutBtn = () => {
     Alert.alert('Intermission', '로그아웃 하시겠습니까??', [
@@ -92,7 +87,6 @@ export default function MyPageHeader() {
       { text: '아니오' },
     ]);
   };
-
   // 네비
   const { navigate } = useNavigation();
   return (
@@ -117,7 +111,7 @@ export default function MyPageHeader() {
       {loading ? (
         <ActivityIndicator
           size={32}
-          color="#6200ee"
+          color="#6200EE"
           style={{
             width: 160,
             height: 160,
@@ -151,7 +145,6 @@ export default function MyPageHeader() {
     </PageHeader>
   );
 }
-
 const PageHeader = styled.View`
   flex-wrap: wrap;
   height: 200px;
@@ -160,17 +153,14 @@ const MyDb = styled.View`
   margin-top: 60px;
 `;
 const MyImage = styled.TouchableOpacity``;
-
 const PageId = styled.Text``;
 const MyId = styled.Text`
   font-size: 20px;
   color: ${(props) => props.theme.fontColor};
-
   margin-top: 20px;
 `;
 const IdButton = styled.TouchableOpacity`
   color: ${(props) => props.theme.fontColor};
-
   justify-content: center;
   width: 110px;
   height: 40px;
