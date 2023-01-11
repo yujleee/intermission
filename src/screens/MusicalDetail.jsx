@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import ReviewModal from '../components/Reviews/ReviewModal';
 import { useQuery } from 'react-query';
 import { BASE_URL, getMusicalData } from '../api';
-import Collapsible from 'react-native-collapsible';
 import { collection, getDocs, query, doc, orderBy } from 'firebase/firestore';
 import { authService, dbService } from '../firebase';
 
@@ -19,25 +18,18 @@ export default function MusicalDetail({
 }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isMoreButton, setMoreButton] = useState(false);
-  const addreview = () => {
-    setIsOpenModal(true);
-  };
 
   const { data: musicalData, isLoading: isLoadingMD } = useQuery(
     ['MusicalData', musicalId],
     getMusicalData
   );
 
-  if (isLoadingMD) {
-    return (
-      <Loader>
-        <ActivityIndicator />
-      </Loader>
-    );
-  }
   const [reviews, setReviews] = useState([]); // reviews 추가, 삭제 state
   const reviewsCollectionRef = collection(dbService, 'reviews'); //db의 reviews 컬렉션 가져옴
 
+  const addreview = () => {
+    setIsOpenModal(true);
+  };
   const getReviews = async () => {
     const q = query(reviewsCollectionRef, orderBy('createdAt', 'desc'));
     const data = await getDocs(q);
@@ -47,6 +39,13 @@ export default function MusicalDetail({
     getReviews();
   }, []);
 
+  if (isLoadingMD) {
+    return (
+      <Loader>
+        <ActivityIndicator />
+      </Loader>
+    );
+  }
   return (
     <Container>
       <InfoTotalPart>
