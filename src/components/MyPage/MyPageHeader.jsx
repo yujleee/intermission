@@ -12,7 +12,9 @@ import * as ImagePicker from 'expo-image-picker';
 import ProfileImg from '../../../assets/profile_default.jpg';
 import { authService } from '../../firebase';
 import { updateProfile } from 'firebase/firestore';
-
+import { signOut } from 'firebase/auth';
+import { useNavigation } from '@react-navigation/native';
+import { Alert } from 'react-native';
 //닉네임 수정
 export default function MyPageHeader() {
   const onSubmit = async (e) => {
@@ -52,43 +54,31 @@ export default function MyPageHeader() {
     console.log(result);
     setImageUrl(result.uri);
   };
+  // 로그아웃
+  const logout = () => {
+    signOut(authService)
+      .then(() => {
+        console.log('로그아웃 성공');
+        Alert.alert('Intermission', '다신 돌아오지마세요.');
+        navigate('Home');
+      })
+      .catch((err) => alert(err));
+  };
+  // 경고창
+  const logOutBtn = () => {
+    Alert.alert('Intermission', '로그아웃 하시겠습니까??', [
+      {
+        text: '예',
+        onPress: () => {
+          logout();
+        },
+      },
+      { text: '아니오' },
+    ]);
+  };
 
-  useCallback(() => {
-    if (!authService.currentUser) {
-      // 비로그인 상태에서 마이페이지 접근 시 로그인화면으로 이동하고, 뒤로가기 시 무비탭
-      reset({
-        index: 1,
-        routes: [
-          {
-            name: 'Tabs',
-            params: {
-              screen: 'Movies',
-            },
-          },
-          {
-            name: 'Stack',
-            params: {
-              screen: 'Login',
-            },
-          },
-        ],
-      });
-      return;
-    }
-
-    // 로그아웃
-    // setOptions({
-    //   headerRight: () => {
-    //     return (
-    //       <TouchableOpacity style={{ marginRight: 10 }} onPress={logout}>
-    //         <Text style={{ color: isDark ? YELLOW_COLOR : GREEN_COLOR }}>
-    //           로그아웃
-    //         </Text>
-    //       </TouchableOpacity>
-    //     );
-    //   },
-  });
-
+  // 네비
+  const { navigate } = useNavigation();
   return (
     <PageHeader>
       {/* <MyImage>
@@ -116,7 +106,7 @@ export default function MyPageHeader() {
           <LoginButtonId>닉네임 수정</LoginButtonId>
         </IdButton>
         <LogoutButton>
-          <LoginButtonText>로그아웃</LoginButtonText>
+          <LoginButtonText onPress={logOutBtn}>로그아웃</LoginButtonText>
         </LogoutButton>
         {/* </MyButton> */}
       </MyDb>
@@ -136,9 +126,13 @@ const MyImage = styled.TouchableOpacity``;
 const PageId = styled.Text``;
 const MyId = styled.Text`
   font-size: 20px;
+  color: ${(props) => props.theme.fontColor};
+
   margin-top: 20px;
 `;
 const IdButton = styled.TouchableOpacity`
+  color: ${(props) => props.theme.fontColor};
+
   justify-content: center;
   width: 110px;
   height: 40px;

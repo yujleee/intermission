@@ -47,21 +47,7 @@ export const getMusicalData = (params) => {
   const [_, musicalId] = params.queryKey;
   return fetch(`${BASE_URL}/pblprfr/${musicalId}?service=${API_KEY}`)
     .then((res) => res.text())
-    .then((data) => {
-      console.log('data:', data);
-      const cleanedString = data.replace('\ufeff', '');
-      let musicalData;
-      parseString(cleanedString, (err, result) => {
-        if (err !== null) {
-          console.log('error: ', err);
-          return;
-        }
-        console.log('result:', result);
-        musicalData = JSON.parse(JSON.stringify(result));
-      });
-      console.log('musicalData:', musicalData);
-      return musicalData;
-    })
+    .then((data) => xmlToJson(data))
     .catch((error) => console.log(error));
 };
 

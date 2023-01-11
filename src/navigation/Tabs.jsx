@@ -6,14 +6,25 @@ import Home from '../screens/Home';
 import Musicals from '../screens/Musicals';
 import MyPage from '../screens/MyPage';
 import Login from '../screens/Login';
+import { useColorScheme } from 'react-native';
+import {
+  DARK_BACKGROUND,
+  DARK_FONT,
+  LIGHT_BACKGROUND,
+  LIGHT_FONT,
+} from '../colors';
 
 const Tab = createBottomTabNavigator();
 
 export default function Tabs() {
+  const isDark = useColorScheme() === 'dark';
   return (
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{ tabBarShowLabel: false }}
+      sceneContainerStyle={{
+        backgroundColor: isDark ? DARK_BACKGROUND : LIGHT_BACKGROUND,
+      }}
     >
       <Tab.Screen
         name="Musicals"
