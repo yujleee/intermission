@@ -3,11 +3,13 @@ import styled from '@emotion/native';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../util';
 import { LinearGradient } from 'expo-linear-gradient';
 import ReviewCard from '../components/MusicalDetail/ReviewCard';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReviewModal from '../components/Reviews/ReviewModal';
 import { useQuery } from 'react-query';
 import { BASE_URL, getMusicalData } from '../api';
 import Collapsible from 'react-native-collapsible';
+import { collection, getDocs, query, doc, orderBy } from 'firebase/firestore';
+import { authService, dbService } from '../firebase';
 
 export default function MusicalDetail({
   navigation: { navigate },
@@ -33,6 +35,18 @@ export default function MusicalDetail({
       </Loader>
     );
   }
+  const [reviews, setReviews] = useState([]); // reviews 추가, 삭제 state
+  const reviewsCollectionRef = collection(dbService, 'reviews'); //db의 reviews 컬렉션 가져옴
+
+  const getReviews = async () => {
+    const q = query(reviewsCollectionRef, orderBy('createdAt', 'desc'));
+    const data = await getDocs(q);
+    setReviews(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
+  useEffect(() => {
+    getReviews();
+  }, []);
+
   return (
     <Container>
       <InfoTotalPart>
@@ -115,6 +129,17 @@ export default function MusicalDetail({
           setIsOpenModal={setIsOpenModal}
         />
       </ReviewPart>
+      {/* FlatList로 변경해줘야 함 */}
+      <Review>
+        {reviews.map((value) => (
+          <ReviewCard key={value.id} review={value} />
+        ))}
+      </Review>
+      <ReviewModal
+        isOpenModal={isOpenModal}
+        setIsOpenModal={setIsOpenModal}
+        getReviews={getReviews}
+      />
     </Container>
   );
 }

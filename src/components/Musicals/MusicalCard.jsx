@@ -19,7 +19,7 @@ export default function MusicalCard() {
   return (
     <WrapView>
       {test.map((a, index) => (
-        <RWrapper key={index} onPress={() => navigate('MusicalDetail')}>
+        <RWrapper key={index} onPress={() => navigate('Stacks',{screen : 'MusicalDetail'})}>
           <Poster source={{ uri: url }} />
           <RColumn>
             <Rating>⭐️8.5/10</Rating>
