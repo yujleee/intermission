@@ -1,20 +1,19 @@
 import { useState } from 'react';
 import {
-  Text,
-  TextInput,
-  View,
-  TouchableOpacity,
-  Image,
+  Platform,
   Pressable,
+  Image,
+  Button,
+  ActivityIndicator,
 } from 'react-native';
 import styled from '@emotion/native';
-import * as ImagePicker from 'expo-image-picker';
-import ProfileImg from '../../../assets/profile_default.jpg';
+import { launchImageLibrary } from 'react-native-image-picker';
 import { authService } from '../../firebase';
 import { updateProfile } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
+
 //닉네임 수정
 export default function MyPageHeader() {
   const onSubmit = async (e) => {
@@ -29,31 +28,47 @@ export default function MyPageHeader() {
   console.log(authService);
 
   // 이미지 추가
-  const [imageUrl, setImageUrl] = useState('');
-  const [status, requestPermission] = ImagePicker.useMediaLibraryPermissions();
-
-  const uploadImage = async () => {
-    // 권한 확인 코드 : 권한 없을 떄 물어보고 승인하지 않을 경우 함수 종료
-    if (!status?.granted) {
-      const permission = await requestPermission();
-      if (!permission.granted) {
-        return null;
+  const [response, setResponse] = useState(null);
+  const onSelectImage = () => {
+    launchImageLibrary(
+      {
+        mediaType: 'photo',
+        maxWidth: 512,
+        maxHeight: 512,
+        includeBase64: Platform.OS === 'android',
+      },
+      (res) => {
+        console.log(res);
+        if (res.didCancel) return;
+        setResponse(res);
       }
-    }
-    // 이미지 업로드 기능
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaType: ImagePicker.MediaTypeOptions.Images,
-      allowEditing: false,
-      quality: 1,
-      aspect: [1, 1],
-    });
-    if (result.cancelled) {
-      return null; // 이미지 업로드 취소한 경우
-    }
-    // 이미지 업로드 결과 및 이미지 경로 업데이트
-    console.log(result);
-    setImageUrl(result.uri);
+    );
   };
+
+  const [loading, setLoading] = useState(false);
+  const imageUpload = async () => {
+    setLoading(true);
+    let imageUrl = null;
+    if (response) {
+      const asset = response.assets[0];
+      const reference = storage().ref(`/profile/${asset.fileName}`); // 업로드할 경로 지정
+      if (Platform.OS === 'android') {
+        // 안드로이드
+        // 파일 업로드
+        await reference.putString(asset.base64, 'base64', {
+          contentType: asset.type,
+        });
+      } else {
+        // iOS
+        // 파일 업로드
+        await reference.putFile(asset.uri);
+      }
+      imageUrl = response ? await reference.getDownloadURL() : null;
+    }
+    console.log('imageUrl', imageUrl);
+    // imageUrl 사용 로직
+  };
+
   // 로그아웃
   const logout = () => {
     signOut(authService)
@@ -64,6 +79,7 @@ export default function MyPageHeader() {
       })
       .catch((err) => alert(err));
   };
+
   // 경고창
   const logOutBtn = () => {
     Alert.alert('Intermission', '로그아웃 하시겠습니까??', [
@@ -81,22 +97,44 @@ export default function MyPageHeader() {
   const { navigate } = useNavigation();
   return (
     <PageHeader>
-      {/* <MyImage>
+      <Pressable
+        style={{
+          width: 160,
+          height: 160,
+          borderRadius: 100,
+        }}
+        onPress={onSelectImage}
+      >
         <Image
           style={{
             width: 160,
             height: 160,
             borderRadius: 100,
-            margin: 40,
           }}
-        />
-      </MyImage> */}
-      <Pressable style={styles.circle} onPress={uploadImage}>
-        <Image
-          style={styles.circle}
           source={{ uri: response?.assets[0]?.uri }}
         />
       </Pressable>
+      {loading ? (
+        <ActivityIndicator
+          size={32}
+          color="#6200ee"
+          style={{
+            width: 160,
+            height: 160,
+            borderRadius: 100,
+          }}
+        />
+      ) : (
+        <Button
+          style={{
+            width: 160,
+            height: 160,
+            borderRadius: 100,
+          }}
+          title="다음"
+          onPress={imageUpload}
+        />
+      )}
       <MyDb>
         <PageId>
           <MyId>닉네임</MyId>
