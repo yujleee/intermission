@@ -200,16 +200,6 @@ const DetailImg = styled.Image`
   flex: 1;
   object-fit: cover;
 `;
-
-// 상세보기 버튼 누르면 나타나는
-const MoreDetail = styled.View`
-  width: 100%;
-  height: 100%;
-`;
-const DetailImg = styled.Image`
-  flex: 1;
-  object-fit: cover;
-`;
 // 리뷰
 const SectionTitle = styled.Text`
   font-size: 30px;
