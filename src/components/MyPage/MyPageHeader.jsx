@@ -95,9 +95,13 @@ const MyImage = styled.View`
 const PageId = styled.Text``;
 const MyId = styled.Text`
   font-size: 20px;
+  color: ${(props) => props.theme.fontColor};
+
   margin-top: 20px;
 `;
 const IdButton = styled.TouchableOpacity`
+  color: ${(props) => props.theme.fontColor};
+
   justify-content: center;
   width: 110px;
   height: 40px;
