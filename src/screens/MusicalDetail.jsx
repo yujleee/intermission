@@ -3,14 +3,28 @@ import styled from '@emotion/native';
 import { SCREEN_HEIGHT } from '../util';
 import { LinearGradient } from 'expo-linear-gradient';
 import ReviewCard from '../components/MusicalDetail/ReviewCard';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReviewModal from '../components/Reviews/ReviewModal';
+import { collection, getDocs, query, doc, orderBy} from 'firebase/firestore';
+import { authService, dbService } from '../firebase';
+
 
 export default function MusicalDetail({navigation: {navigate}}) {
   const [isOpenModal, setIsOpenModal] = useState(false)
   const addreview = () => {
     setIsOpenModal(true)
   }
+  const [reviews, setReviews] = useState([]); // reviews 추가, 삭제 state
+  const reviewsCollectionRef = collection(dbService, 'reviews'); //db의 reviews 컬렉션 가져옴
+  
+  const getReviews = async () => {
+    const q = query(reviewsCollectionRef, orderBy('createdAt', 'desc'))
+    const data = await getDocs(q)
+    setReviews(data.docs.map(doc => ({...doc.data(), id: doc.id})))
+  }
+  useEffect(() => {
+    getReviews();
+  },[])
 
   return (
     <Container>
@@ -26,7 +40,7 @@ export default function MusicalDetail({navigation: {navigate}}) {
         <Title>영웅</Title>
       </View>
       <Rating>⭐️4.5/5</Rating>
-      {/* 2열로 만들어서 api로 불러온 값은 2번째 열에 넣고 싶다 */}
+      {/* 2열로 만들어서 api로 불러온 값은 2번째 열에 넣고 싶다 + 평균별점 적용 도전..! */}
       <Information>
         <DataName>
           <Text>공연 기간</Text>
@@ -57,9 +71,10 @@ export default function MusicalDetail({navigation: {navigate}}) {
       </ReviewPart>
       {/* FlatList로 변경해줘야 함 */}
       <Review>
-        <ReviewCard />
+        {reviews.map((value) => (<ReviewCard key={value.id} review={value} />))}
       </Review>
-      <ReviewModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
+      <ReviewModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} 
+      getReviews={getReviews} />
     </Container>
   );
 }
