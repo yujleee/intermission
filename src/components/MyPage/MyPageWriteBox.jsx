@@ -1,9 +1,8 @@
 import { View, FlatList } from 'react-native';
 import styled from '@emotion/native';
-import MyPageWrite from './MyPageWrite';
 import { ReviewContent } from '../MusicalDetail/ReviewCard';
 
-export default function myPageWrite() {
+export default function myPageWriteBox() {
   const data = [
     // 나중에 파이어베이스에서 받아서 변경 - 더미데이터
     {
@@ -36,7 +35,7 @@ export default function myPageWrite() {
       }
       keyExtractor={(item) => item.id}
       data={data}
-      renderItem={({ item }) => <MyPageWrite users={item} />}
+      // renderItem={({ item }) => <MyPageWrite users={item} />}
     />
   );
 }

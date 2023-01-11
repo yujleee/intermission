@@ -54,13 +54,9 @@ export default function MyPageHeader() {
   };
 
   return (
-    <PageHeader onPress={uploadImage}>
+    <PageHeader>
       <MyImage>
         <Image
-          source={
-            // ProfileImg
-            { uri: imageUrl }
-          }
           style={{
             width: 160,
             height: 160,
