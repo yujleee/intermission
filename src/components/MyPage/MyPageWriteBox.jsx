@@ -5,6 +5,7 @@ import ReviewCard from './../MusicalDetail/ReviewCard';
 export default function myPageWriteBox() {
   const data = [
     // 나중에 파이어베이스에서 받아서 변경 - 더미데이터
+    // 파일 살리기 위해서 잠시 주석추가해서 달아둡니다! 죄송해요 흐아앙
     {
       // id는 writer이 아닌 key 값임.
       id: 1,
