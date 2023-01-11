@@ -2,13 +2,10 @@ import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import styled from '@emotion/native';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../util';
 import { LinearGradient } from 'expo-linear-gradient';
-import ReviewCard from '../components/MusicalDetail/ReviewCard';
-import { useEffect, useState } from 'react';
-import ReviewModal from '../components/Reviews/ReviewModal';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { BASE_URL, getMusicalData } from '../api';
-import { collection, getDocs, query, doc, orderBy } from 'firebase/firestore';
-import { authService, dbService } from '../firebase';
+import ReviewsPart from '../components/Reviews/ReviewsPart';
 
 export default function MusicalDetail({
   navigation: { navigate },
@@ -16,28 +13,12 @@ export default function MusicalDetail({
     params: { musicalId },
   },
 }) {
-  const [isOpenModal, setIsOpenModal] = useState(false);
   const [isMoreButton, setMoreButton] = useState(false);
-
+ 
   const { data: musicalData, isLoading: isLoadingMD } = useQuery(
     ['MusicalData', musicalId],
     getMusicalData
   );
-
-  const [reviews, setReviews] = useState([]); // reviews 추가, 삭제 state
-  const reviewsCollectionRef = collection(dbService, 'reviews'); //db의 reviews 컬렉션 가져옴
-
-  const addreview = () => {
-    setIsOpenModal(true);
-  };
-  const getReviews = async () => {
-    const q = query(reviewsCollectionRef, orderBy('createdAt', 'desc'));
-    const data = await getDocs(q);
-    setReviews(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  };
-  useEffect(() => {
-    getReviews();
-  }, []);
 
   if (isLoadingMD) {
     return (
@@ -111,29 +92,7 @@ export default function MusicalDetail({
         ))}
       </InfoTotalPart>
       {/* 리뷰 */}
-      <ReviewPart>
-        <ReviewTitlePart>
-          <SectionTitle>리뷰</SectionTitle>
-          <AddReview onPress={addreview}>
-            <AddReviewText>리뷰 작성하기</AddReviewText>
-          </AddReview>
-        </ReviewTitlePart>
-
-        <Review>
-          {reviews.map((value) => (
-            <ReviewCard
-              key={value.id}
-              review={value}
-              // title={musicalData?.dbs?.db?.prfnm}
-            />
-          ))}
-        </Review>
-        <ReviewModal
-          isOpenModal={isOpenModal}
-          setIsOpenModal={setIsOpenModal}
-          getReviews={getReviews}
-        />
-      </ReviewPart>
+      <ReviewsPart />
     </Container>
   );
 }
@@ -200,52 +159,9 @@ const DetailImg = styled.Image`
   flex: 1;
   object-fit: cover;
 `;
-// 리뷰
-const SectionTitle = styled.Text`
-  font-size: 30px;
-  color: ${(props) => props.theme.fontColor};
-
-  margin-left: 20px;
-  vertical-align: middle;
-  display: flex;
-  align-items: center;
-`;
 const TempText = styled.Text`
   font-size: 20px;
   color: ${(props) => props.theme.fontColor};
-`;
-
-const ReviewPart = styled.View`
-  flex: 1;
-  /* justify-content: space-between;
-  align-items: center;
-  margin-top: 10px; */
-`;
-const ReviewTitlePart = styled.View`
-  flex: 1;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-`;
-
-//작성하기 버튼
-const AddReview = styled.TouchableOpacity`
-  padding: 10px;
-  margin-right: 20px;
-  border-radius: 5px;
-  background-color: ${(props) => props.theme.buttonColor};
-  align-items: center;
-  width: 150px;
-  height: 45px;
-`;
-const AddReviewText = styled.Text`
-  font-size: 20px;
-  color: ${(props) => props.theme.fontColor};
-`;
-// 리뷰
-const Review = styled.View`
-  margin: 30px 20px;
 `;
 
 const Loader = styled.View`
@@ -253,3 +169,5 @@ const Loader = styled.View`
   justify-content: center;
   align-items: center;
 `;
+
+
