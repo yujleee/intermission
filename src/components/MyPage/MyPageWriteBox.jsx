@@ -1,6 +1,7 @@
 import { View, FlatList } from 'react-native';
 import styled from '@emotion/native';
 import MyPageWrite from './MyPageWrite';
+import { ReviewContent } from '../MusicalDetail/ReviewCard';
 
 export default function myPageWrite() {
   const data = [
@@ -29,6 +30,7 @@ export default function myPageWrite() {
         <>
           <View>
             <ReviewText>작성한 리뷰</ReviewText>
+            {/* <ReviewContent /> */}
           </View>
         </>
       }
@@ -41,6 +43,7 @@ export default function myPageWrite() {
 
 const ReviewText = styled.Text`
   margin-top: 60px;
+  margin-bottom: 30px;
   margin-left: 16px;
   font-size: 20px;
 `;
