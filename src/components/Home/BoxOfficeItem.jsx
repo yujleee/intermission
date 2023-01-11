@@ -2,20 +2,32 @@ import styled from '@emotion/native';
 import { useNavigation } from '@react-navigation/native';
 import Poster from './Poster';
 
-export default function BoxOfficeItem({ musical, index }) {
+/**
+ * 박스오피스 리스트 아이템
+ * BoxOfficeList로부터 각각의 뮤지컬 정보를 param으로 받아옴
+ * @param {musical}
+ * @returns
+ * 최초수정: 2023.01.11
+ */
+export default function BoxOfficeItem({ musical }) {
   const { navigate } = useNavigation();
 
   return (
     <ItemWrapper
-      onPress={() => navigate('Stacks', { screen: 'MusicalDetail' })}
+      onPress={() =>
+        navigate('Stacks', {
+          screen: 'MusicalDetail',
+          params: { musicalId: musical?.mt20id },
+        })
+      }
     >
       <PosterWrapper>
-        <Poster url={musical.poster} />
+        <Poster url={musical?.poster} />
       </PosterWrapper>
       <InfoWrapper>
-        <Rank>{musical.rnum}</Rank>
-        <Title numberOfLines={1}>{musical.prfnm}</Title>
-        <PrfPeriod>{musical.prfpd}</PrfPeriod>
+        <Rank>{musical?.rnum}</Rank>
+        <Title numberOfLines={1}>{musical?.prfnm}</Title>
+        <PrfPeriod>{musical?.prfpd}</PrfPeriod>
       </InfoWrapper>
     </ItemWrapper>
   );

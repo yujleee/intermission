@@ -14,7 +14,7 @@ export default function BoxOfficeMonthList({ data }) {
     <ListWrapper>
       <Swiper height={'100%'} showsPagination={false} autoplay loop>
         {data?.map((item) => (
-          <BoxOfficeMonthItem key={item.mt20id} perf={item} />
+          <BoxOfficeMonthItem key={item?.mt20id} musical={item} />
         ))}
       </Swiper>
     </ListWrapper>
