@@ -1,5 +1,4 @@
 import { useQuery } from 'react-query';
-import { ActivityIndicator } from 'react-native';
 import styled from '@emotion/native';
 import BoxOfficeList from '../components/Home/BoxOfficeList';
 import { getBoxOfficeDay, getBoxOfficeMonth } from '../api';
@@ -7,8 +6,9 @@ import BoxOfficeMonthList from '../components/Home/BoxOfficeMonthList';
 import LocalMusical from '../components/Home/LocalMusical/LocalMusicalList';
 import { filterOnlyMusicals } from '../util';
 import TicketLinkList from '../components/Home/TicketLinkList';
+import Loading from './Loading';
 
-export default function Home({ navigation: { navigate } }) {
+export default function Home({ navigation: { navigate, setOptions } }) {
   const { data: boxOfficeMonthData, isLoading: isLoadingBOM } = useQuery(
     ['Musicals', 'BoxOfficeMonth'],
     getBoxOfficeMonth
@@ -30,11 +30,7 @@ export default function Home({ navigation: { navigate } }) {
   );
 
   if (isLoading) {
-    return (
-      <Loader>
-        <ActivityIndicator color={'#22AFFC'} />
-      </Loader>
-    );
+    return <Loading />;
   }
 
   return (
@@ -52,9 +48,3 @@ export default function Home({ navigation: { navigate } }) {
 }
 
 const HomeWrapper = styled.FlatList``;
-
-export const Loader = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
