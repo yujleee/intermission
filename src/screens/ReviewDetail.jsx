@@ -82,12 +82,16 @@ const Row = styled.View`
 `;
 const Rating = styled.Text`
   font-size: 20px;
+  color: ${(props) => props.theme.fontColor};
+
   margin: 10px 30px;
 `;
-const EditBtn = styled.TouchableOpacity``;
+const EditBtn = styled.TouchableOpacity`
+  color: ${(props) => props.theme.fontColor};
+`;
 const ReviewBox = styled.View`
   width: 90%;
-  background: #f4fdff;
+  background: ${(props) => props.theme.boxColor};
   border-radius: 5px;
   padding: 15px 15px;
   margin: 20px;
@@ -95,9 +99,11 @@ const ReviewBox = styled.View`
 `;
 const Text = styled.Text`
   font-size: 20px;
+  color: ${(props) => props.theme.fontColor};
 `;
 const Id = styled.Text`
   margin-left: auto;
   margin-top: 10px;
   font-size: 17px;
+  color: ${(props) => props.theme.fontColor};
 `;
