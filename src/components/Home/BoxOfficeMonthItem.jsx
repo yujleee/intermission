@@ -1,6 +1,6 @@
 import styled from '@emotion/native';
 import Poster from './Poster';
-import DropShadow from 'react-native-drop-shadow';
+import { shadowStyle } from '../../util/shadow';
 import { useNavigation } from '@react-navigation/native';
 
 export default function BoxOfficeMonthItem({ perf, musical }) {
@@ -16,19 +16,9 @@ export default function BoxOfficeMonthItem({ perf, musical }) {
           },
         })
       }
+      style={shadowStyle.grey}
     >
-      <DropShadow
-        style={{
-          shadowColor: '#303030',
-          shadowOffset: {
-            width: 7,
-            height: 7,
-          },
-          shadowOpacity: 0.15,
-        }}
-      >
-        <Poster url={perf.poster} />
-      </DropShadow>
+      <Poster url={perf.poster} />
     </ItemWrapper>
   );
 }
