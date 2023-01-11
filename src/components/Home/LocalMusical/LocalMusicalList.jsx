@@ -85,5 +85,5 @@ const Empty = styled.View`
 const EmptyText = styled.Text`
   justify-content: center;
   font-size: 16px;
-  color: #999;
+  color: ${(props) => props.theme.fontColor};
 `;

@@ -19,7 +19,10 @@ export default function MusicalCard() {
   return (
     <WrapView>
       {test.map((a, index) => (
-        <RWrapper key={index} onPress={() => navigate('Stacks',{screen : 'MusicalDetail'})}>
+        <RWrapper
+          key={index}
+          onPress={() => navigate('Stacks', { screen: 'MusicalDetail' })}
+        >
           <Poster source={{ uri: url }} />
           <RColumn>
             <Rating>⭐️8.5/10</Rating>
@@ -40,9 +43,10 @@ const WrapView = styled.View`
 `;
 
 const RWrapper = styled.TouchableOpacity`
-  background-color: white;
+  background-color: ${(props) => props.theme.buttonColor};
   border-radius: 5px;
   margin: 10px;
+  color: ${(props) => props.theme.fontColor};
 `;
 
 const Poster = styled.Image`
@@ -56,12 +60,12 @@ const RColumn = styled.View`
   padding: 10px;
 `;
 const Rating = styled.Text`
-  color: black;
+  color: ${(props) => props.theme.fontColor};
   margin-top: 5px;
   margin-bottom: 5px;
 `;
 const RTitle = styled.Text`
   font-size: 13px;
   font-weight: 600;
-  color: black;
+  color: ${(props) => props.theme.fontColor};
 `;

@@ -59,10 +59,10 @@ const Rank = styled.Text`
 const Title = styled(Rank)`
   width: 200px;
   font-weight: 700;
-  color: #333;
+  color: ${(props) => props.theme.fontColor};
 `;
 
 const PrfPeriod = styled.Text`
   font-size: 14px;
-  color: #777;
+  color: ${(props) => props.theme.fontColor};
 `;

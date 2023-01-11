@@ -121,7 +121,11 @@ export default function MusicalDetail({
 
         <Review>
           {reviews.map((value) => (
-            <ReviewCard key={value.id} review={value} />
+            <ReviewCard
+              key={value.id}
+              review={value}
+              // title={musicalData?.dbs?.db?.prfnm}
+            />
           ))}
         </Review>
         <ReviewModal
@@ -156,7 +160,7 @@ const BackdropImg = styled.Image`
   /* object-fit: cover; */
 `;
 const Title = styled.Text`
-  color: white;
+  color: ${(props) => props.theme.fontColor};
   font-size: 50px;
   font-weight: 600;
   margin-left: 20px;
@@ -175,6 +179,7 @@ const Information = styled.View`
 const Info = styled.Text`
   font-size: 20px;
   padding-bottom: 4px;
+  color: ${(props) => props.theme.fontColor};
 `;
 const MoreButton = styled.TouchableOpacity`
   margin-left: 20px;
@@ -183,8 +188,7 @@ const MoreButton = styled.TouchableOpacity`
   padding: 10px;
   border-radius: 5px;
   align-items: center;
-  background-color: #22affc;
-  color: white;
+  background-color: ${(props) => props.theme.buttonColor};
 `;
 
 // 상세보기 버튼 누르면 나타나는
@@ -199,6 +203,8 @@ const DetailImg = styled.Image`
 // 리뷰
 const SectionTitle = styled.Text`
   font-size: 30px;
+  color: ${(props) => props.theme.fontColor};
+
   margin-left: 20px;
   vertical-align: middle;
   display: flex;
@@ -206,7 +212,7 @@ const SectionTitle = styled.Text`
 `;
 const TempText = styled.Text`
   font-size: 20px;
-  color: white;
+  color: ${(props) => props.theme.fontColor};
 `;
 
 const ReviewPart = styled.View`
@@ -228,14 +234,14 @@ const AddReview = styled.TouchableOpacity`
   padding: 10px;
   margin-right: 20px;
   border-radius: 5px;
-  background-color: #22affc;
+  background-color: ${(props) => props.theme.buttonColor};
   align-items: center;
   width: 150px;
   height: 45px;
 `;
 const AddReviewText = styled.Text`
   font-size: 20px;
-  color: white;
+  color: ${(props) => props.theme.fontColor};
 `;
 // 리뷰
 const Review = styled.View`

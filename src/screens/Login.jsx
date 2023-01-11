@@ -135,6 +135,7 @@ const TitleText = styled.Text`
   font-size: 25px;
   font-weight: 900px;
   margin-bottom: 25px;
+  color: ${(props) => props.theme.fontColor};
 `;
 
 const LoginBox = styled.TextInput`
