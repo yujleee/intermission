@@ -1,7 +1,7 @@
 import styled from '@emotion/native';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import DropShadow from 'react-native-drop-shadow';
+import { shadowStyle } from '../../util/shadow';
 
 
 export default function ReviewCard({review}) {
@@ -11,18 +11,9 @@ export default function ReviewCard({review}) {
   }
   
   return (
-    <DropShadow
-      style={{
-        shadowColor: '#219BB6',
-        shadowOffset: {
-          width: 1,
-          height: 5,
-        },
-        shadowOpacity: 1,
-        shadowRadius: 10,
-      }}
-    >
+   
       <ReviewContent
+      style={shadowStyle.blue}
         onPress={goToReviewDetail}
       >
         {/* 글자수 자르기 해야함~!
@@ -36,7 +27,7 @@ export default function ReviewCard({review}) {
         <Text>{review?.contents}</Text>
         <Id>닉네임1</Id>
       </ReviewContent>
-    </DropShadow>
+    
   );
 }
 

@@ -5,6 +5,8 @@ import BoxOfficeList from '../components/Home/BoxOfficeList';
 import SectionList from '../components/Home/SectionList';
 import { getBoxOfficeDay, getBoxOfficeMonth } from '../api';
 import BoxOfficeMonthList from '../components/Home/BoxOfficeMonthList';
+import LocalMusical from '../components/Home/LocalMusical/LocalMusicalList';
+import { filterOnlyMusicals } from '../util';
 
 export default function Home() {
   const { data: boxOfficeMonthData, isLoading: isLoadingBOM } = useQuery(
@@ -19,17 +21,18 @@ export default function Home() {
   const isLoading = isLoadingBOM || isLoadingBOD;
 
   // 뮤지컬 데이터만 필터링. api quueryString 중 catecode=GGGA가 먹통인듯 합니다.
-  const filteredBoxOfficeDay = boxOfficeDayData?.boxofs?.boxof?.filter(
-    (perf) => perf.cate[0] === '뮤지컬'
+  const filteredBoxOfficeDay = filterOnlyMusicals(
+    boxOfficeDayData?.boxofs?.boxof
   );
-  const filteredBoxOfficeMonth = boxOfficeMonthData?.boxofs?.boxof?.filter(
-    (perf) => perf.cate[0] === '뮤지컬'
+
+  const filteredBoxOfficeMonth = filterOnlyMusicals(
+    boxOfficeMonthData?.boxofs?.boxof
   );
 
   if (isLoading) {
     return (
       <Loader>
-        <ActivityIndicator />
+        <ActivityIndicator color={'#22AFFC'} />
       </Loader>
     );
   }
@@ -40,8 +43,8 @@ export default function Home() {
         <>
           <BoxOfficeMonthList data={filteredBoxOfficeMonth} />
           <BoxOfficeList data={filteredBoxOfficeDay} />
-          <SectionList title={'공연 예정'} />
-          <SectionList title={'서울에서 공연중'} />
+          <LocalMusical />
+          <SectionList title={'예매 사이트'} />
         </>
       }
     />
