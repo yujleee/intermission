@@ -119,7 +119,7 @@ const BackdropImg = styled.Image`
   /* object-fit: cover; */
 `;
 const Title = styled.Text`
-  color: white;
+  color: ${(props) => props.theme.fontColor};
   font-size: 50px;
   font-weight: 600;
   margin-left: 20px;
@@ -138,6 +138,7 @@ const Information = styled.View`
 const Info = styled.Text`
   font-size: 20px;
   padding-bottom: 4px;
+  color: ${(props) => props.theme.fontColor};
 `;
 const MoreButton = styled.TouchableOpacity`
   margin-left: 20px;
@@ -146,8 +147,7 @@ const MoreButton = styled.TouchableOpacity`
   padding: 10px;
   border-radius: 5px;
   align-items: center;
-  background-color: #22affc;
-  color: white;
+  background-color: ${(props) => props.theme.buttonColor};
 `;
 
 // 상세보기 버튼 누르면 나타나는
@@ -161,7 +161,7 @@ const DetailImg = styled.Image`
 `;
 const TempText = styled.Text`
   font-size: 20px;
-  color: white;
+  color: ${(props) => props.theme.fontColor};
 `;
 
 const Loader = styled.View`

@@ -33,7 +33,7 @@ export default function ReviewCard({ review }) {
 //
 const ReviewContent = styled.TouchableOpacity`
   width: 100%;
-  background: #f4fdff;
+  background-color: ${(props) => props.theme.boxColor};
   border-radius: 5px;
   padding: 15px 15px;
   margin-bottom: 20px;
@@ -48,16 +48,20 @@ const Row = styled.View`
 const ReviewDate = styled.Text`
   font-size: 10px;
   margin-bottom: 5px;
+  color: ${(props) => props.theme.fontColor};
 `;
 const Rating = styled.Text`
   font-size: 20px;
   margin-bottom: 10px;
+  color: ${(props) => props.theme.fontColor};
 `;
 const Text = styled.Text`
   font-size: 20px;
+  color: ${(props) => props.theme.fontColor};
 `;
 const Id = styled.Text`
   margin-left: auto;
   margin-top: 10px;
   font-size: 17px;
+  color: ${(props) => props.theme.fontColor};
 `;
