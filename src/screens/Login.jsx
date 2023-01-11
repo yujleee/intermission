@@ -9,6 +9,7 @@ import { emailRegex, pwRegex, SCREEN_WIDTH } from '../util';
 import { useState, useEffect, useRef } from 'react';
 import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
 export default function Login({
   navigation: { goBack, setOptions, navigate },
 }) {
