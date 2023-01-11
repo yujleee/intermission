@@ -7,6 +7,7 @@ import { useState } from 'react';
 import ReviewModal from '../components/Reviews/ReviewModal';
 import { useQuery } from 'react-query';
 import { BASE_URL, getMusicalData } from '../api';
+import Collapsible from 'react-native-collapsible';
 
 export default function MusicalDetail({
   navigation: { navigate },
@@ -53,25 +54,40 @@ export default function MusicalDetail({
                   uri: `${musical.poster}`,
                 }}
               />
-              {/* <LinearGradient
-              style={StyleSheet.absoluteFill}
-              colors={['transparent', 'black']}
-            /> */}
+              <LinearGradient
+                style={StyleSheet.absoluteFill}
+                colors={['transparent', 'black']}
+              />
               <Title>{musical.prfnm}</Title>
             </InfoImgPart>
             {/* 정보 */}
             <Information>
               <Info>출연 : {musical.prfcast}</Info>
+              <Info>제작 : {musical.prfcrew}</Info>
               <Info>
                 공연 기간 : {musical.prfpdfrom}~{musical.prfpdto}
               </Info>
               <Info>공연 장소 : {musical.fcltynm}</Info>
               <Info>러닝타임 : {musical.prfruntime}</Info>
               <Info>관람 연령가 : {musical.prfage}</Info>
-              <Info>가격 : {musical.pcsequidance}</Info>
             </Information>
             {/* 상세보기 버튼 누르면 상세 이미지 나옴 */}
-            <MoreButton onPress={() => setMoreButton(!isMoreButton)}>
+            <MoreButton
+              onPress={() => {
+                // () => (
+                //   <Collapsible>
+                //     <SomeCollapsedView
+                //       style={{ resizeMode: 'stretch' }}
+                //       source={{
+                //         uri: `${musicalData?.styurls[0]?.styurl[0]}`,
+                //       }}
+                //       collapsed={isCollapsed}
+                //     />
+                //   </Collapsible>
+                // );
+                setMoreButton(!isMoreButton);
+              }}
+            >
               {isMoreButton ? (
                 <TempText>접기</TempText>
               ) : (
