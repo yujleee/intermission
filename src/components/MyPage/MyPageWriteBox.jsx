@@ -1,10 +1,11 @@
 import { View, FlatList } from 'react-native';
 import styled from '@emotion/native';
-import { ReviewContent } from '../Reviews/ReviewCard';
+import ReviewCard from './../MusicalDetail/ReviewCard';
 
 export default function myPageWriteBox() {
   const data = [
     // 나중에 파이어베이스에서 받아서 변경 - 더미데이터
+    // 파일 살리기 위해서 잠시 주석추가해서 달아둡니다! 죄송해요 흐아앙
     {
       // id는 writer이 아닌 key 값임.
       id: 1,
@@ -29,7 +30,7 @@ export default function myPageWriteBox() {
         <>
           <View>
             <ReviewText>작성한 리뷰</ReviewText>
-            {/* <ReviewContent /> */}
+            <ReviewCard />
           </View>
         </>
       }

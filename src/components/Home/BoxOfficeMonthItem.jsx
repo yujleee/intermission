@@ -24,7 +24,7 @@ export default function BoxOfficeMonthItem({ musical }) {
         })
       }
     >
-      <Poster url={musical?.poster} />
+      <Poster url={musical?.poster} musicalId={musical?.mt20id} />
     </ItemWrapper>
   );
 }
