@@ -7,7 +7,7 @@ import {
 } from 'firebase/auth/react-native';
 import { emailRegex, pwRegex, SCREEN_WIDTH } from '../util';
 import { useState, useEffect, useRef } from 'react';
-
+import { Alert } from 'react-native';
 export default function Login({ navigation: { goBack, setOptions } }) {
   const emailRef = useRef(null);
   const pwRef = useRef(null);
@@ -16,12 +16,12 @@ export default function Login({ navigation: { goBack, setOptions } }) {
 
   const validateInputs = () => {
     if (!email) {
-      alert('email을 입력해주세요.');
+      alert('E-mail을 입력해주세요.');
       emailRef.current.focus();
       return true;
     }
     if (!pw) {
-      alert('password를 입력해주세요.');
+      alert('Password를 입력해주세요.');
       pwRef.current.focus();
       return true;
     }
@@ -48,7 +48,10 @@ export default function Login({ navigation: { goBack, setOptions } }) {
     // 로그인 요청
     signInWithEmailAndPassword(authService, email, pw)
       .then(() => {
-        console.log('로그인성공');
+        console.log('로그인 성공');
+
+        Alert.alert('Intermission', '환영합니다.');
+
         setEmail('');
         setPw('');
         goBack();
@@ -133,7 +136,7 @@ const BigBrother = styled.View`
 
 const TitleText = styled.Text`
   font-size: 25px;
-  font-weight: 900px;
+  font-weight: bold;
   margin-bottom: 25px;
 `;
 
@@ -148,6 +151,7 @@ const LoginBox = styled.TextInput`
   border-radius: 10px;
   margin-bottom: 20px;
   font-size: 19px;
+  padding-left: 10px;
 `;
 
 const InputBox = styled.View`
@@ -161,7 +165,7 @@ const LoginButton = styled.TouchableOpacity`
   align-items: center;
   width: 230px;
   height: 30px;
-  background-color: skyblue;
+  background-color: #22affc;
   border-radius: 10px;
   justify-content: center;
   margin: 0 auto;
@@ -176,7 +180,7 @@ const JoinButton = styled.TouchableOpacity`
   border-radius: 10px;
   width: 110px;
   height: 30px;
-  background-color: skyblue;
+  background-color: #22affc;
   justify-content: center;
   text-align: center;
   display: flex;
