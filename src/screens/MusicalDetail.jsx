@@ -120,25 +120,16 @@ export default function MusicalDetail({
         </ReviewTitlePart>
 
         <Review>
-          <ReviewCard />
+          {reviews.map((value) => (
+            <ReviewCard key={value.id} review={value} />
+          ))}
         </Review>
-
         <ReviewModal
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
+          getReviews={getReviews}
         />
       </ReviewPart>
-      {/* FlatList로 변경해줘야 함 */}
-      <Review>
-        {reviews.map((value) => (
-          <ReviewCard key={value.id} review={value} />
-        ))}
-      </Review>
-      <ReviewModal
-        isOpenModal={isOpenModal}
-        setIsOpenModal={setIsOpenModal}
-        getReviews={getReviews}
-      />
     </Container>
   );
 }
@@ -220,9 +211,13 @@ const TempText = styled.Text`
 
 const ReviewPart = styled.View`
   flex: 1;
+  /* justify-content: space-between;
+  align-items: center;
+  margin-top: 10px; */
 `;
 const ReviewTitlePart = styled.View`
   flex: 1;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
