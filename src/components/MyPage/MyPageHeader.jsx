@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Profiler, useState } from 'react';
 import {
   Platform,
   Pressable,
@@ -13,6 +13,7 @@ import { updateProfile } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
+import Profile from '../../../assets/profile_default.jpg';
 
 //닉네임 수정
 export default function MyPageHeader() {
@@ -26,6 +27,34 @@ export default function MyPageHeader() {
     }
   };
   console.log(authService);
+
+  // 로그아웃
+  const logout = () => {
+    signOut(authService)
+      .then(() => {
+        console.log('로그아웃 성공');
+        Alert.alert('Intermission', '다신 돌아오지마세요.');
+        navigate('Home');
+      })
+      .catch((err) => alert(err));
+  };
+
+  // 경고창
+  const logOutBtn = () => {
+    Alert.alert('Intermission', '로그아웃 하시겠습니까??', [
+      {
+        text: '예',
+        onPress: () => {
+          logout();
+        },
+      },
+      { text: '아니오' },
+    ]);
+  };
+
+  // 네비
+  const { navigate } = useNavigation();
+
   // 이미지 추가
   const [response, setResponse] = useState(null);
   const onSelectImage = () => {
@@ -68,32 +97,6 @@ export default function MyPageHeader() {
     // imageUrl 사용 로직
   };
 
-  // 로그아웃
-  const logout = () => {
-    signOut(authService)
-      .then(() => {
-        console.log('로그아웃 성공');
-        Alert.alert('Intermission', '다신 돌아오지마세요.');
-        navigate('Home');
-      })
-      .catch((err) => alert(err));
-  };
-
-  // 경고창
-  const logOutBtn = () => {
-    Alert.alert('Intermission', '로그아웃 하시겠습니까??', [
-      {
-        text: '예',
-        onPress: () => {
-          logout();
-        },
-      },
-      { text: '아니오' },
-    ]);
-  };
-
-  // 네비
-  const { navigate } = useNavigation();
   return (
     <PageHeader>
       <Pressable
@@ -105,6 +108,7 @@ export default function MyPageHeader() {
         onPress={onSelectImage}
       >
         <Image
+          src={Profile}
           style={{
             width: 160,
             height: 160,
@@ -113,27 +117,7 @@ export default function MyPageHeader() {
           source={{ uri: response?.assets[0]?.uri }}
         />
       </Pressable>
-      {loading ? (
-        <ActivityIndicator
-          size={32}
-          color="#6200EE"
-          style={{
-            width: 160,
-            height: 160,
-            borderRadius: 100,
-          }}
-        />
-      ) : (
-        <Button
-          style={{
-            width: 160,
-            height: 160,
-            borderRadius: 100,
-          }}
-          title="다음"
-          onPress={imageUpload}
-        />
-      )}
+
       <MyDb>
         <PageId>
           <MyId>닉네임</MyId>
