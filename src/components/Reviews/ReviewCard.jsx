@@ -8,7 +8,7 @@ import { authService, dbService } from '../../firebase';
 import { useNavigation } from '@react-navigation/native';
 
 export default function ReviewCard({ review }) {
-  const { navigate } = useNavigation();
+  const { navigate, reset } = useNavigation();
 
   const goToReviewDetail = async () => {
     const isLogin = !!authService.currentUser;
@@ -16,6 +16,7 @@ export default function ReviewCard({ review }) {
       navigate('Login');
       return;
     }
+
     navigate('ReviewDetail', { review, from: 'MusicalDetail' });
   };
 
@@ -38,7 +39,7 @@ export default function ReviewCard({ review }) {
 }
 
 //
-const ReviewContent = styled.TouchableOpacity`
+export const ReviewContent = styled.TouchableOpacity`
   width: 100%;
   background-color: ${(props) => props.theme.boxColor};
   border-radius: 5px;
@@ -47,17 +48,17 @@ const ReviewContent = styled.TouchableOpacity`
   display: flex;
   justify-content: flex-end;
 `;
-const Row = styled.View`
+export const Row = styled.View`
   flex-direction: row;
   justify-content: space-between;
 `;
 // 전체 글자
-const ReviewDate = styled.Text`
+export const ReviewDate = styled.Text`
   font-size: 14px;
   margin-bottom: 5px;
   color: ${(props) => props.theme.reviewSmall};
 `;
-const Rating = styled.Text`
+export const Rating = styled.Text`
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 10px;
