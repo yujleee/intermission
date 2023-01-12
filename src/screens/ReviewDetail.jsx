@@ -1,5 +1,5 @@
 import styled from '@emotion/native';
-import { shadowStyle } from '../util/shadow';
+import { shadowStyle } from '../shadow';
 import { Id, Text } from '../components/Reviews/ReviewCard';
 import { AddReview, AddReviewText } from '../components/Reviews/ReviewsPart';
 

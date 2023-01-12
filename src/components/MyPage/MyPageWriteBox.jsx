@@ -13,7 +13,7 @@ import { dbService, authService } from '../../firebase';
 import { onSnapshot } from '@firebase/firestore';
 import { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { shadowStyle } from '../../util/shadow';
+import { shadowStyle } from '../../shadow';
 
 export default function myPageWriteBox() {
   const { navigate } = useNavigation();

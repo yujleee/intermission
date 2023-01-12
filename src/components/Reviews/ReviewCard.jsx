@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
-import { shadowStyle } from '../../util/shadow';
+import { shadowStyle } from '../../shadow';
 import { authService } from '../../firebase';
 
 export default function ReviewCard({ review }) {
