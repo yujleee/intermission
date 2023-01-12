@@ -1,10 +1,10 @@
 import * as ImagePicker from 'expo-image-picker';
-import { storage } from '../common/firebase';
+import { auth, storage } from '../common/firebase';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
-// 이미지 피커
+// 이미지 선택&갤러리 (이미지피커)
 const [pickedImg, setPickedImg] = useState('');
 const [status, requestPermission] = ImagePicker.useMediaLibraryPermissions();
 

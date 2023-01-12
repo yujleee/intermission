@@ -1,28 +1,30 @@
-import { View, FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 import styled from '@emotion/native';
-import ReviewCard from '../Reviews/ReviewCard';
+// import { authService, dbService } from '../firebase';
+// import {
+//   collection,
+//   doc,
+//   getDocs,
+//   onSnapshot,
+//   orderBy,
+//   query,
+//   where,
+// } from 'firebase/firestore';
 
 export default function myPageWriteBox() {
-  const data = [
-    // 나중에 파이어베이스에서 받아서 변경 - 더미데이터
-    // 파일 살리기 위해서 잠시 주석추가해서 달아둡니다! 죄송해요 흐아앙
-    {
-      // id는 writer이 아닌 key 값임.
-      id: 1,
-      text: 'asdasdasdasdasd',
-      writer: 'asdasd',
-    },
-    {
-      id: 2,
-      text: 'test',
-      writer: '123123123',
-    },
-    {
-      id: 3,
-      text: 'test다아아ㅏㅏ악',
-      writer: 'asdasda',
-    },
-  ];
+  // const reviews = Firestore.collection('reviews');
+
+  // reviews.get().then((docs) => {
+  //   // 반복문으로 docuemnt 하나씩 확인
+  //   docs.forEach((doc) => {
+  //     if (doc.exists) {
+  //       // document의 데이터
+  //       console.log(doc.data());
+  //       // document의 id
+  //       console.log(doc.id);
+  //     }
+  //   });
+  // });
 
   return (
     <FlatList
@@ -30,12 +32,11 @@ export default function myPageWriteBox() {
         <>
           <View>
             <ReviewText>작성한 리뷰</ReviewText>
-            <ReviewCard />
+            {/* 사용자의 리뷰 */}
           </View>
         </>
       }
-      keyExtractor={(item) => item.id}
-      data={data}
+
       // renderItem={({ item }) => <MyPageWrite users={item} />}
     />
   );
