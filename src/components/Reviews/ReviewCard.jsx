@@ -8,8 +8,6 @@ import { authService, dbService } from '../../firebase';
 import { useNavigation } from '@react-navigation/native';
 
 export default function ReviewCard({ review }) {
-  const [reviews, setReviews] = useState([]);
-
   const { navigate } = useNavigation();
 
   const goToReviewDetail = async () => {

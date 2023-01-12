@@ -160,3 +160,5 @@ const Loader = styled.View`
   justify-content: center;
   align-items: center;
 `;
+
+
