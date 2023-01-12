@@ -129,7 +129,9 @@ export default function ReviewEdit({
 
   return (
     <Container>
-      <EditButton disabled={!newContents && !newratings} onPress={onEdit}>
+      <EditButton 
+        disabled={!newContents && !newratings} 
+        onPress={onEdit}>
         <BtnTitle disabled={!newContents && !newratings}>수정하기</BtnTitle>
       </EditButton>
       <EditButton onPress={onDelete}>
