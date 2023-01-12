@@ -4,12 +4,13 @@ import ReviewModal from './ReviewModal'
 import { useState, useEffect } from 'react';
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { authService, dbService } from '../../firebase';
+import { useNavigation } from '@react-navigation/native';
 // import { collection, onSnapshot, query, orderBy, docs, getDocs } from 'firebase/firestore';
 // import { authService, dbService } from '../firebase';
 
 
 export default function ReviewsPart({ musicalid }) {
-
+  const { navigate } = useNavigation();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [reviews, setReviews] = useState([]); // reviews 추가, 삭제 state
 
