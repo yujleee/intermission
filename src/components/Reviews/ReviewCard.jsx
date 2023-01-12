@@ -33,7 +33,7 @@ export default function ReviewCard({ review }) {
         </ReviewDate>
       </Row>
 
-      <Text>{review?.contents}</Text>
+      <Text numberOfLines={2}>{review?.contents}</Text>
       <Id>
         {/* {review?.userId} */}
         닉네임1
@@ -47,7 +47,7 @@ const ReviewContent = styled.TouchableOpacity`
   width: 100%;
   background-color: ${(props) => props.theme.boxColor};
   border-radius: 5px;
-  padding: 15px 15px;
+  padding: 20px;
   margin-bottom: 20px;
   display: flex;
   justify-content: flex-end;
@@ -58,22 +58,24 @@ const Row = styled.View`
 `;
 // 전체 글자
 const ReviewDate = styled.Text`
-  font-size: 10px;
+  font-size: 14px;
   margin-bottom: 5px;
-  color: ${(props) => props.theme.fontColor};
+  color: ${(props) => props.theme.reviewSmall};
 `;
 const Rating = styled.Text`
-  font-size: 20px;
+  font-size: 18px;
+  font-weight: 600;
   margin-bottom: 10px;
+  color: ${(props) => props.theme.middleFontColor};
+`;
+export const Text = styled.Text`
+  padding: 10px 0;
+  font-size: 18px;
   color: ${(props) => props.theme.fontColor};
 `;
-const Text = styled.Text`
-  font-size: 20px;
-  color: ${(props) => props.theme.fontColor};
-`;
-const Id = styled.Text`
+export const Id = styled.Text`
   margin-left: auto;
   margin-top: 10px;
-  font-size: 17px;
-  color: ${(props) => props.theme.fontColor};
+  font-size: 16px;
+  color: ${(props) => props.theme.middleFontColor};
 `;

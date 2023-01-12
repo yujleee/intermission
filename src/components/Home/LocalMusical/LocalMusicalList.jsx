@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import { useQuery } from 'react-query';
 import styled from '@emotion/native';
 import { FlatList, ActivityIndicator } from 'react-native';
-import { SectionTitle } from '../SectionList';
+import { SectionTitle } from '../BoxOfficeList';
 import { getLocalPopular } from '../../../api';
 import SectionItem from '../SectionItem';
 import LocalButtons from './LocalButtons';
@@ -33,6 +33,7 @@ export default function LocalMusical() {
       <FlatList
         horizontal
         listKey="local"
+        showsHorizontalScrollIndicator={false}
         ListHeaderComponent={
           <Wrapper>
             {isLoading && (
@@ -85,5 +86,5 @@ const Empty = styled.View`
 const EmptyText = styled.Text`
   justify-content: center;
   font-size: 16px;
-  color: ${(props) => props.theme.fontColor};
+  color: ${(props) => props.theme.smallFontColor};
 `;

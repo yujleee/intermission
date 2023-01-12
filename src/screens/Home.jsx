@@ -48,5 +48,5 @@ export default function Home() {
 }
 
 const HomeWrapper = styled.FlatList`
-  background-color: #fff;
+  background-color: ${(props) => props.theme.bgColor};
 `;

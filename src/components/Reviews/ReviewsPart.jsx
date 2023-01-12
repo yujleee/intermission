@@ -70,9 +70,7 @@ export default function ReviewsPart({ musicalid }) {
 }
 const ReviewPart = styled.View`
   flex: 1;
-  /* justify-content: space-between;
-  align-items: center;
-  margin-top: 10px; */
+  margin-top: 30px;
 `;
 const ReviewTitlePart = styled.View`
   flex: 1;
@@ -82,25 +80,27 @@ const ReviewTitlePart = styled.View`
   margin-top: 10px;
 `;
 const SectionTitle = styled.Text`
-  font-size: 30px;
+  font-size: 24px;
   margin-left: 20px;
+  font-weight: 600;
   vertical-align: middle;
   display: flex;
   align-items: center;
   color: ${(props) => props.theme.fontColor};
 `;
-const AddReview = styled.TouchableOpacity`
-  padding: 10px;
+export const AddReview = styled.TouchableOpacity`
   margin-right: 20px;
   border-radius: 5px;
-  background-color: #22affc;
+  background-color: ${(props) => props.theme.buttonColor};
+  justify-content: center;
   align-items: center;
   width: 150px;
-  height: 45px;
+  height: 46px;
 `;
-const AddReviewText = styled.Text`
-  font-size: 20px;
-  color: white;
+export const AddReviewText = styled.Text`
+  font-size: 18px;
+  font-weight: 600;
+  color: ${(props) => props.theme.buttonTextColor};
 `;
 // 리뷰
 const Review = styled.View`

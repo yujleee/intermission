@@ -109,10 +109,10 @@ const BackdropImg = styled.Image`
 
 const Title = styled.Text`
   color: ${(props) => props.theme.fontColor};
-  font-size: 26px;
+  font-size: 30px;
   font-weight: 600;
   margin-left: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 // 공연 정보
@@ -123,13 +123,14 @@ const Information = styled.View`
 const Info = styled.Text`
   font-size: 16px;
   padding-bottom: 10px;
-  color: ${(props) => props.theme.fontColor};
+  color: ${(props) => props.theme.middleFontColor};
 `;
 const MoreButton = styled.TouchableOpacity`
   margin-left: 20px;
   margin-right: 20px;
-  padding: 10px;
+  height: 46px;
   border-radius: 5px;
+  justify-content: center;
   align-items: center;
   background-color: ${(props) => props.theme.buttonColor};
 `;
@@ -137,7 +138,7 @@ const MoreButton = styled.TouchableOpacity`
 const MoreDetail = styled.View`
   width: 90%;
   height: ${(props) =>
-    props.width <= 375 ? SCREEN_HEIGHT * 8 + 'px' : SCREEN_HEIGHT * 7 + 'px'};
+    props.width <= 375 ? SCREEN_HEIGHT * 8 + 'px' : SCREEN_HEIGHT * 10 + 'px'};
   padding: 10px 0;
   margin: 0 auto;
 `;
@@ -149,7 +150,8 @@ const DetailImg = styled.Image`
 
 const TempText = styled.Text`
   font-size: 20px;
-  color: ${(props) => props.theme.fontColor};
+  font-weight: 600;
+  color: ${(props) => props.theme.buttonTextColor};
 `;
 
 const Loader = styled.View`

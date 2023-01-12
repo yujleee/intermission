@@ -99,43 +99,49 @@ export default function Login({
   }, []);
 
   return (
-    <BigBrother>
-      <TitleText>로그인</TitleText>
-      <InputBox>
-        <LoginBox
-          ref={emailRef}
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-          placeholderTextColor="#d2dae2"
-          textContentType="emailAddress"
-          placeholder="E-mail"
-        />
-        <LoginBox
-          ref={pwRef}
-          value={pw}
-          onChangeText={(text) => setPw(text)}
-          placeholderTextColor="#d2dae2"
-          textContentType="password"
-          returnKeyType="send"
-          secureTextEntry={true}
-          placeholder="Password"
-        />
-      </InputBox>
+    <Wrapper>
+      <BigBrother>
+        <TitleText>로그인</TitleText>
+        <InputBox>
+          <LoginBox
+            ref={emailRef}
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+            placeholderTextColor="#d2dae2"
+            textContentType="emailAddress"
+            placeholder="E-mail"
+          />
+          <LoginBox
+            ref={pwRef}
+            value={pw}
+            onChangeText={(text) => setPw(text)}
+            placeholderTextColor="#d2dae2"
+            textContentType="password"
+            returnKeyType="send"
+            secureTextEntry={true}
+            placeholder="Password"
+          />
+        </InputBox>
 
-      <LoginButton onPress={handleLogin}>
-        <LoginButtonText>로그인</LoginButtonText>
-      </LoginButton>
+        <LoginButton onPress={handleLogin}>
+          <LoginButtonText>로그인</LoginButtonText>
+        </LoginButton>
 
-      <JoinButton onPress={handleRegister}>
-        <JoinButtonText>회원가입</JoinButtonText>
-      </JoinButton>
-    </BigBrother>
+        <JoinButton onPress={handleRegister}>
+          <JoinButtonText>회원가입</JoinButtonText>
+        </JoinButton>
+      </BigBrother>
+    </Wrapper>
   );
 }
 
+const Wrapper = styled.View`
+  color: ${(props) => props.theme.bgColor};
+  padding: 20px 30px;
+`;
+
 const BigBrother = styled.View`
-  margin: 75px auto 90px;
-  display: flex;
+  margin: 30px 0;
 `;
 
 const TitleText = styled.Text`
@@ -148,11 +154,10 @@ const TitleText = styled.Text`
 const LoginBox = styled.TextInput`
   display: flex;
   justify-content: center;
-  background-color: whitesmoke;
-  border: 1px solid black;
-  color: black;
-  width: 270px;
-  height: 45px;
+  border: 1px solid #ccc;
+  color: ${(props) => props.theme.fontColor};
+  width: ${SCREEN_WIDTH / 1.2 + 'px'};
+  height: 46px;
   border-radius: 10px;
   margin-bottom: 20px;
   font-size: 19px;
@@ -168,32 +173,26 @@ const InputBox = styled.View`
 const LoginButton = styled.TouchableOpacity`
   display: flex;
   align-items: center;
-  width: 230px;
-  height: 30px;
-  background-color: #22affc;
-  border-radius: 10px;
   justify-content: center;
+  width: ${SCREEN_WIDTH / 1.2 + 'px'};
+  height: 46px;
+  background-color: ${(props) => props.theme.buttonColor};
+  border-radius: 10px;
   margin: 0 auto;
 `;
 const LoginButtonText = styled.Text`
-  font-size: 19px;
-  color: white;
-  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: ${(props) => props.theme.buttonTextColor};
 `;
 
-const JoinButton = styled.TouchableOpacity`
-  border-radius: 10px;
-  width: 110px;
-  height: 30px;
-  background-color: #22affc;
-  justify-content: center;
-  text-align: center;
-  display: flex;
-  margin: 30px auto 0;
+const JoinButton = styled(LoginButton)`
+  background-color: transparent;
+  border-width: 1px;
+  border-color: ${(props) => props.theme.buttonColor};
+  margin: 20px auto 0;
 `;
 
-const JoinButtonText = styled.Text`
-  font-size: 15px;
-  color: white;
-  text-align: center;
+const JoinButtonText = styled(LoginButtonText)`
+  color: ${(props) => props.theme.buttonColor};
 `;

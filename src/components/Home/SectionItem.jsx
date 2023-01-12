@@ -28,7 +28,8 @@ const ItemWrapper = styled.TouchableOpacity`
 `;
 
 const MusicalTitle = styled.Text`
-  font-size: 16px;
+  height: 22px;
+  font-size: 18px;
   color: ${(props) => props.theme.fontColor};
 
   margin: 8px 0;
@@ -38,7 +39,7 @@ const MusicalTitle = styled.Text`
 
 const MusicalTheater = styled.Text`
   font-size: 14px;
-  color: ${(props) => props.theme.fontColor};
+  color: ${(props) => props.theme.smallFontColor};
 
   text-align: center;
   margin: -4px 0;
