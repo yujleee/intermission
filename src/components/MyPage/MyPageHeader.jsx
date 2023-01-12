@@ -4,7 +4,7 @@ import styled from '@emotion/native';
 import * as ImagePicker from 'expo-image-picker';
 import { authService, storage } from '../../firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { updateProfile } from 'firebase/firestore';
+import { updateProfile } from 'firebase/auth/react-native';
 import { signOut } from 'firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
@@ -13,19 +13,26 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default function MyPageHeader() {
   //닉네임 수정
-  const [name, setName] = useState('닉네임');
+  const [name, setName] = useState(authService.currentUser.displayName);
   const [text, setText] = useState('');
+  console.log(authService);
 
   const changeName = () => {
     setName(text);
-    setText();
+
+    // 닉네임, 이미지 수정
+    updateProfile(authService.currentUser, {
+      displayName: text ? text : null,
+    });
   };
   const SwitchName = () => {
     Alert.alert('My Proflie', '닉네임을 변경하시겠습니까?', [
       {
         text: '확인',
         onPress: () => {
-          Alert.alert('My Proflie', '닉네임이 변경되었습니다.', changeName());
+          changeName();
+          setText('');
+          Alert.alert('My Proflie', '닉네임이 변경되었습니다.');
         },
       },
       { text: '취소' },
@@ -35,7 +42,7 @@ export default function MyPageHeader() {
   // 프로필 이미지 변경
 
   // 이미지 선택&갤러리 (이미지피커)
-  const [pickedImg, setPickedImg] = useState('');
+  const [pickedImg, setPickedImg] = useState(authService.currentUser.photoURL);
   const [status, requestPermission] = ImagePicker.useMediaLibraryPermissions();
 
   const pickImage = async () => {
@@ -55,7 +62,6 @@ export default function MyPageHeader() {
     setPickedImg(uri);
   };
 
-  console.log(pickedImg);
   //이미지 파이어베이스 업로드
   const uploadImage = async () => {
     if (pickedImg) {
@@ -64,13 +70,15 @@ export default function MyPageHeader() {
 
       const imageRef = ref(storage, `profile/ ${uuidv4()}`); // / 뒤에 ${uuidv4()}
 
+      let downloadUrl;
       if (blobFile) {
         const imageResponse = await uploadBytes(imageRef, blobFile);
-        const downloadUrl = await getDownloadURL(imageResponse.ref);
+        downloadUrl = await getDownloadURL(imageResponse.ref);
         setPickedImg('');
-        console.log(downloadUrl);
-        return downloadUrl;
       }
+      await updateProfile(authService.currentUser, {
+        photoURL: downloadUrl ? downloadUrl : null,
+      });
     }
   };
 
@@ -173,16 +181,18 @@ const MyDb = styled.View`
 `;
 const MyImage = styled.TouchableOpacity``;
 const ReMyImage = styled.TouchableOpacity`
+  z-index: 9999;
   justify-content: center;
   width: 110px;
   height: 40px;
   background-color: #22affc;
   border-radius: 10px;
-  margin: 10px 10px 10px 45px;
+  margin: 0px 10px 10px 45px;
 `;
 const MyImageText = styled.Text`
   font-size: 14px;
   text-align: center;
+  color: #fff;
 `;
 
 const MyId = styled.Text`
