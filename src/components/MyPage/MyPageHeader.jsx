@@ -203,6 +203,7 @@ const IdButton = styled.TextInput`
   width: 190px;
   height: 50px;
   margin-top: 10px;
+
   margin-bottom: 10px;
   background-color: #ddd;
   border-radius: 10px;

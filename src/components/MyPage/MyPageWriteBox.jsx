@@ -1,40 +1,45 @@
 import { View, FlatList } from 'react-native';
 import styled from '@emotion/native';
 import ReviewCard from '../Reviews/ReviewCard';
+import { collection, query, QuerySnapshot, where } from '@firebase/firestore';
+import { dbService, authService } from '../../firebase';
+import { onSnapshot } from '@firebase/firestore';
+import { useState, useEffect } from 'react';
+
 export default function myPageWriteBox() {
-  const data = [
-    // 나중에 파이어베이스에서 받아서 변경 - 더미데이터
-    // 파일 살리기 위해서 잠시 주석추가해서 달아둡니다! 죄송해요 흐아앙
-    {
-      // id는 writer이 아닌 key 값임.
-      id: 1,
-      text: 'asdasdasdasdasd',
-      writer: 'asdasd',
-    },
-    {
-      id: 2,
-      text: 'test',
-      writer: '123123123',
-    },
-    {
-      id: 3,
-      text: 'test다아아ㅏㅏ악',
-      writer: 'asdasda',
-    },
-  ];
+  const [reviews, setReviews] = useState('');
+
+  useEffect(() => {
+    const q = query(
+      collection(dbService, 'reviews'),
+      where('userId', '==', authService.currentUser.uid)
+    );
+
+    onSnapshot(q, (snapshot) => {
+      const reviews = snapshot.docs.map((doc) => {
+        const review = {
+          id: doc.id,
+          ...doc.data(),
+        };
+        return review;
+      });
+      setReviews(reviews);
+    });
+  }, []);
+
+  console.log(reviews);
   return (
     <FlatList
       ListHeaderComponent={
         <>
           <View>
             <ReviewText>작성한 리뷰</ReviewText>
-            <ReviewCard />
           </View>
         </>
       }
       keyExtractor={(item) => item.id}
-      data={data}
-      // renderItem={({ item }) => <MyPageWrite users={item} />}
+      data={reviews}
+      renderItem={({ item }) => <ReviewCard review={item} />}
     />
   );
 }
