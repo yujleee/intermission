@@ -30,7 +30,8 @@
     "react-native-shadow": "^1.2.2",
     "react-native-swiper": "^1.6.0",
     "react-native-xml2js": "^1.0.3",
-    "react-query": "^3.39.2"
+    "react-query": "^3.39.2",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

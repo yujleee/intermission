@@ -17,12 +17,12 @@ export default function BoxOfficeItem({ musical }) {
       onPress={() =>
         navigate('Stacks', {
           screen: 'MusicalDetail',
-          params: { musicalId: musical?.mt20id },
+          params: { musicalId: musical?.mt20id[0] },
         })
       }
     >
       <PosterWrapper>
-        <Poster url={musical?.poster} musicalId={musical?.mt20id} />
+        <Poster url={musical?.poster} musicalId={musical?.mt20id[0]} />
       </PosterWrapper>
       <InfoWrapper>
         <Rank>{musical?.rnum}</Rank>

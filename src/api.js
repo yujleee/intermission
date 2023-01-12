@@ -37,6 +37,14 @@ export const getBoxOfficeMonth = () =>
     .then((data) => xmlToJson(data))
     .catch((error) => console.log(error));
 
+
+export const getBoxOfficeWeek = () =>
+  fetch(
+    `${BASE_URL}/boxoffice?service=${API_KEY}&ststype=week&date=${getDateString()}&catecode=GGGA&area=11`
+  )
+    .then((res) => res.text())
+    .then((data) => xmlToJson(data))
+    .catch((error) => console.log(error));
 /**
  * 선택한 작품의 상세정보 API (get)
  * 상세 데이터를 xml2js 라이브러리를 통해 JSON 데이터로 변환합니다.
@@ -68,3 +76,5 @@ export const getLocalPopular = (params) => {
     .then((data) => xmlToJson(data))
     .catch((error) => console.log(error));
 };
+
+
