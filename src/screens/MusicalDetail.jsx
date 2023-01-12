@@ -79,7 +79,7 @@ export default function MusicalDetail({
       )}
 
       {/* 리뷰 */}
-      <ReviewsPart musicalid={musicalId} />
+      <ReviewsPart musicalId={musicalId} />
     </Container>
   );
 }

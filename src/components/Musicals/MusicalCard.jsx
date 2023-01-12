@@ -20,8 +20,8 @@ export default function MusicalCard({ data }) {
         >
           <Poster source={{ uri: `${BASE_URL_FOR_IMG}${item?.poster}` }} />
           <Column>
-            <Rating>⭐️8.5/10</Rating>
-            <Title>{item?.cate}</Title>
+            <Title numberOfLines={1}>{item?.prfnm}</Title>
+            <Theater numberOfLines={1}>{item?.prfplcnm}</Theater>
           </Column>
         </Wrapper>
       ))}
@@ -42,6 +42,8 @@ const Wrapper = styled.TouchableOpacity`
   border-radius: 5px;
   margin: 10px;
   color: ${(props) => props.theme.fontColor};
+  width: 120px;
+  height: 230px;
 `;
 
 const Poster = styled.Image`
@@ -52,15 +54,17 @@ const Poster = styled.Image`
   border-top-right-radius: 5px;
 `;
 const Column = styled.View`
-  padding: 10px;
-`;
-const Rating = styled.Text`
-  color: ${(props) => props.theme.fontColor};
-  margin-top: 5px;
-  margin-bottom: 5px;
+  padding: 5px;
 `;
 const Title = styled.Text`
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  text-align: center;
   color: ${(props) => props.theme.fontColor};
+`;
+const Theater = styled.Text`
+  color: ${(props) => props.theme.fontColor};
+  font-size: 12px;
 `;
