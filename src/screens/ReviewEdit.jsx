@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from '@emotion/native';
-import { dbService } from '../firebase';
+import { authService, dbService } from '../firebase';
 import { deleteDoc, updateDoc, doc } from 'firebase/firestore';
 import { Rating } from 'react-native-ratings';
 import { Alert } from 'react-native';
@@ -14,6 +14,26 @@ export default function ReviewEdit({
 }) {
   const [newratings, setNewratings] = useState(0);
   const [newContents, setNewContents] = useState('');
+  const [isEditButton, setEditButton] = useState(false);
+
+  const checkUser = () => {
+    const { uid, displayName } = authService.currentUser;
+    if (reviews.uid === currentUser.userId) {
+    }
+
+    useEffect(() => {
+      const reviewsCollectionRef = collection(dbService, 'reviews');
+      const q = query(reviewsCollectionRef, orderBy('createdAt', 'desc'));
+      const getReviews = onSnapshot(q, (snapshot) => {
+        const newReviews = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setReviews(newReviews);
+      });
+      return getReviews;
+    }, []);
+  };
 
   const deleteReview = async (id) => {
     await deleteDoc(doc(dbService, 'reviews', id));
