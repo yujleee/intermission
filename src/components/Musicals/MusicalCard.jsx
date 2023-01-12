@@ -1,34 +1,29 @@
 import React from 'react';
 import styled from '@emotion/native';
-import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { BASE_URL_FOR_IMG } from '../../api';
 
-export default function MusicalCard() {
+export default function MusicalCard({ data }) {
   const { navigate } = useNavigation();
-  const url =
-    'https://file.mk.co.kr/meet/neds/2022/12/image_readtop_2022_1171782_16723494025295178.jpg';
-
-  const [test, setTest] = useState([
-    { id: 1000 },
-    { name: 'kim' },
-    { age: 26 },
-    { state: 'korea' },
-    { number: '01000000000' },
-  ]);
+  
 
   return (
     <WrapView>
-      {test.map((a, index) => (
-        <RWrapper
-          key={index}
-          onPress={() => navigate('Stacks', { screen: 'MusicalDetail' })}
+      {data?.map((item) => (
+        <Wrapper
+          key={item?.mt20id}
+          onPress={() => navigate('Stacks', { 
+            screen: 'MusicalDetail',
+            params: { musicalId: item?.mt20id},
+            })
+          }
         >
-          <Poster source={{ uri: url }} />
-          <RColumn>
+          <Poster source={{ uri: `${BASE_URL_FOR_IMG}${item?.poster}` }} />
+          <Column>
             <Rating>⭐️8.5/10</Rating>
-            <RTitle>뮤지컬명</RTitle>
-          </RColumn>
-        </RWrapper>
+            <Title>{item?.cate}</Title>
+          </Column>
+        </Wrapper>
       ))}
     </WrapView>
   );
@@ -42,7 +37,7 @@ const WrapView = styled.View`
   align-items: flex-start;
 `;
 
-const RWrapper = styled.TouchableOpacity`
+const Wrapper = styled.TouchableOpacity`
   background-color: ${(props) => props.theme.buttonColor};
   border-radius: 5px;
   margin: 10px;
@@ -56,7 +51,7 @@ const Poster = styled.Image`
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 `;
-const RColumn = styled.View`
+const Column = styled.View`
   padding: 10px;
 `;
 const Rating = styled.Text`
@@ -64,7 +59,7 @@ const Rating = styled.Text`
   margin-top: 5px;
   margin-bottom: 5px;
 `;
-const RTitle = styled.Text`
+const Title = styled.Text`
   font-size: 13px;
   font-weight: 600;
   color: ${(props) => props.theme.fontColor};
