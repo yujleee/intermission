@@ -2,13 +2,13 @@ import styled from '@emotion/native';
 import ReviewCard from './ReviewCard';
 import ReviewModal from './ReviewModal'
 import { useState, useEffect } from 'react';
-import { collection, onSnapshot, query, orderBy } from "@firebase/firestore";
+import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { authService, dbService } from '../../firebase';
 // import { collection, onSnapshot, query, orderBy, docs, getDocs } from 'firebase/firestore';
 // import { authService, dbService } from '../firebase';
 
 
-export default function ReviewsPart() {
+export default function ReviewsPart({ musicalid }) {
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [reviews, setReviews] = useState([]); // reviews 추가, 삭제 state
@@ -53,11 +53,15 @@ export default function ReviewsPart() {
         </ReviewTitlePart>
 
         <Review>
-          {reviews.map((value) => (
-            <ReviewCard key={value.id} review={value} />
-          ))}
+          {reviews
+            .map((( value )=> {
+              if(value.musicalid === musicalid){
+                return <ReviewCard key={value.id} review={value} />;
+              }
+            }))}
         </Review>
         <ReviewModal
+          musicalid={musicalid}
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
         />
