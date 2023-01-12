@@ -8,6 +8,7 @@ import { useColorScheme } from 'react-native';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import Root from './src/navigation/Root';
 import { darkTheme, lightTheme } from './src/theme';
+import 'react-native-get-random-values';
 
 // react-query 이용을 위한 클라이언트
 const queryClient = new QueryClient();
