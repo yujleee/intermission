@@ -16,26 +16,6 @@ export default function ReviewEdit({
 }) {
   const [newratings, setNewratings] = useState(0);
   const [newContents, setNewContents] = useState('');
-  const [isEditButton, setEditButton] = useState(false);
-
-  const checkUser = () => {
-    const { uid, displayName } = authService.currentUser;
-    if (reviews.uid === currentUser.userId) {
-    }
-
-    useEffect(() => {
-      const reviewsCollectionRef = collection(dbService, 'reviews');
-      const q = query(reviewsCollectionRef, orderBy('createdAt', 'desc'));
-      const getReviews = onSnapshot(q, (snapshot) => {
-        const newReviews = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setReviews(newReviews);
-      });
-      return getReviews;
-    }, []);
-  };
   const isDark = useColorScheme();
 
   const deleteReview = async (id) => {
