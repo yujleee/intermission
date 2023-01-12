@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 import styled from '@emotion/native';
 import BoxOfficeList from '../components/Home/BoxOfficeList';
 import { getBoxOfficeDay, getBoxOfficeMonth } from '../api';
@@ -7,8 +7,11 @@ import LocalMusical from '../components/Home/LocalMusical/LocalMusicalList';
 import { filterOnlyMusicals } from '../util';
 import TicketLinkList from '../components/Home/TicketLinkList';
 import Loading from './Loading';
+import { useState } from 'react';
 
 export default function Home() {
+  const [refreshing, setRefreshing] = useState(false);
+  const queryClinet = useQueryClient();
   const { data: boxOfficeMonthData, isLoading: isLoadingBOM } = useQuery(
     ['Musicals', 'BoxOfficeMonth'],
     getBoxOfficeMonth
@@ -29,12 +32,20 @@ export default function Home() {
     boxOfficeMonthData?.boxofs?.boxof
   );
 
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await queryClinet.refetchQueries(['Musicals']);
+    setRefreshing(false);
+  };
+
   if (isLoading) {
     return <Loading />;
   }
 
   return (
     <HomeWrapper
+      refreshing={refreshing}
+      onRefresh={onRefresh}
       ListHeaderComponent={
         <>
           <BoxOfficeMonthList data={filteredBoxOfficeMonth} />

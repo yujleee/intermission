@@ -16,6 +16,7 @@ export default function ReviewModal({isOpenModal, setIsOpenModal, musicalId }) {
             createdAt: Date.now(),
             rating: ratings,
             userId: authService.currentUser?.uid,
+            writer: authService.currentUser?.displayName ?? '닉네임없음',
             musicalId,
         });
         setIsOpenModal(false);
