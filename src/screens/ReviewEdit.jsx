@@ -155,7 +155,8 @@ export default function ReviewEdit({
         placeholderTextColor={placeholderColor}
         placeholder={review.contents}
       />
-      <EditButton disabled={!newContents && !newratings} onPress={onEdit}>
+      <EditButton  style={{opacity: (!newContents && !newratings) ? 0.1 : 1}}
+        disabled={!newContents && !newratings}   onPress={onEdit}>
         <BtnTitle disabled={!newContents && !newratings}>수정하기</BtnTitle>
       </EditButton>
       <DeleteBtn onPress={onDelete}>
@@ -193,6 +194,7 @@ const EditButton = styled.TouchableOpacity`
   border-radius: 10px;
   margin-bottom: 20px;
 `;
+
 const BtnTitle = styled.Text`
   font-size: 18px;
   font-weight: 600;
