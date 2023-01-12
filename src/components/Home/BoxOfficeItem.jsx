@@ -53,10 +53,12 @@ const InfoWrapper = styled.View`
 const Rank = styled.Text`
   font-size: 18px;
   margin-bottom: 10px;
-  font-weight: 600;
+  font-weight: 500;
+  color: ${(props) => props.theme.fontColor};
 `;
 
 const Title = styled(Rank)`
+  font-size: 20px;
   width: 200px;
   font-weight: 700;
   color: ${(props) => props.theme.fontColor};
@@ -64,5 +66,5 @@ const Title = styled(Rank)`
 
 const PrfPeriod = styled.Text`
   font-size: 14px;
-  color: ${(props) => props.theme.fontColor};
+  color: ${(props) => props.theme.smallFontColor};
 `;

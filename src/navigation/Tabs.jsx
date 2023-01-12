@@ -6,22 +6,39 @@ import Home from '../screens/Home';
 import Musicals from '../screens/Musicals';
 import MyPage from '../screens/MyPage';
 import Login from '../screens/Login';
-import { useColorScheme } from 'react-native';
+import { useColorScheme, TouchableOpacity } from 'react-native';
 import {
   DARK_BACKGROUND,
   DARK_FONT,
+  DARK_SMALL_TEXT,
   LIGHT_BACKGROUND,
   LIGHT_FONT,
+  LIGHT_MIDDLE_TEXT,
+  PRIMARY_COLOR,
 } from '../colors';
 
 const Tab = createBottomTabNavigator();
 
-export default function Tabs() {
+export default function Tabs({ navigation: { goBack } }) {
   const isDark = useColorScheme() === 'dark';
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      screenOptions={{ tabBarShowLabel: false }}
+      screenOptions={{
+        tabBarShowLabel: false,
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => goBack()}>
+            <Ionicons
+              name="arrow-back"
+              size={24}
+              style={{ paddingLeft: 20 }}
+              color={isDark ? DARK_FONT : LIGHT_FONT}
+            />
+          </TouchableOpacity>
+        ),
+        tabBarActiveTintColor: PRIMARY_COLOR,
+        tabBarInactiveTintColor: isDark ? DARK_SMALL_TEXT : LIGHT_MIDDLE_TEXT,
+      }}
       sceneContainerStyle={{
         backgroundColor: isDark ? DARK_BACKGROUND : LIGHT_BACKGROUND,
       }}
@@ -60,6 +77,7 @@ export default function Tabs() {
         name="Login"
         component={Login}
         options={{
+          title: '',
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="login" size={size} color={color} />
           ),
