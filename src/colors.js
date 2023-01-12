@@ -1,7 +1,7 @@
 export const DARK_FONT = '#fff';
 export const DARK_SMALL_TEXT = '#dddddd';
 export const DARK_MIDDLE_TEXT = '#ccc';
-export const DARK_BACKGROUND = '#253039';
+export const DARK_BACKGROUND = '#171A1D';
 export const DARK_REVIEW_SMALL = '#ddd';
 export const DARK_BUTTON = '#4834d4';
 export const DARK_BOX = '#364857';
