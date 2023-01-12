@@ -5,7 +5,7 @@ import { BASE_URL_FOR_IMG } from '../../api';
 /**
  * 포스터 이미지
  * 아이템으로부터 url, 뮤지컬ID를 params로 받아옴
- * @param {url, musicalId} param0
+ * @param {url, musicalId} 
  * @returns
  */
 export default function Poster({ url, musicalId }) {

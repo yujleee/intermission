@@ -65,6 +65,15 @@ export default function Tabs({ navigation: { goBack } }) {
         }}
       />
       <Tab.Screen
+        name="Reviews"
+        component={Reviews}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="chatbubbles-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
         name="Mypage"
         component={MyPage}
         options={{
