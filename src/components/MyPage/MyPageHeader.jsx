@@ -10,6 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
 import defaultimage from '../../../assets/profile_default.jpg';
 import { v4 as uuidv4 } from 'uuid';
+import { SCREEN_WIDTH } from '../../util';
 
 export default function MyPageHeader() {
   //닉네임 수정
@@ -193,19 +194,23 @@ const MyImageText = styled.Text`
   font-size: 14px;
   text-align: center;
   color: #fff;
+  font-weight: 600;
 `;
 
 const MyId = styled.Text`
   font-size: 20px;
+  font-weight: 700;
+  color: ${(props) => props.theme.fontColor};
 `;
 const IdButton = styled.TextInput`
   justify-content: center;
-  width: 190px;
+  width: ${SCREEN_WIDTH * 0.42 + 'px'};
   height: 50px;
   margin-top: 10px;
   margin-bottom: 10px;
   background-color: #ddd;
   border-radius: 10px;
+  padding: 0 10px;
 `;
 const SwitchName = styled.TouchableOpacity`
   width: 170px;
@@ -219,9 +224,13 @@ const LogoutButton = styled.TouchableOpacity`
   background-color: #22affc;
   border-radius: 10px;
 `;
-const MyNameText = styled.Text``;
+const MyNameText = styled.Text`
+  font-size: 16px;
+  color: ${(props) => props.theme.smallFontColor};
+`;
 const LoginButtonText = styled.Text`
-  color: white;
+  color: #fff;
   font-size: 14px;
   text-align: center;
+  font-weight: 600;
 `;

@@ -39,17 +39,17 @@ export default function MusicalDetail({
                 }}
               />
             </InfoImgPart>
-            <Title>{musical.prfnm}</Title>
+            <Title numberOfLines={3}>{musical.prfnm}</Title>
             {/* 정보 */}
             <Information>
-              <Info>출연 : {musical.prfcast}</Info>
-              <Info>제작 : {musical.prfcrew}</Info>
+              <Info>출연 : {musical.prfcast ?? '정보 없음'}</Info>
+              <Info>제작 : {musical.prfcrew ?? '정보 없음'}</Info>
               <Info>
                 공연 기간 : {musical.prfpdfrom}~{musical.prfpdto}
               </Info>
-              <Info>공연 장소 : {musical.fcltynm}</Info>
-              <Info>러닝타임 : {musical.prfruntime}</Info>
-              <Info>관람 연령가 : {musical.prfage}</Info>
+              <Info>공연 장소 : {musical.fcltynm ?? '정보 없음'}</Info>
+              <Info>러닝타임 : {musical.prfruntime ?? '정보 없음'}</Info>
+              <Info>관람 연령가 : {musical.prfage ?? '정보 없음'}</Info>
             </Information>
 
             <MoreButton
@@ -113,6 +113,7 @@ const Title = styled.Text`
   font-weight: 600;
   margin-left: 20px;
   margin-bottom: 10px;
+  padding-right: 10px;
 `;
 
 // 공연 정보
@@ -138,7 +139,7 @@ const MoreButton = styled.TouchableOpacity`
 const MoreDetail = styled.View`
   width: 90%;
   height: ${(props) =>
-    props.width <= 375 ? SCREEN_HEIGHT * 8 + 'px' : SCREEN_HEIGHT * 10 + 'px'};
+    props.width <= 375 ? SCREEN_HEIGHT * 8 + 'px' : SCREEN_HEIGHT * 9 + 'px'};
   padding: 10px 0;
   margin: 0 auto;
 `;
@@ -149,7 +150,7 @@ const DetailImg = styled.Image`
 `;
 
 const TempText = styled.Text`
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   color: ${(props) => props.theme.buttonTextColor};
 `;
