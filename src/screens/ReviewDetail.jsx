@@ -24,10 +24,7 @@ export default function ReviewDetail({
       </Row>
       <ReviewBox style={shadowStyle.blue}>
         <Text>{review?.contents}</Text>
-        <Id>
-          {/* {review?.userId} */}
-          닉네임1
-        </Id>
+        <Id>{review?.writer}</Id>
       </ReviewBox>
       <ButtonWrapper>
         <EditBtn onPress={goToReviewEdit}>
