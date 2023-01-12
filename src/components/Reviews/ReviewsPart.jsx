@@ -32,13 +32,9 @@ export default function ReviewsPart({ musicalId }) {
   //   getReviews();
   // }, []);
   const collectRatings = () => {
-    console.log(
-      'musicalId === reviews.musicalId',
-      musicalId === reviews.musicalId
-    );
-    const result = reviews?.map((item) => item.rating);
-
-    console.log('result ', result);
+    const result = reviews.rating;
+    result.map((item) => item.rating);
+    console.log('result', result);
     setAllRatings(result);
   };
   useEffect(() => {
