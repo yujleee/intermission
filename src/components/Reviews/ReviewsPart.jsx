@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 // import { collection, onSnapshot, query, orderBy, docs, getDocs } from 'firebase/firestore';
 // import { authService, dbService } from '../firebase';
 
-export default function ReviewsPart({ musicalid }) {
+export default function ReviewsPart({ musicalId }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [reviews, setReviews] = useState([]); // reviews 추가, 삭제 state
   const { navigate } = useNavigation();
@@ -54,13 +54,13 @@ export default function ReviewsPart({ musicalid }) {
 
       <Review>
         {reviews.map((value) => {
-          if (value.musicalid === musicalid) {
+          if (value.musicalId === musicalId) {
             return <ReviewCard key={value.id} review={value} />;
           }
         })}
       </Review>
       <ReviewModal
-        musicalid={musicalid}
+        musicalId={musicalId}
         isOpenModal={isOpenModal}
         setIsOpenModal={setIsOpenModal}
       />

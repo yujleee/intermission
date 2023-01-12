@@ -91,7 +91,7 @@ export default function MusicalDetail({
         ))}
       </InfoTotalPart>
       {/* 리뷰 */}
-      <ReviewsPart musicalid={musicalId} />
+      <ReviewsPart musicalId={musicalId} />
     </Container>
   );
 }
