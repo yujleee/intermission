@@ -8,6 +8,8 @@ import { useState, useEffect } from 'react';
 
 export default function myPageWriteBox() {
   const [reviews, setReviews] = useState('');
+  
+  
 
   useEffect(() => {
     const q = query(
@@ -39,7 +41,9 @@ export default function myPageWriteBox() {
       }
       keyExtractor={(item) => item.id}
       data={reviews}
-      renderItem={({ item }) => <ReviewCard review={item} />}
+      renderItem={({ item }) => 
+      (<ReviewCard review={item} />)
+      }
     />
   );
 }
@@ -50,3 +54,12 @@ const ReviewText = styled.Text`
   margin-left: 16px;
   font-size: 20px;
 `;
+const TestView = styled.View`
+`
+const Wrapper = styled.TouchableOpacity`
+  background-color: red;
+`
+
+const Title = styled.Text`
+  font-size: 16px;
+`
