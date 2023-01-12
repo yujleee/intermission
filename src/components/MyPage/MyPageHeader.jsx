@@ -9,7 +9,7 @@ import { signOut } from 'firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
 import defaultimage from '../../../assets/profile_default.jpg';
-// import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function MyPageHeader() {
   //닉네임 수정
@@ -62,7 +62,7 @@ export default function MyPageHeader() {
       const response = await fetch(pickedImg);
       const blobFile = await response.blob();
 
-      const imageRef = ref(storage, `profile/3`); // / 뒤에 uuid
+      const imageRef = ref(storage, `profile/ ${uuidv4()}`); // / 뒤에 ${uuidv4()}
 
       if (blobFile) {
         const imageResponse = await uploadBytes(imageRef, blobFile);
@@ -72,6 +72,20 @@ export default function MyPageHeader() {
         return downloadUrl;
       }
     }
+  };
+
+  // 프로필 취소 알럿
+  const [photo, SetPhoto] = useState(defaultimage);
+  const myProfilePicChangeBtn = () => {
+    Alert.alert('My Profile', '프로필 사진을 변경하시겠습니까?', [
+      {
+        text: '확인',
+        onPress: () => {
+          Alert.alert('아직은 안돼요');
+        },
+      },
+      { text: '취소' },
+    ]);
   };
 
   // 로그아웃
@@ -104,18 +118,22 @@ export default function MyPageHeader() {
 
   return (
     <PageHeader>
-      <MyImage onPress={() => pickImage()} source={photo}>
-        <MyProfile
-          source={pickedImg ? { uri: pickedImg } : null}
-          style={{
-            width: 140,
-            height: 140,
-            borderRadius: 100,
-            margin: 30,
-          }}
-        />
-      </MyImage>
-
+      <MyImageWrapper>
+        <MyImage onPress={() => pickImage()} source={photo}>
+          <MyProfile
+            source={pickedImg ? { uri: pickedImg } : photo}
+            style={{
+              width: 140,
+              height: 140,
+              borderRadius: 100,
+              margin: 30,
+            }}
+          />
+        </MyImage>
+        <ReMyImage Text="수정" onPress={() => uploadImage()}>
+          <MyImageText>이미지 수정</MyImageText>
+        </ReMyImage>
+      </MyImageWrapper>
       <MyDb>
         <MyNickName>
           <MyId>{name}</MyId>
@@ -124,8 +142,9 @@ export default function MyPageHeader() {
             onChangeText={setText}
             value={text}
           />
-          <TouchableOpacity Text="수정" onPress={() => uploadImage()}>
-            <Text>수정</Text>
+          {/* 닉네임 수정 버튼 만들 것 */}
+          <TouchableOpacity Text="수정" onPress={() => SwitchName()}>
+            <MyNameText>닉네임수정</MyNameText>
           </TouchableOpacity>
         </MyNickName>
         <LogoutButton onPress={logOutBtn}>
@@ -140,7 +159,7 @@ const PageHeader = styled.View`
   flex-wrap: wrap;
   height: 200px;
 `;
-
+const MyImageWrapper = styled.View``;
 const MyProfile = styled.Image``;
 const MyNickName = styled.View`
   width: 500px;
@@ -153,14 +172,25 @@ const MyDb = styled.View`
   height: 700px;
 `;
 const MyImage = styled.TouchableOpacity``;
+const ReMyImage = styled.TouchableOpacity`
+  justify-content: center;
+  width: 110px;
+  height: 40px;
+  background-color: #22affc;
+  border-radius: 10px;
+  margin: 10px 10px 10px 45px;
+`;
+const MyImageText = styled.Text`
+  font-size: 14px;
+  text-align: center;
+`;
 
 const MyId = styled.Text`
   font-size: 20px;
-  color: ${(props) => props.theme.fontColor};
 `;
-const IdButton = styled.TouchableOpacity`
+const IdButton = styled.TextInput`
   justify-content: center;
-  width: 170px;
+  width: 190px;
   height: 50px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -175,15 +205,11 @@ const LogoutButton = styled.TouchableOpacity`
   justify-content: center;
   width: 110px;
   height: 40px;
-  margin-top: 10px;
+  margin-top: 30px;
   background-color: #22affc;
   border-radius: 10px;
 `;
-const LoginButtonId = styled.Text`
-  color: white;
-  font-size: 14px;
-  text-align: center;
-`;
+const MyNameText = styled.Text``;
 const LoginButtonText = styled.Text`
   color: white;
   font-size: 14px;
