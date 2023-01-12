@@ -23,9 +23,6 @@ export default function ReviewCard({ review }) {
 
   return (
     <ReviewContent style={shadowStyle.blue} onPress={goToReviewDetail}>
-      {/* 글자수 자르기 해야함~!
-            {movie.title.slice(0, 11)}
-          {movie.title.length > 11 && "..."} */}
       <Row>
         <Rating>⭐️{review?.rating}/5</Rating>
         <ReviewDate>
