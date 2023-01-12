@@ -1,4 +1,9 @@
 import { initializeApp } from 'firebase/app';
+import {
+  getReactNativePersistence,
+  initializeAuth,
+} from 'firebase/auth/react-native';
+import { getStorage } from 'firebase/storage';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
@@ -16,3 +21,5 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const dbService = getFirestore(app);
 export const authService = getAuth(app);
+export const storage = getStorage(app);
+// export const ref = db.collection('users'); //내가 사용할 컬렉션입니다

@@ -1,12 +1,43 @@
-import { Text, TouchableOpacity, View } from 'react-native';
+import styled from '@emotion/native';
+import { useQuery, useQueryClient } from 'react-query';
+import MusicalCard from '../components/Musicals/MusicalCard';
+import Loading from './Loading';
+import { useState } from 'react';
+import { RefreshControl } from 'react-native';
+import { getBoxOfficeWeek } from '../api';
+import { filterOnlyMusicals } from '../util';
 
-export default function Musicals({ navigation: { navigate } }) {
+// 모든 공연 페이지
+export default function Musicals() {
+  const [refreshing, setRefreshing] = useState(false);
+  const queryClient = useQueryClient();
+  const { data: boxOfficeWeekData, isLoading } = useQuery(
+    'WeeklyMusical',
+    getBoxOfficeWeek
+  );
+  const filteredBoxOfficeMonth = filterOnlyMusicals(
+    boxOfficeWeekData?.boxofs?.boxof
+  );
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await queryClient.refetchQueries(['WeeklyMusical']);
+    setRefreshing(false);
+  };
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
-    <View>
-      <Text>Musicals</Text>
-      <TouchableOpacity onPress={() => navigate('MusicalDetail')}>
-        <Text>포스터</Text>
-      </TouchableOpacity>
-    </View>
+    <Container
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+    >
+      <MusicalCard data={filteredBoxOfficeMonth} />
+    </Container>
   );
 }
+
+const Container = styled.ScrollView``;
