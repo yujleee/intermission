@@ -3,7 +3,7 @@ import { useQuery, useQueryClient } from 'react-query';
 import MusicalCard from '../components/Musicals/MusicalCard';
 import Loading from './Loading';
 import { useState } from 'react';
-import { RefreshControl } from 'react-native'
+import { RefreshControl } from 'react-native';
 import { getBoxOfficeWeek } from '../api';
 import { filterOnlyMusicals } from '../util';
 
@@ -11,7 +11,10 @@ import { filterOnlyMusicals } from '../util';
 export default function Musicals() {
   const [refreshing, setRefreshing] = useState(false);
   const queryClient = useQueryClient();
-  const {data: boxOfficeWeekData, isLoading} = useQuery('WeeklyMusical', getBoxOfficeWeek);
+  const { data: boxOfficeWeekData, isLoading } = useQuery(
+    'WeeklyMusical',
+    getBoxOfficeWeek
+  );
   const filteredBoxOfficeMonth = filterOnlyMusicals(
     boxOfficeWeekData?.boxofs?.boxof
   );
@@ -23,18 +26,14 @@ export default function Musicals() {
   };
 
   if (isLoading) {
-    return (
-      <Loading />
-    );
+    return <Loading />;
   }
 
   return (
     <Container
       refreshControl={
-        <RefreshControl 
-          refreshing={refreshing}
-          onRefresh={onRefresh} 
-        />}
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
     >
       <MusicalCard data={filteredBoxOfficeMonth} />
     </Container>
@@ -42,9 +41,3 @@ export default function Musicals() {
 }
 
 const Container = styled.ScrollView``;
-
-const Loader = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;

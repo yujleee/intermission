@@ -1,24 +1,10 @@
+import { useCallback } from 'react';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
-// import { db } from './index.js';
-// import {
-//   onSnapshot,
-//   query,
-//   collection,
-//   doc,
-//   orderBy,
-//   addDoc,
-//   getDoc,
-//   getDocs,
-//   updateDoc,
-//   deleteDoc,
-// } from 'firebase/firestore';
 import MyPageHeader from '../components/MyPage/MyPageHeader';
 import MyPageWriteBox from '../components/MyPage/MyPageWriteBox';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { authService, dbService } from '../firebase';
-import { useEffect } from 'react';
-import { useCallback } from 'react';
-import { Pressable } from 'react-native';
+import { authService } from '../firebase';
+
 export default function MyPage() {
   const { reset } = useNavigation();
 

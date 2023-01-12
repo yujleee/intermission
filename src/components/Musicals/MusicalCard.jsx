@@ -3,13 +3,12 @@ import styled from '@emotion/native';
 import SectionItem from '../Home/SectionItem';
 
 export default function MusicalCard({ data }) {
-
   return (
     <WrapView>
       {data?.map((item) => {
         return (
-          <Wrapper>
-            <SectionItem key={item.mt20id} musical={item} />
+          <Wrapper key={item.mt20id}>
+            <SectionItem musical={item} />
           </Wrapper>
         );
       })}
