@@ -73,7 +73,7 @@ export default function Tabs({ navigation: { goBack } }) {
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Login"
         component={Login}
         options={{
@@ -82,7 +82,7 @@ export default function Tabs({ navigation: { goBack } }) {
             <AntDesign name="login" size={size} color={color} />
           ),
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 }
