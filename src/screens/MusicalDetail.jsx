@@ -14,7 +14,7 @@ export default function MusicalDetail({
   },
 }) {
   const [isMoreButton, setMoreButton] = useState(false);
- 
+
   const { data: musicalData, isLoading: isLoadingMD } = useQuery(
     ['MusicalData', musicalId],
     getMusicalData
@@ -87,12 +87,11 @@ export default function MusicalDetail({
                 />
               </MoreDetail>
             )}
-            {console.log('isMoreButton', isMoreButton)}
           </InfoPart>
         ))}
       </InfoTotalPart>
       {/* 리뷰 */}
-      <ReviewsPart />
+      <ReviewsPart musicalid={musicalId} />
     </Container>
   );
 }
@@ -169,5 +168,3 @@ const Loader = styled.View`
   justify-content: center;
   align-items: center;
 `;
-
-

@@ -1,22 +1,23 @@
 import styled from '@emotion/native';
 import ReviewCard from './ReviewCard';
-import ReviewModal from './ReviewModal'
+import ReviewModal from './ReviewModal';
 import { useState, useEffect } from 'react';
-import { collection, onSnapshot, query, orderBy } from "@firebase/firestore";
+import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { authService, dbService } from '../../firebase';
+import { useNavigation } from '@react-navigation/native';
+
 // import { collection, onSnapshot, query, orderBy, docs, getDocs } from 'firebase/firestore';
 // import { authService, dbService } from '../firebase';
 
-
-export default function ReviewsPart() {
-
+export default function ReviewsPart({ musicalid }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [reviews, setReviews] = useState([]); // reviews 추가, 삭제 state
+  const { navigate } = useNavigation();
 
   const addreview = () => {
     const isLogin = !!authService.currentUser;
     if (!isLogin) {
-      navigate("Login");
+      navigate('Login');
       return;
     }
     setIsOpenModal(true);
@@ -35,35 +36,38 @@ export default function ReviewsPart() {
     const q = query(reviewsCollectionRef, orderBy('createdAt', 'desc'));
     const getReviews = onSnapshot(q, (snapshot) => {
       const newReviews = snapshot.docs.map((doc) => ({
-        id: doc.id, ...doc.data(),
+        id: doc.id,
+        ...doc.data(),
       }));
       setReviews(newReviews);
     });
     return getReviews;
   }, []);
-  
 
-    return (
-        <ReviewPart>
-        <ReviewTitlePart>
-          <SectionTitle>리뷰</SectionTitle>
-          <AddReview onPress={addreview}>
-            <AddReviewText>리뷰 작성하기</AddReviewText>
-          </AddReview>
-        </ReviewTitlePart>
+  return (
+    <ReviewPart>
+      <ReviewTitlePart>
+        <SectionTitle>리뷰</SectionTitle>
+        <AddReview onPress={addreview}>
+          <AddReviewText>리뷰 작성하기</AddReviewText>
+        </AddReview>
+      </ReviewTitlePart>
 
-        <Review>
-          {reviews.map((value) => (
-            <ReviewCard key={value.id} review={value} />
-          ))}
-        </Review>
-        <ReviewModal
-          isOpenModal={isOpenModal}
-          setIsOpenModal={setIsOpenModal}
-        />
-      </ReviewPart>
-    )
-};
+      <Review>
+        {reviews.map((value) => {
+          if (value.musicalid === musicalid) {
+            return <ReviewCard key={value.id} review={value} />;
+          }
+        })}
+      </Review>
+      <ReviewModal
+        musicalid={musicalid}
+        isOpenModal={isOpenModal}
+        setIsOpenModal={setIsOpenModal}
+      />
+    </ReviewPart>
+  );
+}
 const ReviewPart = styled.View`
   flex: 1;
   /* justify-content: space-between;
@@ -83,6 +87,7 @@ const SectionTitle = styled.Text`
   vertical-align: middle;
   display: flex;
   align-items: center;
+  color: ${(props) => props.theme.fontColor};
 `;
 const AddReview = styled.TouchableOpacity`
   padding: 10px;

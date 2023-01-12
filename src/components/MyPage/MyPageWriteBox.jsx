@@ -1,15 +1,6 @@
 import { FlatList, View } from 'react-native';
 import styled from '@emotion/native';
-// import { authService, dbService } from '../firebase';
-// import {
-//   collection,
-//   doc,
-//   getDocs,
-//   onSnapshot,
-//   orderBy,
-//   query,
-//   where,
-// } from 'firebase/firestore';
+import ReviewCard from '../Reviews/ReviewCard';
 
 export default function myPageWriteBox() {
   // const reviews = Firestore.collection('reviews');

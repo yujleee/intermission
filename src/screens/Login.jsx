@@ -8,7 +8,6 @@ import {
 import { emailRegex, pwRegex, SCREEN_WIDTH } from '../util';
 import { useState, useEffect, useRef } from 'react';
 import { Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
 export default function Login({
   navigation: { goBack, setOptions, navigate },
@@ -78,7 +77,6 @@ export default function Login({
       return;
     }
     // 네비
-    const { navigate } = useNavigation();
 
     // 회원가입 요청
     createUserWithEmailAndPassword(authService, email, pw)
