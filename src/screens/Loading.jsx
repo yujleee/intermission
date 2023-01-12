@@ -26,7 +26,7 @@ const Logo = styled.Image`
 
 const Loader = styled.View`
   flex: 1;
-  background-color: #fff;
+  background-color: ${(props) => props.theme.bgColor};
   justify-content: center;
   align-items: center;
 `;

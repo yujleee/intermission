@@ -3,8 +3,10 @@ import styled from '@emotion/native';
 import { dbService } from '../firebase';
 import { deleteDoc, updateDoc, doc } from 'firebase/firestore';
 import { Rating } from 'react-native-ratings';
-import { Alert } from 'react-native';
+import { Alert, useColorScheme } from 'react-native';
 import { useMutation } from 'react-query';
+import { SectionTitle } from '../components/Home/BoxOfficeList';
+import { DARK_BACKGROUND, LIGHT_BACKGROUND } from '../colors';
 
 export default function ReviewEdit({
   navigation,
@@ -14,6 +16,7 @@ export default function ReviewEdit({
 }) {
   const [newratings, setNewratings] = useState(0);
   const [newContents, setNewContents] = useState('');
+  const isDark = useColorScheme();
 
   const deleteReview = async (id) => {
     await deleteDoc(doc(dbService, 'reviews', id));
@@ -127,68 +130,81 @@ export default function ReviewEdit({
     ]);
   };
 
+  const placeholderColor = isDark ? '#fff' : '#292929';
+
   return (
     <Container>
-      <EditButton disabled={!newContents && !newratings} onPress={onEdit}>
-        <BtnTitle disabled={!newContents && !newratings}>수정하기</BtnTitle>
-      </EditButton>
-      <EditButton onPress={onDelete}>
-        <BtnTitle>삭제하기</BtnTitle>
-      </EditButton>
-      <SectionTitle>평점</SectionTitle>
+      <EditTitle>평점</EditTitle>
       <Rating
         startingValue={review.rating}
-        style={{ alignItems: 'flex-start', marginBottom: 20 }}
+        style={{ alignItems: 'flex-start', marginBottom: 30 }}
         onFinishRating={(rating) => {
           setNewratings(rating);
         }}
         ratingCount={5}
         imageSize={30}
-        tintColor="#dd99f0"
+        tintColor={isDark ? DARK_BACKGROUND : LIGHT_BACKGROUND}
       />
-      <SectionTitle>내용</SectionTitle>
+      <EditTitle>내용</EditTitle>
       <ContentEdit
         textAlignVertical="top"
         value={newContents}
         onChangeText={(text) => setNewContents(text)}
         multiline
         maxLength={300}
-        placeholderTextColor="#292d31"
+        placeholderTextColor={placeholderColor}
         placeholder={review.contents}
       />
+      <EditButton disabled={!newContents && !newratings} onPress={onEdit}>
+        <BtnTitle disabled={!newContents && !newratings}>수정하기</BtnTitle>
+      </EditButton>
+      <DeleteBtn onPress={onDelete}>
+        <DeleteBtnTitle>삭제하기</DeleteBtnTitle>
+      </DeleteBtn>
     </Container>
   );
 }
 const Container = styled.ScrollView`
-  padding: 20px;
+  padding: 30px 20px;
+  background-color: ${(props) => props.theme.bgColor};
 `;
 const ContentEdit = styled.TextInput`
   width: 100%;
-  background-color: white;
+  border: 1px solid #ccc;
   margin-bottom: 20px;
-  padding: 10px 15px;
+  padding: 16px;
   min-height: 150px;
   margin-bottom: 50px;
-  font-size: 20px;
+  font-size: 18px;
   border-radius: 10px;
+  color: ${(props) => props.theme.fontColor};
 `;
-const SectionTitle = styled.Text`
-  font-size: 30px;
-  font-weight: 600;
-  margin-bottom: 15px;
+
+const EditTitle = styled(SectionTitle)`
+  padding: 0;
 `;
+
 const EditButton = styled.TouchableOpacity`
   width: 100%;
-  padding: 10px 15px;
+  height: 46px;
   justify-content: center;
   align-items: center;
-  background-color: #48b356;
-  border-width: 1px;
-  border-color: gray;
+  background-color: ${(props) => props.theme.buttonColor};
   border-radius: 10px;
   margin-bottom: 20px;
 `;
 const BtnTitle = styled.Text`
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 600;
+  color: ${(props) => props.theme.buttonTextColor};
+`;
+
+const DeleteBtn = styled(EditButton)`
+  background-color: none;
+  border-width: 1px;
+  border-color: ${(props) => props.theme.buttonColor};
+`;
+
+const DeleteBtnTitle = styled(BtnTitle)`
+  color: ${(props) => props.theme.buttonColor};
 `;
