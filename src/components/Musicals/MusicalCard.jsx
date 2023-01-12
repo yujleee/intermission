@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from '@emotion/native';
-import { useNavigation } from '@react-navigation/native';
-import { BASE_URL_FOR_IMG } from '../../api';
 import SectionItem from '../Home/SectionItem';
 
 export default function MusicalCard({ data }) {
-  const { navigate } = useNavigation();
 
   return (
     <WrapView>
