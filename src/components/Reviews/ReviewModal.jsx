@@ -23,6 +23,7 @@ export default function ReviewModal({isOpenModal, setIsOpenModal, musicalId }) {
         setRatings(0);
     };
     
+    
     return(
         <Modal visible={isOpenModal} transparent animationType='slide'>
             <Backdrop>
@@ -46,15 +47,16 @@ export default function ReviewModal({isOpenModal, setIsOpenModal, musicalId }) {
                 />
             </ModalView>
                 <Row>
-                <ModalBtn onPress={()=>setIsOpenModal(false)} title='취소'>
+                <ModalCancelBtn onPress={()=>setIsOpenModal(false)} title='취소'>
                 <CancleBtn>취소</CancleBtn>
-                </ModalBtn>
-                <ModalBtn
-                disabled={!ratings || !modalContent}
-                onPress={addReview} title="추가"
+                </ModalCancelBtn>
+                <ModalAddBtn
+                    style={{opacity: (!ratings || !modalContent) ? 0.1 : 1}}
+                    disabled={!ratings || !modalContent}
+                    onPress={addReview} title="추가"
                 >
                 <AddBtn>추가</AddBtn>
-                </ModalBtn>
+                </ModalAddBtn>
                 </Row>
             </ModalBackImg>
             </Backdrop>
@@ -96,11 +98,13 @@ const Row = styled.View`
     justify-content: space-between;
     align-items: flex-start;
 `;
-const ModalBtn = styled.TouchableOpacity`
+const ModalCancelBtn = styled.TouchableOpacity`
 `
 const CancleBtn = styled.Text`
     font-size: 20px;
     color: red;
+`
+const ModalAddBtn = styled.TouchableOpacity`
 `
 const AddBtn = styled.Text`
     font-size: 20px;
