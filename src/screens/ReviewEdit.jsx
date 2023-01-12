@@ -130,13 +130,14 @@ export default function ReviewEdit({
   return (
     <Container>
       <EditButton 
+        style={{opacity: (!newContents && !newratings) ? 0.1 : 1}}
         disabled={!newContents && !newratings} 
         onPress={onEdit}>
         <BtnTitle disabled={!newContents && !newratings}>수정하기</BtnTitle>
       </EditButton>
-      <EditButton onPress={onDelete}>
+      <DeleteButton onPress={onDelete}>
         <BtnTitle>삭제하기</BtnTitle>
-      </EditButton>
+      </DeleteButton>
       <SectionTitle>평점</SectionTitle>
       <Rating
         startingValue={review.rating}
@@ -180,6 +181,17 @@ const SectionTitle = styled.Text`
   margin-bottom: 15px;
 `;
 const EditButton = styled.TouchableOpacity`
+  width: 100%;
+  padding: 10px 15px;
+  justify-content: center;
+  align-items: center;
+  background-color: #48b356;
+  border-width: 1px;
+  border-color: gray;
+  border-radius: 10px;
+  margin-bottom: 20px;
+`;
+const DeleteButton = styled.TouchableOpacity`
   width: 100%;
   padding: 10px 15px;
   justify-content: center;
