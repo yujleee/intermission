@@ -10,11 +10,11 @@ export default function SectionItem({ musical }) {
       onPress={() =>
         navigate('Stacks', {
           screen: 'MusicalDetail',
-          params: { musicalId: musical?.mt20id },
+          params: { musicalId: musical?.mt20id[0] },
         })
       }
     >
-      <Poster url={musical?.poster} musicalId={musical?.mt20id} />
+      <Poster url={musical?.poster} musicalId={musical?.mt20id[0]} />
       <MusicalTitle numberOfLines={1}>{musical?.prfnm}</MusicalTitle>
       <MusicalTheater numberOfLines={1}>{musical?.prfplcnm}</MusicalTheater>
     </ItemWrapper>
