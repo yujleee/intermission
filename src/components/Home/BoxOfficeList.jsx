@@ -12,9 +12,9 @@ export default function BoxOfficeList({ data }) {
 
   return (
     <BoxOfficeListWrapper horizontal>
-      {data.length === 0 ? (
+      {data?.length === 0 ? (
         <Error>
-          <ErrorText>어제의 박스오피스 순위를 집계중 입니다.</ErrorText>
+          <ErrorText>이틀 전 박스오피스 순위를 집계중 입니다.</ErrorText>
         </Error>
       ) : (
         <FlatList
