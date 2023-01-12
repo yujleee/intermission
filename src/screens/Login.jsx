@@ -12,6 +12,7 @@ import { Alert } from 'react-native';
 export default function Login({
   navigation: { goBack, setOptions, navigate },
 }) {
+  
   const emailRef = useRef(null);
   const pwRef = useRef(null);
   const [email, setEmail] = useState('');
@@ -76,7 +77,7 @@ export default function Login({
     if (validateInputs()) {
       return;
     }
-    // 네비
+    
 
     // 회원가입 요청
     createUserWithEmailAndPassword(authService, email, pw)
