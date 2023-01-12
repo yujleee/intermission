@@ -48,6 +48,7 @@ export default function Tabs({ navigation: { goBack } }) {
         component={Musicals}
         options={{
           title: '주간 뮤지컬',
+          headerLeft: () => {},
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="list" size={size} color={color} />
           ),
