@@ -36,11 +36,14 @@ export default function ReviewModal({
           <ModalView>
             <ModalTitle>평가</ModalTitle>
             <Rating
-              startingValue={0}
+              startingValue={3}
               style={{ alignItems: 'flex-start', marginBottom: 20 }}
               onFinishRating={getRatings}
               ratingCount={5}
               imageSize={30}
+              type="custom"
+              ratingBackgroundColor="#ddd"
+              tintColor="#f5f5f5"
             />
             <ModalTitle>내용</ModalTitle>
             <ContentInput
@@ -75,7 +78,7 @@ const Backdrop = styled.View`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 const ModalBackImg = styled.View`
-  background-color: #fff;
+  background-color: #f5f5f5;
   width: 80%;
   height: 70%;
   padding: 20px;
@@ -91,7 +94,7 @@ const ModalTitle = styled.Text`
   margin-bottom: 10px;
 `;
 const ContentInput = styled.TextInput`
-  background-color: #f9f9f9;
+  background-color: #fff;
   border-radius: 5px;
   padding: 10px;
   min-height: 200px;
