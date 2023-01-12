@@ -14,7 +14,7 @@ export default function MusicalCard({ data }) {
           key={item?.mt20id}
           onPress={() => navigate('Stacks', { 
             screen: 'MusicalDetail',
-            params: { musicalId: item?.mt20id},
+            params: { musicalId: item?.mt20id[0]},
             })
           }
         >
