@@ -63,7 +63,7 @@ export default function ReviewEdit({
           try {
             await removeReview(review.id);
             if (from === 'MusicalDetail') {
-              navigation.navigate('MusicalDetail');
+              navigation.navigate('MusicalDetail', { musiclaid: review });
             } else if (from === 'Mypage') {
               navigation.navigate('Tabs', { screen: 'Mypage' });
             }
@@ -101,7 +101,7 @@ export default function ReviewEdit({
               navigation.reset({
                 index: 1,
                 routes: [
-                  { name: 'MusicalDetail' },
+                  { name: 'MusicalDetail', params: { musiclaid: review } },
                   {
                     name: 'ReviewDetail',
                     params: { review: { ...review, ...editObj }, from },

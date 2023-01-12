@@ -20,11 +20,11 @@ export default function BoxOfficeMonthItem({ musical }) {
       onPress={() =>
         navigate('Stacks', {
           screen: 'MusicalDetail',
-          params: { musicalId: musical?.mt20id },
+          params: { musicalId: musical?.mt20id[0] },
         })
       }
     >
-      <Poster url={musical?.poster} musicalId={musical?.mt20id} />
+      <Poster url={musical?.poster} musicalId={musical?.mt20id[0]} />
     </ItemWrapper>
   );
 }
