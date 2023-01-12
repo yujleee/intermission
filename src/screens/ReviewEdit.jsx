@@ -135,8 +135,6 @@ export default function ReviewEdit({
     ]);
   };
 
-  const placeholderColor = isDark ? '#fff' : '#292929';
-
   return (
     <Container>
       <EditTitle>평점</EditTitle>
@@ -148,7 +146,9 @@ export default function ReviewEdit({
         }}
         ratingCount={5}
         imageSize={30}
-        tintColor={isDark ? DARK_BACKGROUND : LIGHT_BACKGROUND}
+        type="custom"
+        ratingBackgroundColor="#ddd"
+        tintColor="#fdfdfd"
       />
       <EditTitle>내용</EditTitle>
       <ContentEdit
@@ -157,11 +157,14 @@ export default function ReviewEdit({
         onChangeText={(text) => setNewContents(text)}
         multiline
         maxLength={300}
-        placeholderTextColor={placeholderColor}
+        placeholderTextColor={'#292929'}
         placeholder={review.contents}
       />
-      <EditButton  style={{opacity: (!newContents && !newratings) ? 0.1 : 1}}
-        disabled={!newContents && !newratings}   onPress={onEdit}>
+      <EditButton
+        style={{ opacity: !newContents && !newratings ? 0.1 : 1 }}
+        disabled={!newContents && !newratings}
+        onPress={onEdit}
+      >
         <BtnTitle disabled={!newContents && !newratings}>수정하기</BtnTitle>
       </EditButton>
       <DeleteBtn onPress={onDelete}>
