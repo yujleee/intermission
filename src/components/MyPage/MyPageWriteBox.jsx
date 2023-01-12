@@ -1,12 +1,22 @@
 import { View, FlatList } from 'react-native';
 import styled from '@emotion/native';
-import ReviewCard from '../Reviews/ReviewCard';
-import { collection, query, QuerySnapshot, where } from '@firebase/firestore';
+import {
+  Id,
+  ReviewContent,
+  ReviewDate,
+  Rating,
+  Row,
+  Text,
+} from '../Reviews/ReviewCard';
+import { collection, query, where } from '@firebase/firestore';
 import { dbService, authService } from '../../firebase';
 import { onSnapshot } from '@firebase/firestore';
 import { useState, useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { shadowStyle } from '../../shadow';
 
 export default function myPageWriteBox() {
+  const { navigate } = useNavigation();
   const [reviews, setReviews] = useState('');
   
   
@@ -29,7 +39,13 @@ export default function myPageWriteBox() {
     });
   }, []);
 
-  console.log(reviews);
+  const goToReview = (review) => {
+    navigate('Stacks', {
+      screen: 'ReviewDetail',
+      params: { review: review, from: 'MyPage' },
+    });
+  };
+
   return (
     <FlatList
       ListHeaderComponent={
@@ -41,12 +57,25 @@ export default function myPageWriteBox() {
       }
       keyExtractor={(item) => item.id}
       data={reviews}
-      renderItem={({ item }) => 
-      (<ReviewCard review={item} />)
-      }
+      renderItem={({ item }) => (
+        <ReviewContent
+          style={shadowStyle.blue}
+          onPress={() => goToReview(item)}
+        >
+          <Row>
+            <Rating>⭐️{item?.rating}/5</Rating>
+            <ReviewDate>
+              {new Date(item?.createdAt).toLocaleDateString('kr')}
+            </ReviewDate>
+          </Row>
+          <Text numberOfLines={2}>{item?.contents}</Text>
+          <Id>{item?.writer}</Id>
+        </ReviewContent>
+      )}
     />
   );
 }
+
 const ReviewText = styled.Text`
   color: ${(props) => props.theme.fontColor};
   margin-top: 80px;

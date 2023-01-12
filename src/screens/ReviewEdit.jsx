@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from '@emotion/native';
-import { dbService } from '../firebase';
+import { authService, dbService } from '../firebase';
 import { deleteDoc, updateDoc, doc } from 'firebase/firestore';
 import { Rating } from 'react-native-ratings';
 import { Alert, useColorScheme } from 'react-native';
@@ -21,7 +21,7 @@ export default function ReviewEdit({
   const deleteReview = async (id) => {
     await deleteDoc(doc(dbService, 'reviews', id));
   };
-  
+
   const editReview = async (id) => {
     await updateDoc(doc(dbService, 'reviews', id), {
       rating: newratings,
@@ -67,7 +67,9 @@ export default function ReviewEdit({
           try {
             await removeReview(review.id);
             if (from === 'MusicalDetail') {
-              navigation.navigate('MusicalDetail', { musicalId: review.musicalId });
+              navigation.navigate('MusicalDetail', {
+                musicalId: review.musicalId,
+              });
             } else if (from === 'Mypage') {
               navigation.navigate('Tabs', { screen: 'Mypage' });
             }
@@ -105,7 +107,10 @@ export default function ReviewEdit({
               navigation.reset({
                 index: 1,
                 routes: [
-                  { name: 'MusicalDetail', params: { musicalId: review.musicalId } },
+                  {
+                    name: 'MusicalDetail',
+                    params: { musicalId: review.musicalId },
+                  },
                   {
                     name: 'ReviewDetail',
                     params: { review: { ...review, ...editObj }, from },

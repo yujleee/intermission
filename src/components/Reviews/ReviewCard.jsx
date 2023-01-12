@@ -1,11 +1,7 @@
-import styled from '@emotion/native';
-// import { useNavigation } from '@react-navigation/native';
-import { React, useState, useCallback } from 'react';
-import { DARK_FONT, LIGHT_FONT } from '../../colors';
-import { shadowStyle } from '../../util/shadow';
-import { useFocusEffect } from '@react-navigation/native';
-import { authService, dbService } from '../../firebase';
 import { useNavigation } from '@react-navigation/native';
+import styled from '@emotion/native';
+import { shadowStyle } from '../../shadow';
+import { authService } from '../../firebase';
 
 export default function ReviewCard({ review }) {
   const { navigate } = useNavigation();
@@ -16,14 +12,12 @@ export default function ReviewCard({ review }) {
       navigate('Login');
       return;
     }
+
     navigate('ReviewDetail', { review, from: 'MusicalDetail' });
   };
 
   return (
     <ReviewContent style={shadowStyle.blue} onPress={goToReviewDetail}>
-      {/* 글자수 자르기 해야함~!
-            {movie.title.slice(0, 11)}
-          {movie.title.length > 11 && "..."} */}
       <Row>
         <Rating>⭐️{review?.rating}/5</Rating>
         <ReviewDate>
@@ -37,8 +31,7 @@ export default function ReviewCard({ review }) {
   );
 }
 
-//
-const ReviewContent = styled.TouchableOpacity`
+export const ReviewContent = styled.TouchableOpacity`
   width: 100%;
   background-color: ${(props) => props.theme.boxColor};
   border-radius: 5px;
@@ -47,17 +40,17 @@ const ReviewContent = styled.TouchableOpacity`
   display: flex;
   justify-content: flex-end;
 `;
-const Row = styled.View`
+export const Row = styled.View`
   flex-direction: row;
   justify-content: space-between;
 `;
 // 전체 글자
-const ReviewDate = styled.Text`
+export const ReviewDate = styled.Text`
   font-size: 14px;
   margin-bottom: 5px;
   color: ${(props) => props.theme.reviewSmall};
 `;
-const Rating = styled.Text`
+export const Rating = styled.Text`
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 10px;

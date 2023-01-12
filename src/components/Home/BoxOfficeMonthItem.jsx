@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import styled from '@emotion/native';
 import Poster from './Poster';
-import { shadowStyle } from '../../util/shadow';
+import { shadowStyle } from '../../shadow';
 
 /**
  * 상단 슬라이더 리스트 아이템
