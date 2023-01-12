@@ -7,6 +7,7 @@ import { authService } from '../firebase';
 
 export default function MyPage() {
   const { reset } = useNavigation();
+  
 
   useFocusEffect(
     useCallback(() => {

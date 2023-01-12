@@ -18,6 +18,8 @@ import { shadowStyle } from '../../shadow';
 export default function myPageWriteBox() {
   const { navigate } = useNavigation();
   const [reviews, setReviews] = useState('');
+  
+  
 
   useEffect(() => {
     const q = query(
@@ -81,3 +83,12 @@ const ReviewText = styled.Text`
   margin-left: 16px;
   font-size: 20px;
 `;
+const TestView = styled.View`
+`
+const Wrapper = styled.TouchableOpacity`
+  background-color: red;
+`
+
+const Title = styled.Text`
+  font-size: 16px;
+`
