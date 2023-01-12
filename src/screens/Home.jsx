@@ -8,7 +8,7 @@ import { filterOnlyMusicals } from '../util';
 import TicketLinkList from '../components/Home/TicketLinkList';
 import Loading from './Loading';
 
-export default function Home({ navigation: { navigate, setOptions } }) {
+export default function Home() {
   const { data: boxOfficeMonthData, isLoading: isLoadingBOM } = useQuery(
     ['Musicals', 'BoxOfficeMonth'],
     getBoxOfficeMonth
@@ -47,4 +47,6 @@ export default function Home({ navigation: { navigate, setOptions } }) {
   );
 }
 
-const HomeWrapper = styled.FlatList``;
+const HomeWrapper = styled.FlatList`
+  background-color: #fff;
+`;
