@@ -43,7 +43,6 @@ export default function ReviewsPart({ musicalId }) {
     });
     return getReviews;
   }, []);
-
   return (
     <ReviewPart>
       <ReviewTitlePart>
@@ -91,6 +90,7 @@ const SectionTitle = styled.Text`
   align-items: center;
   color: ${(props) => props.theme.fontColor};
 `;
+
 export const AddReview = styled.TouchableOpacity`
   margin-right: 20px;
   border-radius: 5px;

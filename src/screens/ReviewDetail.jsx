@@ -2,6 +2,9 @@ import styled from '@emotion/native';
 import { shadowStyle } from '../shadow';
 import { Id, Text } from '../components/Reviews/ReviewCard';
 import { AddReview, AddReviewText } from '../components/Reviews/ReviewsPart';
+import { authService } from '../firebase';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 export default function ReviewDetail({
   navigation: { navigate },
@@ -9,9 +12,26 @@ export default function ReviewDetail({
     params: { review, from },
   },
 }) {
+  const [isUser, setUser] = useState(false);
+
   const goToReviewEdit = () => {
     navigate('ReviewEdit', { review, from });
   };
+
+  const currentUser = authService.currentUser.uid;
+
+  const checkUser = () => {
+    console.log('review?.userId', review?.userId);
+    console.log('currentUser?.userId', currentUser);
+    if (review?.userId === currentUser) {
+      setUser(true);
+      console.log('isUser', isUser);
+    }
+  };
+
+  useEffect(() => {
+    checkUser();
+  }, []);
 
   return (
     <Container>
@@ -23,11 +43,13 @@ export default function ReviewDetail({
         <Text>{review?.contents}</Text>
         <Id>{review?.writer}</Id>
       </ReviewBox>
-      <ButtonWrapper>
-        <EditBtn onPress={goToReviewEdit}>
-          <EditBtnText>수정하기</EditBtnText>
-        </EditBtn>
-      </ButtonWrapper>
+      {isUser && (
+        <ButtonWrapper>
+          <EditBtn onPress={goToReviewEdit}>
+            <EditBtnText>수정하기</EditBtnText>
+          </EditBtn>
+        </ButtonWrapper>
+      )}
     </Container>
   );
 }
