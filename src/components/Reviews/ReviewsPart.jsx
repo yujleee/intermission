@@ -16,7 +16,6 @@ import { Empty, EmptyText } from '../Home/LocalMusical/LocalMusicalList';
 export default function ReviewsPart({ musicalId }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [reviews, setReviews] = useState([]); // reviews 추가, 삭제 state
-  const [allRatings, setAllRatings] = useState(''); // 리뷰 별 rating 모아서 평균내려고 함
   const { navigate } = useNavigation();
 
   const addreview = () => {
@@ -28,12 +27,6 @@ export default function ReviewsPart({ musicalId }) {
     setIsOpenModal(true);
   };
 
-  const collectRatings = () => {
-    const result = reviews.rating;
-    result.map((item) => item.rating);
-    console.log('result', result);
-    setAllRatings(result);
-  };
   useEffect(() => {
     const reviewsCollectionRef = collection(dbService, 'reviews');
     const q = query(
@@ -48,16 +41,12 @@ export default function ReviewsPart({ musicalId }) {
       }));
       setReviews(newReviews);
     });
-    collectRatings();
     return getReviews;
   }, []);
   return (
     <ReviewPart>
       <ReviewTitlePart>
         <SectionTitle>리뷰</SectionTitle>
-        <SectionTitleRating>
-          리뷰평균별점⭐️{allRatings}/reviews.length
-        </SectionTitleRating>
         <AddReview onPress={addreview}>
           <AddReviewText>리뷰 작성하기</AddReviewText>
         </AddReview>
@@ -101,13 +90,7 @@ const SectionTitle = styled.Text`
   align-items: center;
   color: ${(props) => props.theme.fontColor};
 `;
-const SectionTitleRating = styled.Text`
-  font-size: 20px;
-  margin-left: 20px;
-  vertical-align: middle;
-  align-items: center;
-  color: ${(props) => props.theme.fontColor};
-`;
+
 export const AddReview = styled.TouchableOpacity`
   margin-right: 20px;
   border-radius: 5px;
