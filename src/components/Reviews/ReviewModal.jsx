@@ -1,9 +1,9 @@
-import { Modal } from "react-native"
-import styled from "@emotion/native"
-import { useState } from "react"
-import { Rating } from "react-native-ratings"
-import { collection, addDoc } from "firebase/firestore"
-import { authService, dbService } from "../../firebase"
+import { Modal } from 'react-native';
+import styled from '@emotion/native';
+import { useState } from 'react';
+import { Rating } from 'react-native-ratings';
+import { collection, addDoc } from 'firebase/firestore';
+import { authService, dbService } from '../../firebase';
 
 export default function ReviewModal({isOpenModal, setIsOpenModal, musicalId }) {
     const [modalContent, setModalContent] = useState('');
@@ -36,7 +36,7 @@ export default function ReviewModal({isOpenModal, setIsOpenModal, musicalId }) {
                     onFinishRating={getRatings}
                     ratingCount={5}
                     imageSize={30}
-                    tintColor='#dd99f0' 
+                    tintColor="transperant"
                 />
                 <ModalTitle>내용</ModalTitle>
                 <ContentInput 
@@ -65,38 +65,38 @@ export default function ReviewModal({isOpenModal, setIsOpenModal, musicalId }) {
 }
 
 const Backdrop = styled.View`
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+`;
 const ModalBackImg = styled.View`
-    background-color: #dd99f0;
-    width: 80%;
-    height: 70%;
-    padding: 20px;
-    justify-content: space-between;
-    border-radius: 5px;
-`
-const ModalView = styled.View`
-`
+  background-color: #fff;
+  width: 80%;
+  height: 70%;
+  padding: 20px;
+  justify-content: space-between;
+  border-radius: 5px;
+`;
+const ModalView = styled.View``;
 const ModalTitle = styled.Text`
-    font-size: 20px;
-    font-weight: 600;
-    color: black;
-    margin-top: 20px;
-    margin-bottom: 10px;
-`
+  font-size: 20px;
+  font-weight: 600;
+  color: black;
+  margin-top: 20px;
+  margin-bottom: 10px;
+`;
 const ContentInput = styled.TextInput`
-    background-color: white;
-    border-radius: 5px;
-    padding: 10px;
-    min-height: 200px;
-`
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 10px;
+  min-height: 200px;
+`;
 const Row = styled.View`
-    flex-direction: row;
-    margin-bottom: 10px;
-    justify-content: space-between;
-    align-items: flex-start;
+  flex-direction: row;
+  margin-bottom: 10px;
+  justify-content: space-between;
+  align-items: flex-start;
 `;
 const ModalCancelBtn = styled.TouchableOpacity`
 `
@@ -107,6 +107,6 @@ const CancleBtn = styled.Text`
 const ModalAddBtn = styled.TouchableOpacity`
 `
 const AddBtn = styled.Text`
-    font-size: 20px;
-    color: black;
-`
+  font-size: 20px;
+  color: black;
+`;

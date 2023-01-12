@@ -40,7 +40,7 @@ export default function myPageWriteBox() {
 }
 const ReviewText = styled.Text`
   color: ${(props) => props.theme.fontColor};
-  margin-top: 60px;
+  margin-top: 80px;
   margin-bottom: 30px;
   margin-left: 16px;
   font-size: 20px;

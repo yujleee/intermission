@@ -1,7 +1,7 @@
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import styled from '@emotion/native';
 import { Linking } from 'react-native';
-import { SectionTitle } from './SectionList';
+import { SectionTitle } from './BoxOfficeList';
 import { dbService } from '../../firebase';
 import { useEffect, useState } from 'react';
 
@@ -85,8 +85,8 @@ const Img = styled.Image`
 `;
 
 const TicketText = styled.Text`
-  font-size: 16px;
-  color: #666;
+  font-size: 14px;
+  color: ${(props) => props.theme.smallFontColor};
   margin: 6px 0;
   font-weight: 500;
   text-align: center;
