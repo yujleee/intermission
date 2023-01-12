@@ -74,19 +74,6 @@ export default function MyPageHeader() {
     }
   };
 
-  const [photo, SetPhoto] = useState(defaultimage);
-  const onSelectImage = () => {
-    Alert.alert('My Profile', '프로필 사진을 변경하시겠습니까?', [
-      {
-        text: '확인',
-        onPress: () => {
-          Alert.alert('아직은 안돼요');
-        },
-      },
-      { text: '취소' },
-    ]);
-  };
-
   // 로그아웃
   const logout = () => {
     signOut(authService)
