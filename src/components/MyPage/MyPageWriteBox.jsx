@@ -22,7 +22,7 @@ export default function myPageWriteBox() {
   useEffect(() => {
     const q = query(
       collection(dbService, 'reviews'),
-      where('userId', '==', authService.currentUser.uid)
+      where('userId', '==', authService?.currentUser?.uid ?? '0')
     );
 
     onSnapshot(q, (snapshot) => {

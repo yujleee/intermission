@@ -20,7 +20,6 @@ export default function Stacks({ navigation: { goBack } }) {
   const isDark = useColorScheme() === 'dark';
   return (
     <Stack.Navigator
-      initialRouteName="Home"
       screenOptions={{
         headerLeft: () => (
           <TouchableOpacity onPress={() => goBack()}>
@@ -49,7 +48,6 @@ export default function Stacks({ navigation: { goBack } }) {
         component={ReviewEdit}
         options={{ title: '리뷰 수정' }}
       />
-      <Stack.Screen name="Home" component={Home} />
     </Stack.Navigator>
   );
 }

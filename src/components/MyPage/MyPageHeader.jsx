@@ -14,14 +14,16 @@ import { SCREEN_WIDTH } from '../../util';
 
 export default function MyPageHeader() {
   //닉네임 수정
-  const [name, setName] = useState(authService.currentUser.displayName);
+  const [name, setName] = useState(
+    authService?.currentUser?.displayName ?? '닉네임없음'
+  );
   const [text, setText] = useState('');
 
   const changeName = () => {
     setName(text);
 
     // 닉네임, 이미지 수정
-    updateProfile(authService.currentUser, {
+    updateProfile(authService?.currentUser, {
       displayName: text ? text : '닉네임을 변경해주세요',
     });
   };
@@ -41,8 +43,12 @@ export default function MyPageHeader() {
 
   // 프로필 이미지 변경
 
+  const defaultProfile =
+    'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg';
   // 이미지 선택&갤러리 (이미지피커)
-  const [pickedImg, setPickedImg] = useState(authService.currentUser.photoURL);
+  const [pickedImg, setPickedImg] = useState(
+    authService?.currentUser?.photoURL ?? defaultProfile
+  );
   const [status, requestPermission] = ImagePicker.useMediaLibraryPermissions();
 
   const pickImage = async () => {

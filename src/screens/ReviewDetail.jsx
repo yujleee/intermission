@@ -21,11 +21,8 @@ export default function ReviewDetail({
   const currentUser = authService.currentUser.uid;
 
   const checkUser = () => {
-    console.log('review?.userId', review?.userId);
-    console.log('currentUser?.userId', currentUser);
     if (review?.userId === currentUser) {
       setUser(true);
-      console.log('isUser', isUser);
     }
   };
 
