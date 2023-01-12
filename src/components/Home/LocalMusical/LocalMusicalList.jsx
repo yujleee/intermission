@@ -79,11 +79,11 @@ const Loading = styled.View`
   padding: 0 ${Math.ceil(SCREEN_WIDTH) / 2 - 30 + 'px'};
 `;
 
-const Empty = styled.View`
+export const Empty = styled.View`
   padding: 0 ${Math.ceil(SCREEN_WIDTH) / 3 - 20 + 'px'};
 `;
 
-const EmptyText = styled.Text`
+export const EmptyText = styled.Text`
   justify-content: center;
   font-size: 16px;
   color: ${(props) => props.theme.smallFontColor};

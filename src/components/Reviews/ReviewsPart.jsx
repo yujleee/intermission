@@ -54,7 +54,6 @@ export default function ReviewsPart({ musicalId }) {
       </ReviewTitlePart>
 
       <Review>
-        {console.log(reviews.length)}
         {reviews?.length === 0 && (
           <EmptyData>
             <EmptyText>데이터가 없습니다</EmptyText>
@@ -102,7 +101,7 @@ export const AddReview = styled.TouchableOpacity`
   height: 46px;
 `;
 export const AddReviewText = styled.Text`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: ${(props) => props.theme.buttonTextColor};
 `;
