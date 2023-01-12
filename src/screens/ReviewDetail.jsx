@@ -6,6 +6,7 @@ import { useColorScheme } from 'react-native';
 import { AddReview, AddReviewText } from '../components/Reviews/ReviewsPart';
 import { authService } from '../firebase';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 export default function ReviewDetail({
   navigation: { navigate },
@@ -19,11 +20,20 @@ export default function ReviewDetail({
     navigate('ReviewEdit', { review, from });
   };
   const isDark = useColorScheme();
-  const { reviews, currentUser } = authService.currentUser;
+  const currentUser = authService.currentUser.uid;
 
   const checkUser = () => {
-    if (reviews.userId === currentUser.userId) setUser(true);
+    console.log('review?.userId', review?.userId);
+    console.log('currentUser?.userId', currentUser);
+    if (review?.userId === currentUser) {
+      setUser(true);
+      console.log('isUser', isUser);
+    }
   };
+
+  useEffect(() => {
+    checkUser();
+  }, []);
 
   return (
     <Container>
