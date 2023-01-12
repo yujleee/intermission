@@ -16,7 +16,6 @@ export default function MyPageHeader() {
   //닉네임 수정
   const [name, setName] = useState(authService.currentUser.displayName);
   const [text, setText] = useState('');
-  console.log(authService);
 
   const changeName = () => {
     setName(text);
@@ -101,7 +100,6 @@ export default function MyPageHeader() {
   const logout = () => {
     signOut(authService)
       .then(() => {
-        console.log('로그아웃 성공');
         Alert.alert('Intermission', '안녕히 가세요.');
         navigate('Home');
       })

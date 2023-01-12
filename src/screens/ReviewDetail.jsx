@@ -1,8 +1,6 @@
 import styled from '@emotion/native';
-import { Feather } from '@expo/vector-icons';
 import { shadowStyle } from '../util/shadow';
 import { Id, Text } from '../components/Reviews/ReviewCard';
-import { useColorScheme } from 'react-native';
 import { AddReview, AddReviewText } from '../components/Reviews/ReviewsPart';
 
 export default function ReviewDetail({
@@ -14,7 +12,6 @@ export default function ReviewDetail({
   const goToReviewEdit = () => {
     navigate('ReviewEdit', { review, from });
   };
-  const isDark = useColorScheme();
 
   return (
     <Container>

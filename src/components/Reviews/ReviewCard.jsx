@@ -1,14 +1,10 @@
-import styled from '@emotion/native';
-// import { useNavigation } from '@react-navigation/native';
-import { React, useState, useCallback } from 'react';
-import { DARK_FONT, LIGHT_FONT } from '../../colors';
-import { shadowStyle } from '../../util/shadow';
-import { useFocusEffect } from '@react-navigation/native';
-import { authService, dbService } from '../../firebase';
 import { useNavigation } from '@react-navigation/native';
+import styled from '@emotion/native';
+import { shadowStyle } from '../../util/shadow';
+import { authService } from '../../firebase';
 
 export default function ReviewCard({ review }) {
-  const { navigate, reset } = useNavigation();
+  const { navigate } = useNavigation();
 
   const goToReviewDetail = async () => {
     const isLogin = !!authService.currentUser;
@@ -22,9 +18,6 @@ export default function ReviewCard({ review }) {
 
   return (
     <ReviewContent style={shadowStyle.blue} onPress={goToReviewDetail}>
-      {/* 글자수 자르기 해야함~!
-            {movie.title.slice(0, 11)}
-          {movie.title.length > 11 && "..."} */}
       <Row>
         <Rating>⭐️{review?.rating}/5</Rating>
         <ReviewDate>
@@ -38,7 +31,6 @@ export default function ReviewCard({ review }) {
   );
 }
 
-//
 export const ReviewContent = styled.TouchableOpacity`
   width: 100%;
   background-color: ${(props) => props.theme.boxColor};

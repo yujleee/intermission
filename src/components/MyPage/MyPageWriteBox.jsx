@@ -1,6 +1,6 @@
 import { View, FlatList } from 'react-native';
 import styled from '@emotion/native';
-import ReviewCard, {
+import {
   Id,
   ReviewContent,
   ReviewDate,
@@ -8,7 +8,7 @@ import ReviewCard, {
   Row,
   Text,
 } from '../Reviews/ReviewCard';
-import { collection, query, QuerySnapshot, where } from '@firebase/firestore';
+import { collection, query, where } from '@firebase/firestore';
 import { dbService, authService } from '../../firebase';
 import { onSnapshot } from '@firebase/firestore';
 import { useState, useEffect } from 'react';
