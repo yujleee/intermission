@@ -1,7 +1,5 @@
 import styled from '@emotion/native';
 import { SCREEN_HEIGHT } from '../util';
-import { StyleSheet } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
 import { useQuery } from 'react-query';
 import { getMusicalData } from '../api';
@@ -32,11 +30,11 @@ export default function ReviewDetail({
         </EditBtn>
       </Row>
       <ReviewBox>
-      <Text>{review?.contents}</Text>
-      <Id>
-        {/* {review?.userId} */}
-        닉네임1
-      </Id>
+        <Text>{review?.contents}</Text>
+        <Id>
+          {/* {review?.userId} */}
+          닉네임1
+        </Id>
       </ReviewBox>
     </Container>
   );
