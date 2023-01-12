@@ -207,6 +207,7 @@ const IdButton = styled.TextInput`
   width: ${SCREEN_WIDTH * 0.42 + 'px'};
   height: 50px;
   margin-top: 10px;
+
   margin-bottom: 10px;
   background-color: #ddd;
   border-radius: 10px;

@@ -34,10 +34,7 @@ export default function ReviewCard({ review }) {
       </Row>
 
       <Text numberOfLines={2}>{review?.contents}</Text>
-      <Id>
-        {/* {review?.userId} */}
-        닉네임1
-      </Id>
+      <Id>{review?.writer}</Id>
     </ReviewContent>
   );
 }
