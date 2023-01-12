@@ -1,11 +1,9 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
 import Home from '../screens/Home';
 import Musicals from '../screens/Musicals';
 import MyPage from '../screens/MyPage';
-import Login from '../screens/Login';
 import { useColorScheme, TouchableOpacity } from 'react-native';
 import {
   DARK_BACKGROUND,
@@ -65,15 +63,6 @@ export default function Tabs({ navigation: { goBack } }) {
         }}
       />
       <Tab.Screen
-        name="Reviews"
-        component={Reviews}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="chatbubbles-outline" size={size} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
         name="Mypage"
         component={MyPage}
         options={{
@@ -83,16 +72,6 @@ export default function Tabs({ navigation: { goBack } }) {
           ),
         }}
       />
-      {/* <Tab.Screen
-        name="Login"
-        component={Login}
-        options={{
-          title: '',
-          tabBarIcon: ({ color, size }) => (
-            <AntDesign name="login" size={size} color={color} />
-          ),
-        }}
-      /> */}
     </Tab.Navigator>
   );
 }
