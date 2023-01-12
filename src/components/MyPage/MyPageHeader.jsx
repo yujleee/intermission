@@ -22,7 +22,7 @@ export default function MyPageHeader() {
 
     // 닉네임, 이미지 수정
     updateProfile(authService.currentUser, {
-      displayName: text ? text : null,
+      displayName: text ? text : '닉네임을 변경해주세요',
     });
   };
   const SwitchName = () => {
