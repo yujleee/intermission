@@ -1,7 +1,6 @@
 import { View, FlatList } from 'react-native';
 import styled from '@emotion/native';
 import ReviewCard from '../Reviews/ReviewCard';
-
 export default function myPageWriteBox() {
   const data = [
     // 나중에 파이어베이스에서 받아서 변경 - 더미데이터
@@ -23,7 +22,6 @@ export default function myPageWriteBox() {
       writer: 'asdasda',
     },
   ];
-
   return (
     <FlatList
       ListHeaderComponent={
@@ -40,7 +38,6 @@ export default function myPageWriteBox() {
     />
   );
 }
-
 const ReviewText = styled.Text`
   color: ${(props) => props.theme.fontColor};
   margin-top: 60px;
