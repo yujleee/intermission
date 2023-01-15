@@ -1,5 +1,6 @@
 # intermission
 공연예술통합전산망(KOPIS)의 OPEN API를 활용한 뮤지컬 정보 제공 및 리뷰 앱
+
 프로젝트 진행 기간: 2023.01.06 ~ 2023.01.13
 
 ![intermission-mockup](https://user-images.githubusercontent.com/82587107/212228406-f5f01a2b-8e44-4f59-8eb5-45726e92a63a.jpg)
@@ -7,10 +8,10 @@
 
 
 
-## 배포 QR코드
-### iOS
+## ✨ 배포 QR코드
+### 📱 iOS
 ![image](https://user-images.githubusercontent.com/82587107/212118973-dee2d54d-b551-4ca8-accb-2b3f39f8ea36.png)
-### Android
+### 📱 Android
 ![image](https://user-images.githubusercontent.com/82587107/212119171-760f76da-8c22-4f56-9e45-dbe9002de4f7.png)
 
 **🔗 [시연 영상](https://www.youtube.com/watch?v=QyEP2lnGfWc)**
@@ -18,7 +19,7 @@
 <br/>
 <br/>
 
-# 🙌 팀원 소개
+## 🙌 팀원 소개
 
 | 이름   | 깃허브                                       |
 | ------ | -------------------------------------------- |
@@ -39,13 +40,14 @@
 <br/>
 
 
-# 🖥 기술 스택
+## 🖥 기술 스택
 
 ### Front-end
 - React-Native
-Emotion Styled-components : 스타일 컴포넌트의 재사용을 위해 선택
+- Emotion Styled-components : 스타일 컴포넌트의 재사용을 위해 선택
 - React Navigation
 - React Query
+- React Native xml2json
 
 ### Back-end
 - firebase
@@ -59,7 +61,7 @@ Emotion Styled-components : 스타일 컴포넌트의 재사용을 위해 선택
 <br/>
 
 
-# 🗂 디렉토리 구조
+## 🗂 디렉토리 구조
 
 ```
 📦 assets
@@ -82,6 +84,9 @@ Emotion Styled-components : 스타일 컴포넌트의 재사용을 위해 선택
 - components : 각 페이지별 컴포넌트 파일 폴더
 - navigation: 라우팅 관련 파일 폴더
 - screens: 스크린 컴포넌트 파일 폴더
+
+<br/>
+<br/>
 
 ## 🤝 규칙
 
@@ -145,7 +150,9 @@ Git Flow 방식을 이용했습니다.
 
 ## 🔥 트러블 슈팅
 
-추후 작성 예정
+프로젝트 노션을 참고해주세요.
+
+📑 [프로젝트 노션](https://yjworking.notion.site/bc9c2449dddc4fafb152f143347e08b9)
 
 <br/>
 <br/>
@@ -155,3 +162,5 @@ Git Flow 방식을 이용했습니다.
 🎉 [프로젝트 S.A](https://yjworking.notion.site/B-8-FollowMe-SA-cf4d097a52db4c72af28aa3da1308f5f)
 
 🚧 [프로젝트 진행 노션](https://yjworking.notion.site/bc9c2449dddc4fafb152f143347e08b9)
+
+📒 [프로젝트 KPT 회고](https://i-ten.tistory.com/275)
